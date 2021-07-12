@@ -150,5 +150,26 @@ p {
                 margin-bottom: 0.75rem;
             }
         }
+
+        .template-card {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            
+
+            i {
+                font-size: 7rem;
+                background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+                background-size: 100%;
+                background-repeat: repeat;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                -moz-background-clip: text;
+                -moz-text-fill-color: transparent;
+            }
+        }
     }
 }
