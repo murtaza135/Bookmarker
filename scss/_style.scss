@@ -129,12 +129,31 @@ p {
 .bookmarks {
     padding: 7rem 0 3rem 0;
 
-    .bookmarks-grid {
+    %bookmarks-grid-shared {
         // TODO change to repeat (4, 1fr)
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
         grid-gap: 1.5rem;
         justify-content: space-between;
         text-align: center;
+    }
+
+    .bookmarks-grid-l {
+        @extend %bookmarks-grid-shared;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bookmarks-grid-m {
+        @extend %bookmarks-grid-shared;
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .bookmarks-grid-s {
+        @extend %bookmarks-grid-shared;
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .bookmarks-grid-xs {
+        @extend %bookmarks-grid-shared;
+        grid-template-columns: repeat(7, 1fr);
     }
 }
