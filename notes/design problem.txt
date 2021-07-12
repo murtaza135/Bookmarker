@@ -1,0 +1,28 @@
+What should the website contain?
+ - there should be a bunch of cards
+ - there should always be a card that contains the date and time and it should change dynamically
+ - the other cards will be "bookmarks" that the user can add himself
+ - these bookmarks will be stored in local storage
+ - the order of the cards can be changed
+ - the size of the cards can be changed
+
+ - there should always be a "card template" at the end which will open a modal allowing the user to enter a new bookmark
+ - the following options will be included in the card template:
+    - name
+    - url
+    - icon image
+    - display on page
+    - position
+
+ - there should be a navbar containing icon, logo and a settings button
+ - when clicking the settings button, a modal should pop up
+ - the settings modal should contain options:
+    - to change color (a list of options will be given)
+    - to change the size of the cards
+    - to change the spacing between cards
+    - provide a list of all bookmarks and which ones should be displayed on the page
+    - provide option to delete bookmarks from list
+   
+ - color themes:
+   - all color themes will be a linear gradient top to bottom
+   - darkblue/lighterblue linear gradient, cards will be a brighter shade of blue, redish-yellowish accent
