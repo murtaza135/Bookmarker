@@ -207,35 +207,3 @@
 *[class^="btn-"]:hover {
     opacity: 75%;
 }
-
-
-// Cards
-.card-1 {
-    padding: 1.5rem 1rem;
-    background: $primary-color;
-    color: set-text-color($primary-color);
-    border-top: 3px solid;
-    border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
-    border-image-slice: 1;
-    border-radius: 0 0 3px 3px;
-    min-height: 400px;
-}
-
-// .card-1 {
-//     padding: 1.5rem 1rem;
-//     background: $primary-color;
-//     color: set-text-color($primary-color);
-//     border-radius: 1.1rem;
-//     min-height: 400px;
-// }
-
-.card-2 {
-    padding: 1.5rem 1rem;
-    background: $primary-color-dark;
-    color: $primary-color;
-    border: 1px solid;
-    border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
-    border-image-slice: 1;
-    border-radius: 0 0 3px 3px;
-    min-height: 400px;
-}
