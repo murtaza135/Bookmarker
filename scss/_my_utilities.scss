@@ -30,8 +30,20 @@
         color: $primary-color;
     }
 
+    &-primary-light {
+        color: $primary-color-light;
+    }
+
+    &-primary-dark {
+        color: $primary-color-dark;
+    }
+
     &-secondary {
         color: $secondary-color;
+    }
+
+    &-tertiary {
+        color: $tertiary-color;
     }
 
     &-dark {
@@ -55,9 +67,24 @@
         color: set-text-color($primary-color);
     }
 
+    &-primary-light {
+        background: $primary-color-light;
+        color: set-text-color($primary-color-light);
+    }
+
+    &-primary-dark {
+        background: $primary-color-dark;
+        color: set-text-color($primary-color-dark);
+    }
+
     &-secondary {
         background: $secondary-color;
         color: set-text-color($secondary-color);
+    }
+
+    &-tertiary {
+        background: $tertiary-color;
+        color: set-text-color($tertiary-color);
     }
 
     &-dark {
@@ -81,7 +108,7 @@
 .line {
     height: 2px;
     width: 7rem;
-    background: $primary-color;
+    background: $secondary-color;
     display: block;
     margin: 1.25rem auto;
 }
@@ -89,7 +116,7 @@
 .v-line {
     width: 2px;
     height: 2rem;
-    background: $medium-color;
+    background: $secondary-color;
     display: block;
     margin: 0 auto;
 }
@@ -157,18 +184,11 @@
 
 
 // Cards
-.card {
+.card-1 {
     padding: 1.5rem 1rem;
-    background: $light-color;
-    color: set-text-color($light-color);
-    box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.3);
-}
-
-.card-2 {
-    padding: 1.5rem 1rem;
-    background: $light-color;
-    color: set-text-color($light-color);
-    border: 1px solid #aaaaaa;
-    border-radius: 5px;
+    background: $primary-color;
+    color: set-text-color($primary-color);
+    border-top: 3px solid linear-gradient(to right, $secondary-color, $tertiary-color);
+    border-radius: 12px;
     margin-bottom: 1rem;
 }
