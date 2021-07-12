@@ -30,10 +30,6 @@
         color: $primary-color;
     }
 
-    &-primary-light {
-        color: $primary-color-light;
-    }
-
     &-primary-dark {
         color: $primary-color-dark;
     }
@@ -65,11 +61,6 @@
     &-primary {
         background: $primary-color;
         color: set-text-color($primary-color);
-    }
-
-    &-primary-light {
-        background: $primary-color-light;
-        color: set-text-color($primary-color-light);
     }
 
     &-primary-dark {
@@ -108,7 +99,7 @@
 .line {
     height: 2px;
     width: 7rem;
-    background: $secondary-color;
+    background: linear-gradient(to right, $secondary-color, $tertiary-color);
     display: block;
     margin: 1.25rem auto;
 }
@@ -116,7 +107,7 @@
 .v-line {
     width: 2px;
     height: 2rem;
-    background: $secondary-color;
+    background: linear-gradient(to right, $secondary-color, $tertiary-color);
     display: block;
     margin: 0 auto;
 }
@@ -188,7 +179,10 @@
     padding: 1.5rem 1rem;
     background: $primary-color;
     color: set-text-color($primary-color);
-    border-top: 3px solid linear-gradient(to right, $secondary-color, $tertiary-color);
-    border-radius: 12px;
-    margin-bottom: 1rem;
+    border-top: 3px solid;
+    border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+    border-image-slice: 1;
+    border-radius: 0 0 3px 3px;
+    min-height: 400px;
+    // max-width: 250px;
 }
