@@ -1,0 +1,84 @@
+// Alert
+%alert-shared {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80px;
+    width: 100%;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    background-color: #bbbbbb;
+    color: #000000;
+    border-radius: 10px;
+    font-size: 22px;
+
+    .alert-message {
+        flex-grow: 1;
+    }
+
+    .alert-close {
+        flex-grow: 0;
+        cursor: pointer;
+
+        &:hover {
+            color: #000000;
+        }
+    }
+}
+
+.alert {
+    @extend %alert-shared;
+
+    &-primary {
+        @extend %alert-shared;
+        background: $primary-color;
+        color: set-text-color($primary-color);
+    }
+
+    &-secondary {
+        @extend %alert-shared;
+        background: $secondary-color;
+        color: set-text-color($secondary-color);
+    }
+
+    &-dark {
+        @extend %alert-shared;
+        background: $dark-color;
+        color: set-text-color($dark-color);
+
+        .alert-close:hover {
+            color: $medium-color;
+        }
+    }
+
+    &-medium {
+        @extend %alert-shared;
+        background: $medium-color;
+        color: set-text-color($medium-color);
+    }
+
+    &-light {
+        @extend %alert-shared;
+        background: $light-color;
+        color: set-text-color($light-color);
+    }
+
+    &-success {
+        @extend %alert-shared;
+        background: $success-color;
+        color: set-text-color($success-color);
+    }
+
+    &-warning {
+        @extend %alert-shared;
+        background: $warning-color;
+        color: set-text-color($warning-color);
+    }
+
+    &-danger {
+        @extend %alert-shared;
+        background: $danger-color;
+        color: set-text-color($danger-color);
+    }
+}
