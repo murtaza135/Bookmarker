@@ -131,6 +131,7 @@ p {
 
     .bookmarks-grid {
         // TODO change to repeat (4, 1fr)
+        display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 1.5rem;
         justify-content: space-between;
@@ -142,6 +143,12 @@ p {
             text-align: center;
             justify-content: space-evenly;
             align-items: center;
+
+            img {
+                max-height: 150px;
+                max-width: 150px;
+                margin-bottom: 0.75rem;
+            }
         }
     }
 }

@@ -1,5 +1,18 @@
+// Other
+.block {
+    display: block;
+}
+
+
 // Text
 .title-1 {
+    font-size: 2rem;
+    display: block;
+    text-align: center;
+    font-weight: 100;
+}
+
+.title-2 {
     font-size: 2rem;
     display: block;
     text-align: center;
@@ -7,17 +20,10 @@
     text-transform: uppercase;
 }
 
-.title-2 {
-    font-size: 2rem;
-    display: block;
-    text-align: left;
-    font-weight: 100;
-}
-
 .title-3 {
     font-size: 2rem;
     display: block;
-    text-align: center;
+    text-align: left;
     font-weight: 100;
 }
 
@@ -25,8 +31,35 @@
     font-size: 1.3rem;
 }
 
+.url {
+    display: inline-block;
+    font-weight: 600;
+    transition: all 0.15s;
+    border: none;
+    cursor: pointer;
+    background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+    background-size: 100%;
+    background-repeat: repeat;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+
+    &:hover {
+        opacity: 90%;
+        border-bottom: 1px solid;
+        border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+        border-image-slice: 1;
+    }
+}
+
 .text {
-    margin-bottom: 0;
+    margin-bottom: 0.5rem;
+
+    &-small {
+        font-size: 0.9rem;
+    }
 
     &-primary {
         color: $primary-color;
