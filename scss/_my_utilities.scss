@@ -26,6 +26,8 @@
 }
 
 .text {
+    margin-bottom: 0;
+
     &-primary {
         color: $primary-color;
     }
@@ -184,5 +186,12 @@
     border-image-slice: 1;
     border-radius: 0 0 3px 3px;
     min-height: 400px;
-    // max-width: 250px;
 }
+
+// .card-1 {
+//     padding: 1.5rem 1rem;
+//     background: $primary-color;
+//     color: set-text-color($primary-color);
+//     border-radius: 1.1rem;
+//     min-height: 400px;
+// }
