@@ -221,7 +221,6 @@ p {
 
         .modal-body {
             border-radius: 0 0 1rem 1rem;
-            padding-bottom: 2rem;
 
             .title-3 {
                 font-size: 1.25rem;
@@ -289,6 +288,7 @@ p {
                 text-align: center;
                 flex-grow: 1;
                 gap: 0.5rem;
+                padding-bottom: 2rem;
             }
         }
     }
