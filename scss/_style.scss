@@ -251,7 +251,6 @@ p {
                         @extend .box;
                         height: 100px;
                         width: 75px;
-                        border-radius: 0.85rem;
                         font-size: 2.5rem;
                         margin-left: 0.5rem
                     }
@@ -260,7 +259,6 @@ p {
                         @extend .box;
                         height: 60px;
                         width: 80px;
-                        border-radius: 0.85rem;
                         font-size: 1.7rem;
                     }
 
@@ -268,7 +266,6 @@ p {
                         @extend .box;
                         height: 55px;
                         width: 55px;
-                        border-radius: 0.75rem;
                         font-size: 1.5rem;
                     }
 
@@ -276,14 +273,20 @@ p {
                         @extend .box;
                         height: 35px;
                         width: 40px;
-                        border-radius: 0.65rem;
                         font-size: 1rem;
                     }
                 }
             }
 
             .bookmarks-list {
-
+                width: 100%;
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                justify-items: center;
+                text-align: center;
             }
         }
     }
