@@ -27,6 +27,7 @@
         </div>
     </header>
 
+    <!-- Bookmarks Grid -->
     <section class="bookmarks">
         <div class="container">
             <div id="bookmarks-grid" class="bookmarks-grid-l grid">
@@ -48,30 +49,41 @@
         </div>
     </section>
 
+    <!-- Settings Modal -->
     <div id="settings-modal" class="modal">
         <div class="modal-content">
             <header class="modal-header">
                 <div class="modal-title">
-                    
+                    <h1 class="title-3 space-reset">Settings</h1>
                 </div>
                 <span class="modal-close-btn"><i class="fas fa-times"></i></span>
             </header>
 
             <section class="modal-body">
+                <h1 class="title-3">Change the size of your bookmarks:</h1>
+                <div class="change-size-options">
+                    <div class="box-l">L</div>
+                    <div class="box-m">M</div>
+                    <div class="box-s">S</div>
+                    <div class="box-xs">XS</div>
+                    <div class="spacer"></div>
+                </div>
 
+                <div class="line"></div>
+
+                <div class="bookmarks-list">
+
+                </div>
             </section>
-
-            <footer class="modal-footer">
-
-            </footer>
         </div>
     </div>
 
-    <div id="bookmarks-modal" class="modal">
+    <!-- Bookmarks Modal -->
+    <!-- <div id="bookmarks-modal" class="modal">
         <div class="modal-content">
             <header class="modal-header">
                 <div class="modal-title">
-                    <h1 class="title-3 m-0">Create a New Bookmark</h1>
+                    <h1 class="title-3 space-reset">Create a New Bookmark</h1>
                 </div>
                 <span class="modal-close-btn"><i class="fas fa-times"></i></span>
             </header>
@@ -93,12 +105,8 @@
                     <input type="submit" value="Create Bookmark" class="bookmarks-submit-btn btn-primary-dark btn-stretch btn-xs">
                 </form>
             </section>
-
-            <!-- <footer class="modal-footer">
-
-            </footer> -->
         </div>
-    </div>
+    </div> -->
 
     <script src="js/app.bundle.js"></script>
 </body>

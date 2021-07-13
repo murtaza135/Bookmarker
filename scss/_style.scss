@@ -193,6 +193,7 @@ p {
                 }
 
                 .bookmarks-submit-btn {
+                    width: 100%;
                     background-position: 0 -35px;
                     background-repeat: repeat-x;
                     background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
@@ -202,6 +203,87 @@ p {
                         background-position: 0 0px;
                     }
                 }
+            }
+        }
+    }
+}
+
+
+// Settings Modal
+#settings-modal {
+    .modal-content {
+        width: 80%;
+        margin: 10% auto;
+
+        .modal-header {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body {
+            border-radius: 0 0 1rem 1rem;
+            padding-bottom: 1.5rem;
+
+            .title-3 {
+                font-size: 1.25rem;
+                margin-bottom: 1rem;
+            }
+
+            .change-size-options {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                justify-items: center;
+                text-align: center;
+
+                .box {
+                    cursor: pointer;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    justify-items: center;
+                    text-align: center;
+                    font-weight: bold;
+                    border: 2px solid $light-color;
+                    border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+                    border-image-slice: 1;
+
+                    &-l {
+                        @extend .box;
+                        height: 100px;
+                        width: 75px;
+                        border-radius: 0.85rem;
+                        font-size: 2.5rem;
+                        margin-left: 0.5rem
+                    }
+
+                    &-m {
+                        @extend .box;
+                        height: 60px;
+                        width: 80px;
+                        border-radius: 0.85rem;
+                        font-size: 1.7rem;
+                    }
+
+                    &-s {
+                        @extend .box;
+                        height: 55px;
+                        width: 55px;
+                        border-radius: 0.75rem;
+                        font-size: 1.5rem;
+                    }
+
+                    &-xs {
+                        @extend .box;
+                        height: 35px;
+                        width: 40px;
+                        border-radius: 0.65rem;
+                        font-size: 1rem;
+                    }
+                }
+            }
+
+            .bookmarks-list {
+
             }
         }
     }

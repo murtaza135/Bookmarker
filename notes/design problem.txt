@@ -21,7 +21,8 @@ What should the website contain?
     - to change the size of the cards
     - to change the spacing between cards
     - provide a list of all bookmarks and which ones should be displayed on the page
-    - provide option to delete bookmarks from list
+    - provide option to edit/delete bookmarks from list
+    - provide option to change order of bookmarks
    
  - color themes:
    - all color themes will be a linear gradient top to bottom
