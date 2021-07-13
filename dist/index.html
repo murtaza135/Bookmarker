@@ -38,6 +38,7 @@
                         <span class="url">www.google.com</span>
                     </div>
                 </a>
+
                 <a href="#" class="block">
                     <div class="template-card template-card-l">
                         <i class="fas fa-plus"></i>
@@ -70,18 +71,32 @@
         <div class="modal-content">
             <header class="modal-header">
                 <div class="modal-title">
-
+                    <h1 class="title-3 m-0">Create a New Bookmark</h1>
                 </div>
                 <span class="modal-close-btn"><i class="fas fa-times"></i></span>
             </header>
 
             <section class="modal-body">
-
+                <form class="bookmarks-form">
+                    <div class="form-control bookmarks-name">
+                        <label for="bookmarks-name-input"></label>
+                        <input type="text" name="bookmarks-name-input" id="bookmarks-name-input" class="text-input" placeholder="Name">
+                    </div>
+                    <div class="form-control bookmarks-url">
+                        <label for="bookmarks-url-input"></label>
+                        <input type="url" name="bookmarks-url-input" id="bookmarks-url-input" class="text-input" placeholder="URL">
+                    </div>
+                    <div class="form-control bookmarks-image">
+                        <label for="bookmarks-image-input"></label>
+                        <input type="file" name="bookmarks-image-input" id="bookmarks-image-input" class="file-input" placeholder="Image">
+                    </div>
+                    <input type="submit" value="Create Bookmark" class="bookmarks-submit-btn btn-primary-dark btn-stretch btn-xs">
+                </form>
             </section>
 
-            <footer class="modal-footer">
+            <!-- <footer class="modal-footer">
 
-            </footer>
+            </footer> -->
         </div>
     </div>
 

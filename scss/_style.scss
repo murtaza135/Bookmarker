@@ -157,3 +157,52 @@ p {
         grid-template-columns: repeat(8, 1fr);
     }
 }
+
+
+// Bookmarks Modal
+#bookmarks-modal {
+    .modal-content {
+        width: 500px;
+        margin: 10% auto;
+
+        .modal-header {
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-body {
+            border-radius: 0 0 1rem 1rem;
+            padding-bottom: 1.5rem;
+
+            .bookmarks-form {
+                .form-control {
+                    margin-bottom: 1rem;
+
+                    .text-input {
+                        padding: 0.4rem 1rem;
+                        width: 100%;
+                        font-size: 0.8rem;
+                        outline: none !important;
+                        color: #000000;
+                    }
+
+                    .file-input {
+                        padding: 0.4rem 1rem 0.4rem 0;
+                        width: 100%;
+                        font-size: 0.95rem;
+                    }
+                }
+
+                .bookmarks-submit-btn {
+                    background-position: 0 -35px;
+                    background-repeat: repeat-x;
+                    background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+                    transition: all 0.5s;
+
+                    &:hover {
+                        background-position: 0 0px;
+                    }
+                }
+            }
+        }
+    }
+}

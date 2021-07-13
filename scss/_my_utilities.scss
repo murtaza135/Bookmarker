@@ -167,6 +167,12 @@
         color: set-text-color($primary-color);
     }
 
+    &-primary-dark {
+        @extend %btn-shared;
+        background: $primary-color-dark;
+        color: set-text-color($primary-color);
+    }
+
     &-secondary {
         @extend %btn-shared;
         background: $secondary-color;
@@ -192,16 +198,20 @@
     }
 }
 
-.btn-s {
-    padding: 0.5rem 1rem;
-}
-
 .btn-l {
     padding: 1.5rem 3.2rem;
 }
 
+.btn-s {
+    padding: 0.5rem 1rem;
+}
+
 .btn-xs {
     padding: 0.5rem 0rem;
+}
+
+.btn-stretch {
+    width: 100%;
 }
 
 *[class^="btn-"]:hover {

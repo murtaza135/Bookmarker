@@ -9,9 +9,9 @@ const bookmarksModalContent = document.querySelector("#bookmarks-modal .modal-co
 const bookmarksModalCloseBtn = document.querySelector("#bookmarks-modal .modal-content .modal-close-btn");
 
 
-settingsButton.addEventListener("click", openSettingsModal);
-settingsModal.addEventListener("click", closeSettingsModal);
-settingsModalCloseBtn.addEventListener("click", closeSettingsModal);
+// settingsButton.addEventListener("click", openSettingsModal);
+// settingsModal.addEventListener("click", closeSettingsModal);
+// settingsModalCloseBtn.addEventListener("click", closeSettingsModal);
 
 function openSettingsModal() {
     settingsModal.style.display = "block";

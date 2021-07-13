@@ -293,13 +293,14 @@
             align-items: center;
             text-align: center;
             justify-items: center;
+            gap: 12px;
 
             .modal-close-btn {
                 background: transparent;
                 color: $light-color;
                 padding: 0.25rem 0.65rem 0.1rem;
                 border: none;
-                transition: all 0.2s ease;
+                transition: all 0.5s ease;
                 font-size: 1.25rem;
                 float: right;
                 text-decoration: none;
