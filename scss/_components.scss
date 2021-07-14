@@ -309,7 +309,7 @@
 .modal {
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 20;
     left: 0;
     top: 0;
     width: 100%;
@@ -398,12 +398,6 @@
     &.dragging {
         opacity: 0.4;
     }
-
-    // &:active {
-    //     cursor: grabbing;
-    //     cursor: -moz-grabbing;
-    //     cursor: -webkit-grabbing;
-    // }
 
     .bookmark-info {
         display: flex;

@@ -1,55 +1,17 @@
 // Large Tablets / Small Monitors / Small Laptops
 @media(max-width: 1024px) {
-    // .bookmarks {
-    //     .bookmarks-grid-l {
-    //         grid-template-columns: repeat(3, 1fr);
-    //     }
 
-    //     .bookmarks-grid-m {
-    //         grid-template-columns: repeat(3, 1fr);
-    //     }
-
-    //     .bookmarks-grid-s {
-    //         grid-template-columns: repeat(4, 1fr);
-    //     }
-
-    //     .bookmarks-grid-xs {
-    //         grid-template-columns: repeat(6, 1fr);
-    //     }
-    // }
 }
 
 
 // Regular Tablets
 @media(max-width: 812px) {
-    // .bookmarks {
-    //     .bookmarks-grid-l {
-    //         grid-template-columns: repeat(2, 1fr);
-    //     }
 
-    //     .bookmarks-grid-m {
-    //         grid-template-columns: repeat(2, 1fr);
-    //     }
-
-    //     .bookmarks-grid-s {
-    //         grid-template-columns: repeat(4, 1fr);
-    //     }
-
-    //     .bookmarks-grid-xs {
-    //         grid-template-columns: repeat(5, 1fr);
-    //     }
-    // }
 }
 
 
 // Small / Medium Tablets
 @media(max-width: 650px) {
-    // .bookmarks {
-    //     .bookmarks-grid-s {
-    //         grid-template-columns: repeat(3, 1fr);
-    //     }
-    // }
-
     #bookmarks-modal {
         .modal-content {
             width: 90%;
@@ -69,24 +31,6 @@
 
 // Regular Smartphones
 @media(max-width: 500px) {
-    // .bookmarks {
-    //     .bookmarks-grid-l {
-    //         grid-template-columns: repeat(1, 1fr);
-    //     }
-
-    //     .bookmarks-grid-m {
-    //         grid-template-columns: repeat(1, 1fr);
-    //     }
-
-    //     .bookmarks-grid-s {
-    //         grid-template-columns: repeat(2, 1fr);
-    //     }
-
-    //     .bookmarks-grid-xs {
-    //         grid-template-columns: repeat(3, 1fr);
-    //     }
-    // }
-
     .header-main {
         .container {
             .navbar {
