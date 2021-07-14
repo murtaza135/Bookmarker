@@ -166,7 +166,7 @@ function closeBookmarksModal(event) {
 
 // Draggable 4: Muuri
 var grid = new Muuri('#bookmarks-grid', {
-    // items: ".bookmarks-card",
+    items: ".bookmarks-item",
     dragEnabled: true,
     layoutOnResize: 10,
     layoutDuration: 400,
@@ -181,7 +181,7 @@ var grid = new Muuri('#bookmarks-grid', {
       }
 });
 
-const draggables = document.querySelectorAll(".item");
+const draggables = document.querySelectorAll(".bookmarks-item");
 
 draggables.forEach(draggable => {
     draggable.addEventListener("click", clickBookmark);
