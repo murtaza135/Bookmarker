@@ -1,54 +1,54 @@
-// Large Tablets / Computers / Laptops
+// Large Tablets / Small Monitors / Small Laptops
 @media(max-width: 1024px) {
-    .bookmarks {
-        .bookmarks-grid-l {
-            grid-template-columns: repeat(3, 1fr);
-        }
+    // .bookmarks {
+    //     .bookmarks-grid-l {
+    //         grid-template-columns: repeat(3, 1fr);
+    //     }
 
-        .bookmarks-grid-m {
-            grid-template-columns: repeat(3, 1fr);
-        }
+    //     .bookmarks-grid-m {
+    //         grid-template-columns: repeat(3, 1fr);
+    //     }
 
-        .bookmarks-grid-s {
-            grid-template-columns: repeat(4, 1fr);
-        }
+    //     .bookmarks-grid-s {
+    //         grid-template-columns: repeat(4, 1fr);
+    //     }
 
-        .bookmarks-grid-xs {
-            grid-template-columns: repeat(6, 1fr);
-        }
-    }
+    //     .bookmarks-grid-xs {
+    //         grid-template-columns: repeat(6, 1fr);
+    //     }
+    // }
 }
 
 
 // Regular Tablets
 @media(max-width: 812px) {
-    .bookmarks {
-        .bookmarks-grid-l {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    // .bookmarks {
+    //     .bookmarks-grid-l {
+    //         grid-template-columns: repeat(2, 1fr);
+    //     }
 
-        .bookmarks-grid-m {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    //     .bookmarks-grid-m {
+    //         grid-template-columns: repeat(2, 1fr);
+    //     }
 
-        .bookmarks-grid-s {
-            grid-template-columns: repeat(4, 1fr);
-        }
+    //     .bookmarks-grid-s {
+    //         grid-template-columns: repeat(4, 1fr);
+    //     }
 
-        .bookmarks-grid-xs {
-            grid-template-columns: repeat(5, 1fr);
-        }
-    }
+    //     .bookmarks-grid-xs {
+    //         grid-template-columns: repeat(5, 1fr);
+    //     }
+    // }
 }
 
 
 // Small / Medium Tablets
 @media(max-width: 650px) {
-    .bookmarks {
-        .bookmarks-grid-s {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
+    // .bookmarks {
+    //     .bookmarks-grid-s {
+    //         grid-template-columns: repeat(3, 1fr);
+    //     }
+    // }
 
     #bookmarks-modal {
         .modal-content {
@@ -69,23 +69,23 @@
 
 // Regular Smartphones
 @media(max-width: 500px) {
-    .bookmarks {
-        .bookmarks-grid-l {
-            grid-template-columns: repeat(1, 1fr);
-        }
+    // .bookmarks {
+    //     .bookmarks-grid-l {
+    //         grid-template-columns: repeat(1, 1fr);
+    //     }
 
-        .bookmarks-grid-m {
-            grid-template-columns: repeat(1, 1fr);
-        }
+    //     .bookmarks-grid-m {
+    //         grid-template-columns: repeat(1, 1fr);
+    //     }
 
-        .bookmarks-grid-s {
-            grid-template-columns: repeat(2, 1fr);
-        }
+    //     .bookmarks-grid-s {
+    //         grid-template-columns: repeat(2, 1fr);
+    //     }
 
-        .bookmarks-grid-xs {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
+    //     .bookmarks-grid-xs {
+    //         grid-template-columns: repeat(3, 1fr);
+    //     }
+    // }
 
     .header-main {
         .container {
@@ -107,12 +107,12 @@
 @media(max-height: 450px) {
     .bookmarks-card {
         &-l {
-            min-height: 220px;
-            padding: 1.5rem 1rem 1rem;
+            height: 220px;
+            padding: 1.5rem 1rem 1.25rem;
 
             img {
-                max-height: 75px;
-                max-width: 75px;
+                max-height: 80px;
+                max-width: 80px;
             }
 
             p.text {
@@ -124,8 +124,8 @@
 
     .template-card {
         &-l {
-            min-height: 220px;
-            padding: 1.5rem 1rem 1rem;
+            height: 220px;
+            padding: 1.5rem 1rem 1.25rem;
 
             i {
                 font-size: 5rem;
