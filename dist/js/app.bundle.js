@@ -47,49 +47,67 @@ function closeBookmarksModal(event) {
 
 
 // Draggable (https://www.youtube.com/watch?v=jfYWwQrtzzY)
-const draggables = document.querySelectorAll(".bookmarks-list-element");
-const bookmarksList = document.querySelector(".bookmarks-list");
+// const draggables = document.querySelectorAll(".bookmarks-list-element");
+// const bookmarksList = document.querySelector(".bookmarks-list");
 
-draggables.forEach(draggable => {
+// draggables.forEach(draggable => {
+//     draggable.addEventListener("dragstart", event => dragStart(event, draggable));
+//     draggable.addEventListener("dragend", event => dragEnd(event, draggable));
+// })
+
+// function dragStart(event, draggable) {
+//     draggable.classList.add("dragging");
+// }
+
+// function dragEnd(event, draggable) {
+//     draggable.classList.remove("dragging");
+// }
+
+
+// bookmarksList.addEventListener("dragover", dragOver);
+
+// function dragOver(event) {
+//     event.preventDefault();
+//     const draggable = document.querySelector(".dragging");
+//     const afterElement = getDragAfterElement(bookmarksList, event.clientY);
+//     if (afterElement == null) {
+//         bookmarksList.appendChild(draggable);
+//     }
+//     else {
+//         bookmarksList.insertBefore(draggable, afterElement);
+//     }
+// }
+
+// function getDragAfterElement(container, y) {
+//     const draggableElements = [...container.querySelectorAll(".bookmarks-list-element:not(.dragging)")];
+//     const closestElement = draggableElements.reduce((closest, draggable) => {
+//         const box = draggable.getBoundingClientRect();
+//         const offset = y - (box.top + (box.height / 2));
+//         if (offset < 0 && offset > closest.offset) {
+//             return { offset: offset, element: draggable };
+//         }
+//         else {
+//             return closest;
+//         }
+//     }, { offset: Number.NEGATIVE_INFINITY });
+
+//     return closestElement.element;
+// }
+
+
+// Draggables 2
+const draggableBookmarks = document.querySelectorAll(".bookmarks-card");
+const bookmarksGrid = document.querySelector("#bookmarks-grid");
+
+draggableBookmarks.forEach(draggable => {
     draggable.addEventListener("dragstart", event => dragStart(event, draggable));
     draggable.addEventListener("dragend", event => dragEnd(event, draggable));
 })
 
 function dragStart(event, draggable) {
-    draggable.classList.add("dragging");
+    draggable.parentElement.classList.add("dragging");
 }
 
 function dragEnd(event, draggable) {
-    draggable.classList.remove("dragging");
-}
-
-
-bookmarksList.addEventListener("dragover", dragOver);
-
-function dragOver(event) {
-    event.preventDefault();
-    const draggable = document.querySelector(".dragging");
-    const afterElement = getDragAfterElement(bookmarksList, event.clientY);
-    if (afterElement == null) {
-        bookmarksList.appendChild(draggable);
-    }
-    else {
-        bookmarksList.insertBefore(draggable, afterElement);
-    }
-}
-
-function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll(".bookmarks-list-element:not(.dragging)")];
-    const closestElement = draggableElements.reduce((closest, draggable) => {
-        const box = draggable.getBoundingClientRect();
-        const offset = y - (box.top + (box.height / 2));
-        if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: draggable };
-        }
-        else {
-            return closest;
-        }
-    }, { offset: Number.NEGATIVE_INFINITY });
-
-    return closestElement.element;
+    draggable.parentElement.classList.remove("dragging");
 }
