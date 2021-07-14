@@ -107,16 +107,18 @@
 @media(max-height: 450px) {
     .bookmarks-card {
         &-l {
-            height: 220px;
-            padding: 1.5rem 1rem 1.25rem;
+            a {
+                height: 220px;
+                padding: 1.5rem 1rem 1.25rem;
 
-            img {
-                max-height: 80px;
-                max-width: 80px;
-            }
-
-            p.text {
-                display: none;
+                img {
+                    max-height: 80px;
+                    max-width: 80px;
+                }
+    
+                p.text {
+                    display: none;
+                }
             }
         }
     }
@@ -124,11 +126,13 @@
 
     .template-card {
         &-l {
-            height: 220px;
-            padding: 1.5rem 1rem 1.25rem;
+            a {
+                height: 220px;
+                padding: 1.5rem 1rem 1.25rem;
 
-            i {
-                font-size: 5rem;
+                i {
+                    font-size: 5rem;
+                }
             }
         }
     }

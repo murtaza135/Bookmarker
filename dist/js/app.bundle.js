@@ -105,9 +105,60 @@ draggableBookmarks.forEach(draggable => {
 })
 
 function dragStart(event, draggable) {
-    draggable.parentElement.classList.add("dragging");
+    draggable.classList.add("dragging");
 }
 
 function dragEnd(event, draggable) {
-    draggable.parentElement.classList.remove("dragging");
+    draggable.classList.remove("dragging");
 }
+
+
+bookmarksGrid.addEventListener("dragover", dragOver);
+
+function dragOver(event) {
+    event.preventDefault();
+    const draggable = document.querySelector(".dragging");
+    const draggedOverElement = getDraggedOverElement(bookmarksGrid, event.clientX, event.clientY);
+    console.log(draggedOverElement);
+    if (draggedOverElement == null) {
+        bookmarksGrid.insertBefore(draggable, templateCard);
+    }
+    else {
+        bookmarksGrid.insertBefore(draggable, draggedOverElement);
+    }
+}
+
+function getDraggedOverElement(container, x, y) {
+    const draggableElements = [...container.querySelectorAll(".bookmarks-card:not(.dragging)")];
+    const draggedOverElement = draggableElements.reduce((current, draggable) => {
+        const box = draggable.getBoundingClientRect();
+        offsetX = x - (box.left + (box.width / 2));
+        offsetY = y - (box.top + (box.height / 2));
+        offset = Math.sqrt(Math.pow(offsetX, 2) + Math.pow(offsetY, 2));
+        if (y > box.y && y < box.y + box.height && x > box.x && x < box.x + box.width && offset > current.offset) {
+            return { offset: offset, element: draggable };
+        }
+        else {
+            return current;
+        }
+    }, { offset: Number.NEGATIVE_INFINITY })
+
+    return draggedOverElement.element;
+}
+
+
+// function getDragAfterElement(container, y) {
+//     const draggableElements = [...container.querySelectorAll(".bookmarks-list-element:not(.dragging)")];
+//     const closestElement = draggableElements.reduce((closest, draggable) => {
+//         const box = draggable.getBoundingClientRect();
+//         const offset = y - (box.top + (box.height / 2));
+//         if (offset < 0 && offset > closest.offset) {
+//             return { offset: offset, element: draggable };
+//         }
+//         else {
+//             return closest;
+//         }
+//     }, { offset: Number.NEGATIVE_INFINITY });
+
+//     return closestElement.element;
+// }

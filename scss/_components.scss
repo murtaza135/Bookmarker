@@ -86,21 +86,24 @@
 
 // Cards
 %bookmarks-card-shared {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: space-evenly;
-    align-items: center;
-
     background: $primary-color;
     color: set-text-color($primary-color);
     border-top: 3px solid;
     border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
     border-image-slice: 1;
+    
+    a {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: space-evenly;
+        align-items: center;
 
-    img {
-        margin-bottom: 0.75rem;
+        img {
+            margin-bottom: 0.75rem;
+        }
     }
+
 
     &:hover {
         animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
@@ -108,118 +111,136 @@
         backface-visibility: hidden;
         perspective: 1000px;
     }
+
+    &.dragging {
+        opacity: 0.4;
+    }
 }
 
 .bookmarks-card {
     &-l {
         @extend %bookmarks-card-shared;
         // min-height: 400px;
-        width: 256px;
-        height: 350px;
-        padding: 1.5rem 1rem 1rem;
+        
+        a {
+            width: 256px;
+            height: 350px;
+            padding: 1.5rem 1rem 1rem;
 
-        img {
-            max-height: 150px;
-            max-width: 150px;
+            img {
+                max-height: 150px;
+                max-width: 150px;
+            }
         }
     }
 
     &-m {
         @extend %bookmarks-card-shared;
         // min-height: 200px;
-        width: 242px;
-        height: 165px;
-        padding: 1.5rem 1rem 0;
-
-        img {
-            max-height: 75px;
-            max-width: 75px;
-        }
-
-        p.text {
-            display: none;
-        }
-
-        .url {
-            display: none;
+        
+        a {
+            width: 242px;
+            height: 165px;
+            padding: 1.5rem 1rem 0;
+            
+            img {
+                max-height: 75px;
+                max-width: 75px;
+            }
+    
+            p.text {
+                display: none;
+            }
+    
+            .url {
+                display: none;
+            }
         }
     }
 
     &-s {
         @extend %bookmarks-card-shared;
         // min-height: 130px;
-        width: 145px;
-        height: 130px;
-        padding: 0.75rem 0rem 0;
+        
+        a {
+            width: 145px;
+            height: 130px;
+            padding: 0.75rem 0rem 0;
 
-        img {
-            max-height: 55px;
-            max-width: 55px;
-        }
-
-        h1 {
-            font-size: 1.4rem;
-        }
-
-        p.text {
-            display: none;
-        }
-
-        .url {
-            display: none;
+            img {
+                max-height: 55px;
+                max-width: 55px;
+            }
+    
+            h1 {
+                font-size: 1.4rem;
+            }
+    
+            p.text {
+                display: none;
+            }
+    
+            .url {
+                display: none;
+            }
         }
     }
 
     &-xs {
         @extend %bookmarks-card-shared;
         // min-height: 75px;
-        width: 95px;
-        height: 78px;
-        padding: 0;
+        
+        a {
+            width: 95px;
+            height: 78px;
+            padding: 0;
 
-        img {
-            max-height: 55px;
-            max-width: 55px;
-            margin-bottom: 0;
-        }
-
-        h1 {
-            display: none;
-        }
-
-        p.text {
-            display: none;
-        }
-
-        .url {
-            display: none;
+            img {
+                max-height: 55px;
+                max-width: 55px;
+                margin-bottom: 0;
+            }
+    
+            h1 {
+                display: none;
+            }
+    
+            p.text {
+                display: none;
+            }
+    
+            .url {
+                display: none;
+            }
         }
     }
 }
 
 %template-card-shared {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-
     background: $primary-color-dark;
     color: $primary-color;
     border: 1px solid;
     border-image: linear-gradient(100deg, $secondary-color, $tertiary-color);
     border-image-slice: 1;
     border-radius: 0 0 3px 3px;
+    
+    a {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
 
-    i {
-        background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
-        background-size: 100%;
-        background-repeat: repeat;
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; 
-        -moz-background-clip: text;
-        -moz-text-fill-color: transparent;
+        i {
+            background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+            background-size: 100%;
+            background-repeat: repeat;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; 
+            -moz-background-clip: text;
+            -moz-text-fill-color: transparent;
+        }
     }
 
     &:hover {
@@ -234,48 +255,60 @@
     &-l {
         @extend %template-card-shared;
         // min-height: 400px;
-        width: 256px;
-        min-height: 350px;
-        padding: 1.5rem 1rem;
-
-        i {
-            font-size: 7rem;
+        
+        a {
+            width: 256px;
+            min-height: 350px;
+            padding: 1.5rem 1rem;
+            
+            i {
+                font-size: 7rem;
+            }
         }
     }
 
     &-m {
         @extend %template-card-shared;
         // min-height: 200px;
-        width: 242px;
-        height: 165px;
-        padding: 1.5rem 1rem;
+        
+        a {
+            width: 242px;
+            height: 165px;
+            padding: 1.5rem 1rem;
 
-        i {
-            font-size: 5rem;
+            i {
+                font-size: 5rem;
+            }
         }
     }
 
     &-s {
         @extend %template-card-shared;
         // min-height: 130px;
-        width: 145px;
-        height: 130px;
-        padding: 1.5rem 1rem;
+        
+        a {
+            width: 145px;
+            height: 130px;
+            padding: 1.5rem 1rem;
 
-        i {
-            font-size: 4rem;
+            i {
+                font-size: 4rem;
+            }
         }
     }
 
     &-xs {
         @extend %template-card-shared;
         // min-height: 75px;
-        width: 95px;
-        height: 78px;
-        padding: 0;
+        
+        a {
+            width: 95px;
+            height: 78px;
+            padding: 0;
 
-        i {
-            font-size: 2.5rem;
+            i {
+                font-size: 2.5rem;
+            }
         }
     }
 }
