@@ -1,0 +1,16 @@
+ - add description to bookmarks modal
+ - clean up and abstract code for the DnD bookmarks grid
+ - possibly create components of modals to inject into the DOM, instead of having them hidden in the DOM
+ - get the bookmarks modal working and add ability to add new bookmarks
+    - get input from form in modal
+    - create a bookmark component and inject it into the DOM directly before the template card
+    - fix bug where bookmarks modal opens up when template card is dragged
+ - store bookmarks in local storage and be able to manage them and their current order
+ - Add ability to change size of bookmarks, this requires changing the classList of the bookmarks
+    - remove the grid sizing class
+ - add ability to display a list of bookmarks in the settings modal
+    - these bookmarks should have a delete button that will remove it completely from local storage and the DOM
+    - you may need to create a 3rd modal as a confirmation to delete the bookmark
+    - they should have an edit button which will open the create a new bookmark modal and allow the user to change the details
+    - you may need to create a a 4th modal specifically for editing bookmarks
+    - add ability to show/hide bookmarks in the DOM, muuri has a class to do this
