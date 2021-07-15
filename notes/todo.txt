@@ -9,6 +9,7 @@
  - store bookmarks in local storage and be able to manage them and their current order
  - Add ability to change size of bookmarks, this requires changing the classList of the bookmarks
     - remove the grid sizing class
+    - add a border or something of the like around the selected size
  - add ability to display a list of bookmarks in the settings modal
     - these bookmarks should have a delete button that will remove it completely from local storage and the DOM
     - you may need to create a 3rd modal as a confirmation to delete the bookmark

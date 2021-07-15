@@ -131,6 +131,16 @@
     #bookmarks-modal {
         .modal-content {
             margin: 45% auto;
+
+            .modal-body {
+                .bookmarks-form {
+                    .form-control {
+                        textarea.text-input {
+                            height: 145px;
+                        }
+                    }
+                }
+            }
         }
     }
 

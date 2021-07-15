@@ -199,6 +199,14 @@ p {
                         @include change-placeholder-opacity(0.6);
                     }
 
+                    textarea.text-input {
+                        height: 100px;
+                        min-height: 100px;
+                        resize: vertical;
+                        border: 1px solid $light-color;
+                        padding: 0.75rem 1rem;
+                    }
+
                     .file-input {
                         padding: 0.4rem 1rem 0.4rem 0;
                         width: 100%;
