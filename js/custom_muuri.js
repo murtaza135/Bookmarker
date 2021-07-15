@@ -32,6 +32,8 @@ export default class CustomMuuri extends Muuri {
     }
 
     static centerLayout(grid, layoutId, items, width, height, callback) {
+        // Center Layout from https://github.com/haltu/muuri/issues/308
+
         let layout = {
             id: layoutId,
             items: items,

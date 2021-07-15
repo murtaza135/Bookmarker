@@ -48,58 +48,18 @@ function closeBookmarksModal(event) {
 
 
 // Draggable Bookmarks List in Settings Modal (https://www.youtube.com/watch?v=jfYWwQrtzzY)
-const draggableBookmarkListElements = document.querySelectorAll(".bookmarks-list-element");
+import SingleAxisDragger from "./single_axis_dragger";
+
 const bookmarksList = document.querySelector(".bookmarks-list");
-
-bookmarksList.addEventListener("dragover", bookmarksListDragOver);
-draggableBookmarkListElements.forEach(bookmark => {
-    bookmark.addEventListener("dragstart", bookmarksListDragStart);
-    bookmark.addEventListener("dragend", bookmarksListDragEnd);
-})
-
-function bookmarksListDragStart() {
-    console.log(this);
-    this.classList.add("dragging");
-}
-
-function bookmarksListDragEnd() {
-    this.classList.remove("dragging");
-}
-
-function bookmarksListDragOver(event) {
-    event.preventDefault();
-    const draggable = document.querySelector(".dragging");
-    console.log(draggable);
-    const afterElement = getDragAfterElement(bookmarksList, event.clientY);
-    if (afterElement == null) {
-        bookmarksList.appendChild(draggable);
-    }
-    else {
-        bookmarksList.insertBefore(draggable, afterElement);
-    }
-}
-
-function getDragAfterElement(container, y) {
-    const draggableElements = [...container.querySelectorAll(".bookmarks-list-element:not(.dragging)")];
-    const closestElement = draggableElements.reduce((closest, draggable) => {
-        const box = draggable.getBoundingClientRect();
-        const offset = y - (box.top + (box.height / 2));
-        if (offset < 0 && offset > closest.offset) {
-            return { offset: offset, element: draggable };
-        }
-        else {
-            return closest;
-        }
-    }, { offset: Number.NEGATIVE_INFINITY });
-
-    return closestElement.element;
-}
+const draggableBookmarkListElements = document.querySelectorAll(".bookmarks-list-element");
+const dragger = new SingleAxisDragger(bookmarksList, draggableBookmarkListElements);
 
 
-// Draggable Bookmarks Grid (https://github.com/haltu/muuri/issues/308)
+
+// Draggable Bookmarks Grid
 import CustomMuuri from "./custom_muuri";
 
-let grid = new CustomMuuri('#bookmarks-grid', {
+const grid = new CustomMuuri('#bookmarks-grid', {
     items: ".bookmarks-item",
     dragEnabled: true,
     layoutOnResize: 10,
