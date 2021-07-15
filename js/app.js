@@ -97,39 +97,18 @@ function getDragAfterElement(container, y) {
 
 
 // Draggable Bookmarks Grid (https://github.com/haltu/muuri/issues/308)
-let grid = new Muuri('#bookmarks-grid', {
+import CustomMuuri from "./custom_muuri";
+
+let grid = new CustomMuuri('#bookmarks-grid', {
     items: ".bookmarks-item",
     dragEnabled: true,
     layoutOnResize: 10,
     layoutDuration: 300,
     layoutEasing: "linear",
     layoutOnInit: true,
-    layout: centerLayout,
+    layout: CustomMuuri.centerLayout,
     // dragStartPredicate: makeTemplateCardNonDraggable
 });
-
-const draggableBookmarkItems = document.querySelectorAll(".bookmarks-item");
-
-draggableBookmarkItems.forEach(bookmark => {
-    bookmark.addEventListener("click", clickBookmark);
-    bookmark.addEventListener("dragstart", bookmarksGridDragStart);
-    bookmark.addEventListener("dragend", bookmarksGridDragEnd);
-})
-
-function clickBookmark(event) {
-    if (this.classList.contains("muuri-item-dragging-before-click")) {
-        this.classList.remove("muuri-item-dragging-before-click");
-        event.preventDefault();
-    }
-}
-
-function bookmarksGridDragStart() {
-    this.classList.add("muuri-item-dragging-before-click");
-}
-
-function bookmarksGridDragEnd() {
-    this.classList.remove("muuri-item-dragging-before-click");
-}
 
 function makeTemplateCardNonDraggable(item, event) {
     // Prevent template-card from being dragged 
@@ -138,114 +117,6 @@ function makeTemplateCardNonDraggable(item, event) {
     }
     // For other items use the default drag start predicate.
     return Muuri.ItemDrag.defaultStartPredicate(item, event);
-}
-
-function centerLayout(grid, layoutId, items, width, height, callback) {
-    let layout = {
-        id: layoutId,
-        items: items,
-        slots: [],
-        styles: {},
-    };
-
-    let item;
-    let m;
-    let x = 0;
-    let y = 0;
-    let w = 0;
-    let h = 0;
-
-    let maxW = width / 2;
-    let currentW = 0;
-    let currentRowH = 0;
-    let currentRowW = 0;
-    let rowSizes = [];
-    let rowFixes = [];
-
-    let xPre, yPre, wPre, hPre;
-    let numToFix = 0;
-
-    for (let i = 0; i < items.length; i++) {
-        item = items[i];
-
-        m = item.getMargin();
-        wPre = item.getWidth() + m.left + m.right;
-        hPre = item.getHeight() + m.top + m.bottom;
-        xPre += wPre;
-
-        if (hPre > currentRowH) {
-            currentRowH = hPre;
-        }
-
-        if (w < currentRowW) {
-            currentRowW = wPre;
-        }
-
-        rowSizes.push(width / 2);
-        numToFix++;
-        currentW += wPre;
-
-        let k = 0;
-
-        for (let j = 0; j < numToFix; j++) {
-            rowSizes[i - j] -= wPre / 2;
-        }
-
-        if (numToFix > 1) {
-            rowSizes[i] -= (wPre / 2) * (numToFix - 1);
-            k += (wPre / 2);
-        }
-
-        currentW -= k;
-        rowFixes.push(k);
-
-        if (currentW >= maxW) {
-            yPre += currentRowH;
-            currentRowH = 0;
-            xPre = 0;
-            numToFix -= 1;
-            currentW = 0;
-            numToFix = 0;
-            k = 0;
-        }
-    }
-
-    maxW = width / 2;
-    currentW = 0;
-    currentRowH = 0;
-    currentRowW = 0;
-
-    for (let i = 0; i < items.length; i++) {
-        item = items[i];
-        x += w;
-
-        if (h > currentRowH) {
-            currentRowH = h;
-        }
-
-        if (w < currentRowW) {
-            currentRowW = w;
-        }
-
-        currentW += w - rowFixes[i];
-
-        if (currentW >= maxW) {
-            y += currentRowH;
-            currentRowH = 0;
-            x = 0;
-            currentW = 0;
-        }
-
-        m = item.getMargin();
-        w = item.getWidth() + m.left + m.right;
-        h = item.getHeight() + m.top + m.bottom;
-        layout.slots.push(x + rowSizes[i], y);
-    }
-
-    layout.styles.width = '100%';
-    layout.styles.height = y + h + 1 + 'px';
-
-    callback(layout);
 }
 
 

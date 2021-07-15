@@ -19,6 +19,8 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
-    "path": "^0.12.7"
+    "muuri": "^0.9.5",
+    "path": "^0.12.7",
+    "web-animations-js": "^2.3.2"
   }
 }
