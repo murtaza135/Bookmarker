@@ -3,21 +3,28 @@ import { Bookmark, DateTimeBookmark, TemplateBookmark } from "./bookmark";
 export default class BookmarksController {
     constructor(bookmarks = []) {
         this._bookmarks = [];
-        this._createInitialBookmarks();
+        this._templateBookmark = this._createTemplateBookmark();
+        this._createDateTimeBookmark();
 
         bookmarks.forEach(bookmark => {
             this.reAddBookmark(bookmark);
         })
     }
 
-    _createInitialBookmarks() {
+    _createTemplateBookmark() {
         let id = this._generateNewId()
-        const dateTimeBookmark = new DateTimeBookmark(id, "Date Time", true);
-        this._bookmarks.push(dateTimeBookmark);
-        
-        id = this._generateNewId()
         const templateBookmark = new TemplateBookmark(id, "Date Time", true);
         this._bookmarks.push(templateBookmark);
+        return templateBookmark;
+    }
+
+    _createDateTimeBookmark() {
+        let id = this._generateNewId()
+        const dateTimeBookmark = new DateTimeBookmark(id, "Date Time", true);
+        // this._bookmarks.push(dateTimeBookmark);
+        const index = this._bookmarks.indexOf(this._templateBookmark);
+        this._bookmarks.splice(index, 0, dateTimeBookmark);
+        return dateTimeBookmark;
     }
 
     reAddBookmark(newBookmark, overwriteOld = true) {
@@ -59,14 +66,18 @@ export default class BookmarksController {
     addNewBookmark(name, url, description, image, isVisible = true) {
         const id = this._generateNewId();
         const bookmark = new Bookmark(id, name, url, description, image, isVisible);
-        this._bookmarks.push();
+        // this._bookmarks.push(bookmark);
+        const index = this._bookmarks.indexOf(this._templateBookmark);
+        this._bookmarks.splice(index, 0, bookmark);
         return bookmark;
     }
 
     addCustomBookmark(bookmarkType, name, isVisible = true) {
         const id = this._generateNewId();
         const bookmark = new bookmarkType(id, name, isVisible);
-        this._bookmarks.push(bookmark);
+        // this._bookmarks.push(bookmark);
+        const index = this._bookmarks.indexOf(this._templateBookmark);
+        this._bookmarks.splice(index, 0, bookmark);
         return bookmark;
     }
 
