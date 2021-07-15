@@ -1,12 +1,58 @@
 // Large Tablets / Small Monitors / Small Laptops
-@media(max-width: 1024px) {
-
+@media(max-width: 950px) {
+    #settings-modal {
+        .modal-content {
+            width: 750px;
+        }
+    }
 }
 
 
 // Regular Tablets
 @media(max-width: 812px) {
+    #settings-modal {
+        .modal-content {
+            width: 620px;
 
+            .modal-body {
+                .change-size-options {
+                    .box-section {
+                        height: 150px;
+
+                        .box {
+                            &-l {
+                                height: 75px;
+                                width: 56.25px;
+                            }
+        
+                            &-m {
+                                height: 45px;
+                                width: 60px;
+                            }
+        
+                            &-s {
+                                height: 41.25px;
+                                width: 41.25px;
+                            }
+        
+                            &-xs {
+                                height: 26.25px;
+                                width: 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .bookmarks-list-element {
+        .bookmark-info {
+            h1 {
+                font-size: 0.95rem;
+            }
+        }
+    }
 }
 
 
@@ -26,6 +72,49 @@
             }
         }
     }
+
+    #settings-modal {
+        .modal-content {
+            width: 475px;
+
+            .modal-body {
+                .change-size-options {
+                    grid-template-columns: repeat(2, 1fr);
+
+                    .box-section {
+                        height: 165px;
+                    }
+                }
+            }
+        }
+    }
+
+    .bookmarks-list-element {
+        flex-direction: column;
+        padding: 0.35rem 0.75rem 0.35rem 0.5rem;
+
+        .bookmark-info {
+            margin: 0.75rem 0.25rem 1rem;
+            justify-content: center;
+
+            h1 {
+                flex: 0;
+                font-size: 1.1rem;
+                width: 87.5%;
+            }
+        }
+
+        .bookmark-buttons {
+            margin: 0 0 0.75rem;
+
+            .btn {
+                &-show-bookmark {
+                    margin-right: 0;
+                }
+
+            }
+        }
+    }
 }
 
 
@@ -42,6 +131,98 @@
     #bookmarks-modal {
         .modal-content {
             margin: 45% auto;
+        }
+    }
+
+    #settings-modal {
+        .modal-content {
+            width: 360px;
+
+            .modal-body {
+                padding: 1rem 1.5rem 0.5rem;
+
+                .change-size-options {
+                    .box-section {
+                        height: 150px;
+                    }
+                }
+
+                .bookmarks-list {
+                    padding: 1.25rem 1.15rem 1.15rem;
+                }
+            }
+        }
+    }
+
+    .bookmarks-list-element {
+        flex-direction: column;
+        padding: 0.35rem 0.75rem 0.35rem 0.5rem;
+
+        .bookmark-info {
+            margin: 0.75rem 0.25rem 1rem;
+
+            h1 {
+                width: 82.5%;
+            }
+        }
+
+        .bookmark-buttons {
+            margin: 0 0 0.75rem;
+
+            .btn {
+                &-show-bookmark {
+                    margin-right: 0;
+                }
+
+            }
+        }
+    }
+}
+
+
+// Small Smartphones
+@media(max-width: 360px)  {
+    #settings-modal {
+        .modal-content {
+            width: 305px;
+
+            .modal-body {
+                .change-size-options {
+                    .box-section {
+                        height: 130px;
+
+                        .box {
+                            &-l {
+                                height: 50px;
+                                width: 37.5px;
+                            }
+        
+                            &-m {
+                                height: 30px;
+                                width: 40px;
+                            }
+        
+                            &-s {
+                                height: 27.5px;
+                                width: 27.5px;
+                            }
+        
+                            &-xs {
+                                height: 20px;
+                                width: 22.5px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .bookmarks-list-element {
+        .bookmark-info {
+            h1 {
+                width: 77.5%;
+            }
         }
     }
 }

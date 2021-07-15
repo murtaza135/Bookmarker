@@ -1,3 +1,33 @@
+// File Inputs
+.custom-file-upload {
+    display: flex;
+    justify-content: stretch;
+    align-items: flex-end;
+    text-align: start;
+
+    .file-label {
+        display: inline-block;
+        border: 1px solid $light-color;
+        border-radius: 0.25rem;
+        padding: 6px 12px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+
+        &:hover {
+            transform: rotate(360deg);
+        }
+    }
+
+    .file-upload-text {
+        display: inline-block;
+        margin-left: 0.75rem;
+    }
+
+    input[type="file"].file-input {
+        display: none;
+    }
+}
+
 // Alert
 %alert-shared {
     display: flex;
@@ -322,7 +352,7 @@
         margin: 15% auto;
         width: 70%;
         border-radius: 1rem;
-        animation: modalOpen 0.55s;
+        animation: modalOpen 0.5s;
 
         .modal-header {
             border-radius: 1rem 1rem 0 0;
@@ -389,11 +419,12 @@
     border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
     border-image-slice: 1;
     padding: 0.35rem 0rem 0.35rem 0.5rem;
-    overflow-y: auto;
+    overflow: hidden;
     cursor: move;
     cursor: grab;
     cursor: -moz-grab;
     cursor: -webkit-grab;
+    width: 100%;
 
     &.dragging {
         opacity: 0.4;
@@ -408,6 +439,7 @@
         flex-grow: 1;
         overflow-x: hidden;
         margin-right: 1.5rem;
+        width: 100%;
 
         img {
             width: 25px;
@@ -420,6 +452,8 @@
             font-weight: normal;
             font-size: 1.1rem;
             white-space: nowrap;
+            overflow-wrap: break-word;
+            text-overflow: clip;
         }
     }
 
@@ -476,11 +510,6 @@
                     }
                 }
             }
-
-            // &-move-bookmark {
-            //     font-size: 2.2rem;
-            //     padding: 0 0.25rem;
-            // }
         }
     }
 }

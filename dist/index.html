@@ -71,16 +71,6 @@
                         </a>
                     </div>
                 </div>
-                <div class="item bookmarks-item bookmarks-card bookmarks-card-l" draggable="true">
-                    <div class="item-content">
-                        <a href="https://www.google.com" class="block">
-                            <img src="./img/logo_main.png" alt="">
-                            <h1 class="title-1 text-center">4</h1>
-                            <p class="text text-small">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            <span class="url">www.google.com</span>
-                        </a>
-                    </div>
-                </div>
 
                 <div class="item bookmarks-item template-card template-card-l">
                     <div class="item-content">
@@ -104,7 +94,7 @@
             </header>
 
             <section class="modal-body">
-                <form class="bookmarks-form">
+                <form class="bookmarks-form" autocomplete="off">
                     <div class="form-control bookmarks-name">
                         <label for="bookmarks-name-input"></label>
                         <input type="text" name="bookmarks-name-input" id="bookmarks-name-input" class="text-input" placeholder="Name">
@@ -114,10 +104,13 @@
                         <input type="url" name="bookmarks-url-input" id="bookmarks-url-input" class="text-input" placeholder="URL">
                     </div>
                     <div class="form-control bookmarks-image">
-                        <label for="bookmarks-image-input"></label>
-                        <input type="file" name="bookmarks-image-input" id="bookmarks-image-input" class="file-input" placeholder="Image">
+                        <div class="custom-file-upload">
+                            <label for="bookmarks-image-input" class="file-label"><i class="fas fa-upload"></i></label>
+                            <input type="text" id="bookmarks-image-upload-text" class="space-reset text-input file-upload-text" placeholder="Upload Image" readonly>
+                            <input type="file" name="bookmarks-image-input" id="bookmarks-image-input" class="file-input" placeholder="Image">
+                        </div>
                     </div>
-                    <input type="submit" value="Create Bookmark" class="bookmarks-submit-btn btn-primary-dark btn-stretch btn-xs">
+                    <input type="submit" value="Create Bookmark" class="bookmarks-submit-btn btn-primary-dark btn-stretch">
                 </form>
             </section>
         </div>
@@ -136,11 +129,25 @@
             <section class="modal-body">
                 <h1 class="title-3">Change the size of your bookmarks</h1>
                 <div class="change-size-options">
-                    <div class="box-l">L</div>
-                    <div class="box-m">M</div>
-                    <div class="box-s">S</div>
-                    <div class="box-xs">XS</div>
-                    <div class="spacer"></div>
+                    <div class="box-section">
+                        <div class="box-l"></div>
+                        <label class="size-label">Large</label>
+                    </div>
+
+                    <div class="box-section">
+                        <div class="box-m"></div>
+                        <label class="size-label">Medium</label>
+                    </div>
+
+                    <div class="box-section">
+                        <div class="box-s"></div>
+                        <label class="size-label">Small</label>
+                    </div>
+
+                    <div class="box-section">
+                        <div class="box-xs"></div>
+                        <label class="size-label">X-Small</label>
+                    </div>
                 </div>
 
                 <div class="line"></div>
@@ -153,7 +160,6 @@
                             <img src="./img/logo_main.png" alt="">
                             <h1>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat enim quasi vero. Corrupti itaque quo nihil, laborum perferendis eius totam!</h1>
                         </section>
-    
                         <section class="bookmark-buttons">
                             <div class="btn btn-danger btn-delete-bookmark">Delete</div>
                             <div class="btn btn-light btn-edit-bookmark">Edit</div>
@@ -163,7 +169,6 @@
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <!-- <div class="btn btn-move-bookmark">&#8801;</div> -->
                         </section>
                     </div>
     
@@ -181,7 +186,23 @@
                                     <span class="slider round"></span>
                                 </label>
                             </div>
-                            <!-- <div class="btn btn-move-bookmark">&#8801;</div> -->
+                        </section>
+                    </div>
+
+                    <div class="bookmarks-list-element" draggable="true">
+                        <section class="bookmark-info">
+                            <img src="./img/logo_main.png" alt="">
+                            <h1>Hello World</h1>
+                        </section>
+                        <section class="bookmark-buttons">
+                            <div class="btn btn-danger btn-delete-bookmark">Delete</div>
+                            <div class="btn btn-light btn-edit-bookmark">Edit</div>
+                            <div class="btn btn-toggle btn-show-bookmark">
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
                         </section>
                     </div>
                 </div>

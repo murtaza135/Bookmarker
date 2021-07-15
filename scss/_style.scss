@@ -178,14 +178,25 @@ p {
 
             .bookmarks-form {
                 .form-control {
-                    margin-bottom: 1rem;
+                    margin-bottom: 1.5rem;
+
+                    &.bookmarks-name {
+                        margin-bottom: 1rem;
+                    }
 
                     .text-input {
-                        padding: 0.4rem 1rem;
+                        padding: 0.4rem 1rem 0.4rem 0.2rem;
                         width: 100%;
-                        font-size: 0.8rem;
+                        font-size: 1.25rem;
                         outline: none !important;
                         color: #000000;
+                        background: transparent;
+                        color: $light-color;
+                        border: none;
+                        border-bottom: 1px solid $light-color;
+
+                        @include change-placeholder-color(white);
+                        @include change-placeholder-opacity(0.6);
                     }
 
                     .file-input {
@@ -197,10 +208,12 @@ p {
 
                 .bookmarks-submit-btn {
                     width: 100%;
-                    background-position: 0 -35px;
-                    background-repeat: repeat-x;
-                    background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
-                    transition: all 0.5s;
+                    background-position: -425px 0;
+                    background-repeat: repeat-y;
+                    background-image: linear-gradient(to left, $primary-color-dark, $primary-color);
+                    transition: all 0.5s ease;
+                    font-size: 1.2rem;
+                    padding: 0.7rem 1.6rem 0.5rem;
 
                     &:hover {
                         background-position: 0 0px;
@@ -215,7 +228,7 @@ p {
 // Settings Modal
 #settings-modal {
     .modal-content {
-        width: 80%;
+        width: 900px;
         margin: 10% auto;
 
         .modal-header {
@@ -231,58 +244,77 @@ p {
             }
 
             .change-size-options {
-                display: flex;
-                justify-content: space-between;
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                grid-gap: 1rem;
+                justify-content: center;
                 align-items: center;
                 justify-items: center;
                 text-align: center;
 
-                .box {
+                .box-section {
+                    height: 200px;
+                    width: 100%;
+                    background-color: $primary-color-dark;
+                    color: $light-color;
+                    border-radius: 1rem;
                     cursor: pointer;
+
                     display: flex;
+                    flex-direction: column;
                     justify-content: center;
                     align-items: center;
                     justify-items: center;
                     text-align: center;
-                    font-weight: bold;
-                    border: 2px solid $light-color;
-                    border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
-                    border-image-slice: 1;
 
-                    &-l {
-                        @extend .box;
-                        height: 100px;
-                        width: 75px;
-                        font-size: 2.5rem;
-                        margin-left: 0.5rem
+                    .box {
+                        font-weight: bold;
+                        border: 2px solid $light-color;
+                        border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+                        border-image-slice: 1;
+                        margin-bottom: 0.5rem;
+
+                        &-l {
+                            @extend .box;
+                            height: 100px;
+                            width: 75px;
+                        }
+    
+                        &-m {
+                            @extend .box;
+                            height: 60px;
+                            width: 80px;
+                        }
+    
+                        &-s {
+                            @extend .box;
+                            height: 55px;
+                            width: 55px;
+                        }
+    
+                        &-xs {
+                            @extend .box;
+                            height: 35px;
+                            width: 40px;
+                        }
                     }
 
-                    &-m {
-                        @extend .box;
-                        height: 60px;
-                        width: 80px;
-                        font-size: 1.7rem;
-                    }
-
-                    &-s {
-                        @extend .box;
-                        height: 55px;
-                        width: 55px;
-                        font-size: 1.5rem;
-                    }
-
-                    &-xs {
-                        @extend .box;
-                        height: 35px;
-                        width: 40px;
-                        font-size: 1rem;
+                    .size-label {
+                        cursor: inherit;
                     }
                 }
+
             }
 
             .bookmarks-list {
                 width: 100%;
                 height: 100%;
+                padding: 1.45rem 1.75rem 1.35rem;
+                margin-bottom: 1.5rem;
+                background-color: $primary-color-dark;
+                color: $light-color;
+                border-radius: 1rem;
+
                 display: flex;
                 flex-direction: column;
                 justify-content: start;
@@ -291,7 +323,6 @@ p {
                 text-align: center;
                 flex-grow: 1;
                 gap: 0.5rem;
-                padding-bottom: 2rem;
             }
         }
     }
