@@ -11,7 +11,7 @@ export default class BookmarksController {
 
     reAddBookmark(newBookmark, overwriteOld = true) {
         let oldBookmark = null;
-        for (let bookmark of this._bookmarks) {
+        for (const bookmark of this._bookmarks) {
             if (newBookmark.id === bookmark.id) {
                 oldBookmark = bookmark;
                 break;
@@ -62,7 +62,7 @@ export default class BookmarksController {
     }
 
     getBookmark(id) {
-        for (let bookmark of this._bookmarks) {
+        for (const bookmark of this._bookmarks) {
             if (bookmark.id === id) {
                 return bookmark;
             }
@@ -70,16 +70,15 @@ export default class BookmarksController {
     }
 
     getBookmarkIndex(id) {
-        for (let i in this._bookmarks) {
-            const bookmark = this._bookmarks[i];
+        for (const [index, bookmark] in this._bookmarks.entries()) {
             if (bookmark.id === id) {
-                return i;
+                return index;
             }
         }
     }
 
     updateBookmark(id, updatedInfo) {
-        for (let bookmark of this._bookmarks) {
+        for (const bookmark of this._bookmarks) {
             if (bookmark.id === id) {
                 return Object.assign(bookmark, updatedInfo);
             }
@@ -87,17 +86,16 @@ export default class BookmarksController {
     }
 
     deleteBookmark(id) {
-        for (let i in this._bookmarks) {
-            const bookmark = this._bookmarks[i];
+        for (const [index, bookmark] in this._bookmarks.entries()) {
             if (bookmark.id === id) {
-                return this._bookmarks.splice(i, 1)[0];
+                return this._bookmarks.splice(index, 1)[0];
             }
         }
     }
 
     moveBookmark(id, toIndex) {
-        const bookmarkIndex = this.getBookmark(id);
+        const bookmarkIndex = this.getBookmarkIndex(id);
+        const bookmark = this._bookmarks.splice(bookmarkIndex, 1)[0];
+        this._bookmarks.splice(toIndex, 0, bookmark);
     }
 }
-
-// [0, 1, 2, 3, 4, 5, 6, 7, 8]
