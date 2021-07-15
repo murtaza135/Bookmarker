@@ -1,6 +1,7 @@
  - add description to bookmarks modal
  - clean up and abstract code for the DnD bookmarks grid
  - possibly create components of modals to inject into the DOM, instead of having them hidden in the DOM
+ - create a bookmark which is specifically for telling the date, time and 1 other piece of information, maybe a quote of the day
  - get the bookmarks modal working and add ability to add new bookmarks
     - get input from form in modal
     - create a bookmark component and inject it into the DOM directly before the template card
