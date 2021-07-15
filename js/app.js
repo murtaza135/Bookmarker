@@ -1,3 +1,5 @@
+import Utilities from "./utilities";
+
 const settingsButton = document.querySelector("#settings");
 const settingsModal = document.querySelector("#settings-modal");
 const settingsModalContent = document.querySelector("#settings-modal .modal-content");
@@ -7,7 +9,6 @@ const templateCard = document.querySelector(".template-card");
 const bookmarksModal = document.querySelector("#bookmarks-modal");
 const bookmarksModalContent = document.querySelector("#bookmarks-modal .modal-content");
 const bookmarksModalCloseBtn = document.querySelector("#bookmarks-modal .modal-content .modal-close-btn");
-
 
 settingsButton.addEventListener("click", openSettingsModal);
 settingsModal.addEventListener("click", closeSettingsModal);
