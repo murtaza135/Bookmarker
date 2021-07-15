@@ -71,6 +71,20 @@ const grid = new CustomMuuri('#bookmarks-grid', {
     // dragStartPredicate: makeTemplateCardNonDraggable
 });
 
+const element = document.querySelector(".bookmarks-item")
+// console.log(element);
+
+grid.on("dragEnd", (item, event) => {
+    console.log(item);
+    console.log(event);
+    console.log(item._element === element);
+})
+
+
+// document.addEventListener("click", () => {
+//     console.log(grid.getItems());
+// })
+
 function makeTemplateCardNonDraggable(item, event) {
     // Prevent template-card from being dragged 
     if (item._element.classList.contains("template-card")) {
