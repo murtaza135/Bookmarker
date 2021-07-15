@@ -2,6 +2,8 @@ export default class SingleAxisDragger {
     // TODO make this class more sophisticated by adding ability to keep track of elements and their order
     // TODO also look at https://dmitripavlutin.com/fix-this-in-javascript/ for fat arrow methods to bind 'this' to the class instance
 
+    // Majority of code from Web Dev Simplified (https://www.youtube.com/watch?v=jfYWwQrtzzY)
+    
     constructor(container, draggableItems, containerDirection = "y") {
         this.container = container;
         this.draggableItems = draggableItems;

@@ -47,7 +47,7 @@ function closeBookmarksModal(event) {
 }
 
 
-// Draggable Bookmarks List in Settings Modal (https://www.youtube.com/watch?v=jfYWwQrtzzY)
+// Draggable Bookmarks List in Settings Modal
 import SingleAxisDragger from "./single_axis_dragger";
 
 const bookmarksList = document.querySelector(".bookmarks-list");
