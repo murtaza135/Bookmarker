@@ -14,20 +14,16 @@ export default class StorageController {
     }
 
     getItem(id) {
-        let requiredItem = null;
         const items = this.getItems();
         
-        for (let item of items) {
+        for (const item of items) {
             if (item[this._itemIdentifierKey] === id) {
-                requiredItem = item;
-                break;
+                return item;
             }
         }
-
-        return requiredItem;
     }
 
-    storeItems(...newItems) {
+    addItems(...newItems) {
         const currentItems = this.getItems();
         currentItems.push(...newItems);
         localStorage.setItem(this._key, JSON.stringify(currentItems));
@@ -36,7 +32,7 @@ export default class StorageController {
     updateItem(id, updatedObject) {
         const currentItems = this.getItems();
 
-        for (let item of currentItems) {
+        for (const item of currentItems) {
             if (item[this._itemIdentifierKey] === id) {
                 Object.assign(item, updatedObject);
                 break;
@@ -46,19 +42,20 @@ export default class StorageController {
         localStorage.setItem(this._key, JSON.stringify(items));
     }
 
-    removeItem(id) {
+    deleteItem(id) {
         const items = this.getItems();
 
-        items.forEach((item, index) => {
+        for (const [index, item] in items) {
             if (item[this._itemIdentifierKey] === id) {
                 items.splice(index, 1);
+                break;
             }
-        });
+        }
 
         localStorage.setItem(this._key, JSON.stringify(items));
     }
 
-    removeAllItems() {
+    deleteAllItems() {
         localStorage.removeItem(this._key);
     }
 }
