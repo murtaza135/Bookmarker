@@ -1,4 +1,4 @@
-export default class UI {
+class UI {
     constructor() {
         // Bookmarks grid on main page
         this.bookmarksGrid = document.querySelector("#bookmarks-grid");
@@ -25,4 +25,27 @@ export default class UI {
         this.editBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-edit-bookmark";
         this.showBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-show-bookmark input[type='checkbox']";
     }
+
+    populateBookmarksGrid() {
+
+    }
+
+    emptyOutBookmarksGrid() {
+
+    }
+
+    addBookmarkToGrid() {
+
+    }
+
+    deleteBookmarkFromGrid() {
+
+    }
+
+    updateBookmarkInGrid() {
+
+    }
 }
+
+
+export const ui = new UI();

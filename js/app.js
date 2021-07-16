@@ -1,52 +1,59 @@
 import Utilities from "./utilities";
-import UI from "./ui";
+import { ui } from "./ui";
 
-const settingsButton = document.querySelector("#settings"); ///
-const settingsModal = document.querySelector("#settings-modal");
-const settingsModalContent = document.querySelector("#settings-modal .modal-content"); ///
-const settingsModalCloseBtn = document.querySelector("#settings-modal .modal-content .modal-close-btn"); ///
+class App {
+    constructor() {
+        const templateCard = document.querySelector(ui.templateCardSelector);
+        templateCard.addEventListener("click", this.openBookmarksModal);
+        ui.bookmarksModal.addEventListener("click", this.closeBookmarksModal);
+        ui.bookmarksModalCloseBtn.addEventListener("click", this.closeBookmarksModal);
 
-const templateCard = document.querySelector(".template-card"); ///
-const bookmarksModal = document.querySelector("#bookmarks-modal"); ///
-const bookmarksModalContent = document.querySelector("#bookmarks-modal .modal-content");///
-const bookmarksModalCloseBtn = document.querySelector("#bookmarks-modal .modal-content .modal-close-btn");//
+        ui.settingsButton.addEventListener("click", this.openSettingsModal);
+        ui.settingsModal.addEventListener("click", this.closeSettingsModal);
+        ui.settingsModalCloseBtn.addEventListener("click", this.closeSettingsModal);
 
-settingsButton.addEventListener("click", openSettingsModal);
-settingsModal.addEventListener("click", closeSettingsModal);
-settingsModalCloseBtn.addEventListener("click", closeSettingsModal);
+        ui.bookmarksImageInput.addEventListener("change", this.displayImageFileName)
 
-function openSettingsModal() {
-    settingsModal.style.display = "block";
+    }
+
+    openBookmarksModal() {
+        bookmarksModal.style.display = "block";
+    }
+    
+    closeBookmarksModal(event) {
+        if (event.target === ui.bookmarksModal) {
+            ui.bookmarksModal.style.display = "none";
+        }
+        else if (event.target.parentElement === ui.bookmarksModalCloseBtn
+                || event.target === ui.bookmarksModalCloseBtn) {
+            ui.bookmarksModal.style.display = "none";
+        }
+    }
+
+    openSettingsModal() {
+        ui.settingsModal.style.display = "block";
+    }
+    
+    closeSettingsModal(event) {
+        if (event.target === ui.settingsModal) {
+            ui.settingsModal.style.display = "none";
+        }
+        else if (event.target.parentElement === ui.settingsModalCloseBtn
+                || event.target === ui.settingsModalCloseBtn) {
+            ui.settingsModal.style.display = "none";
+        }
+    }
+
+    displayImageFileName() {
+        const imageFilename = ui.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
+        ui.bookmarksImageUploadText.value = imageFilename;
+    }
 }
 
-function closeSettingsModal(event) {
-    if (event.target === settingsModal) {
-        settingsModal.style.display = "none";
-    }
-    else if (event.target.parentElement === settingsModalCloseBtn
-            || event.target === settingsModalCloseBtn) {
-        settingsModal.style.display = "none";
-    }
-}
+const app = new App();
 
 
-templateCard.addEventListener("click", openBookmarksModal);
-bookmarksModal.addEventListener("click", closeBookmarksModal);
-bookmarksModalCloseBtn.addEventListener("click", closeBookmarksModal);
-
-function openBookmarksModal() {
-    bookmarksModal.style.display = "block";
-}
-
-function closeBookmarksModal(event) {
-    if (event.target === bookmarksModal) {
-        bookmarksModal.style.display = "none";
-    }
-    else if (event.target.parentElement === bookmarksModalCloseBtn
-            || event.target === bookmarksModalCloseBtn) {
-        bookmarksModal.style.display = "none";
-    }
-}
+const bookmarksModal = document.querySelector("#bookmarks-modal");
 
 
 // Draggable Bookmarks List in Settings Modal
@@ -94,13 +101,3 @@ function makeTemplateCardNonDraggable(item, event) {
     // For other items use the default drag start predicate.
     return Muuri.ItemDrag.defaultStartPredicate(item, event);
 }
-
-
-// File Input
-const bookmarkImageFileInput = document.querySelector("#bookmarks-image-input");
-const bookmarkImageFileUploadText = document.querySelector("#bookmarks-image-upload-text");
-
-bookmarkImageFileInput.addEventListener("change", event => {
-    const imageFilename = bookmarkImageFileInput.value.replace(/^.*(\\|\/|\:)/, '')
-    bookmarkImageFileUploadText.value = imageFilename;
-})
