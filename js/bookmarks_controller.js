@@ -2,6 +2,7 @@ import { Bookmark, DateTimeBookmark, TemplateBookmark } from "./bookmark";
 
 export default class BookmarksController {
     constructor(bookmarks = []) {
+        this._bookmarkSize = "l";
         this._bookmarks = [];
         this._templateBookmark = this._createTemplateBookmark();
         // this._createDateTimeBookmark();

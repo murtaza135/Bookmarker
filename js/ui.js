@@ -1,3 +1,6 @@
+import CustomMuuri from "./custom_muuri";
+
+
 export default class UI {
     constructor() {
         // Bookmarks grid on main page
@@ -24,6 +27,58 @@ export default class UI {
         this.deleteBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-delete-bookmark";
         this.editBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-edit-bookmark";
         this.showBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-show-bookmark input[type='checkbox']";
+
+        // Muuri Grid
+        this.grid = this.setUpMuuriGrid();
+    }
+
+    setUpMuuriGrid() {
+        const grid = new CustomMuuri('#bookmarks-grid', {
+            items: ".bookmarks-item",
+            dragEnabled: true,
+            layoutOnResize: 10,
+            layoutDuration: 300,
+            layoutEasing: "linear",
+            layoutOnInit: true,
+            layout: CustomMuuri.centerLayout,
+            // dragStartPredicate: makeTemplateCardNonDraggable
+        });
+
+        grid.on("dragReleaseStart", item => {
+            // console.log(item.getGrid());
+            // console.log(grid.getItems());
+            // grid.synchronize();
+            // console.log(grid.getItemIndex(item));
+        })
+
+        grid.on("move", data => {
+            // console.log(data);
+            // console.log(grid.getItemIndex(data.item));
+        })
+
+        return grid;
+    }
+
+    populateBookmarksGrid(bookmarks, size) {
+        bookmarks.forEach(bookmark => {
+            this.grid.add(bookmark.getGridComponent(size));
+        })
+    }
+
+    emptyOutBookmarksGrid() {
+
+    }
+
+    addBookmarkToGrid() {
+
+    }
+
+    deleteBookmarkFromGrid() {
+
+    }
+
+    updateBookmarkInGrid() {
+
     }
 
     openBookmarksModal() {
@@ -45,25 +100,5 @@ export default class UI {
     displayImageFileNameInBookmarksModal() {
         const imageFilename = this.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
         this.bookmarksImageUploadText.value = imageFilename;
-    }
-
-    populateBookmarksGrid() {
-
-    }
-
-    emptyOutBookmarksGrid() {
-
-    }
-
-    addBookmarkToGrid() {
-
-    }
-
-    deleteBookmarkFromGrid() {
-
-    }
-
-    updateBookmarkInGrid() {
-
     }
 }

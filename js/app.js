@@ -1,53 +1,30 @@
 import UI from "./ui";
-import CustomMuuri from "./custom_muuri";
 import BookmarksController from "./bookmarks_controller";
+
 
 class App {
     constructor() {
         this.ui = new UI();
-        this.initialiseBookmarksGrid();
+        this.bookmarksController = new BookmarksController();
 
-        const templateCard = document.querySelector(this.ui.templateCardSelector);
-        // templateCard.addEventListener("click", this.openBookmarksModal);
-        this.ui.bookmarksModal.addEventListener("click", this.closeBookmarksModal);
-        this.ui.bookmarksModalCloseBtn.addEventListener("click", this.closeBookmarksModal);
+        const bookmarks = this.bookmarksController.getAllBookmarks();
+        const bookmarkSize = this.bookmarksController._bookmarkSize;
+        this.ui.populateBookmarksGrid(bookmarks, bookmarkSize);
 
-        this.ui.settingsButton.addEventListener("click", this.openSettingsModal);
-        this.ui.settingsModal.addEventListener("click", this.closeSettingsModal);
-        this.ui.settingsModalCloseBtn.addEventListener("click", this.closeSettingsModal);
-
-        this.ui.bookmarksImageInput.addEventListener("change", this.displayImageFileNameInBookmarksModal)
+        this.loadEventListeners();
     }
 
-    initialiseBookmarksGrid() {
-        const bookmarksController = new BookmarksController();
+    loadEventListeners() {
+        const templateCard = document.querySelector(this.ui.templateCardSelector);
+        // templateCard.addEventListener("click", event => this.openBookmarksModal(event));
+        this.ui.bookmarksModal.addEventListener("click", event => this.closeBookmarksModal(event));
+        this.ui.bookmarksModalCloseBtn.addEventListener("click", event => this.closeBookmarksModal(event));
 
-        const grid = new CustomMuuri('#bookmarks-grid', {
-            items: ".bookmarks-item",
-            dragEnabled: true,
-            layoutOnResize: 10,
-            layoutDuration: 300,
-            layoutEasing: "linear",
-            layoutOnInit: true,
-            layout: CustomMuuri.centerLayout,
-            // dragStartPredicate: makeTemplateCardNonDraggable
-        });
+        this.ui.settingsButton.addEventListener("click", event => this.openSettingsModal(event));
+        this.ui.settingsModal.addEventListener("click", event => this.closeSettingsModal(event));
+        this.ui.settingsModalCloseBtn.addEventListener("click", event => this.closeSettingsModal(event));
 
-        bookmarksController.getAllBookmarks().forEach(bookmark => {
-            grid.add(bookmark.getGridComponent("l"));
-        })
-
-        grid.on("dragReleaseStart", item => {
-            // console.log(item.getGrid());
-            // console.log(grid.getItems());
-            // grid.synchronize();
-            // console.log(grid.getItemIndex(item));
-        })
-
-        grid.on("move", data => {
-            // console.log(data);
-            // console.log(grid.getItemIndex(data.item));
-        })
+        this.ui.bookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInBookmarksModal(event));
     }
 
     openBookmarksModal() {
@@ -80,6 +57,7 @@ class App {
         this.ui.displayImageFileNameInBookmarksModal();
     }
 }
+
 
 const app = new App();
 
