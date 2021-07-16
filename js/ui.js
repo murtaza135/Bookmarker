@@ -26,6 +26,22 @@ class UI {
         this.showBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-show-bookmark input[type='checkbox']";
     }
 
+    openBookmarksModal() {
+        this.bookmarksModal.classList.remove("closed");
+    }
+    
+    closeBookmarksModal() {
+        this.bookmarksModal.classList.add("closed");
+    }
+
+    openSettingsModal() {
+        this.settingsModal.classList.remove("closed");
+    }
+    
+    closeSettingsModal() {
+        this.settingsModal.classList.add("closed");
+    }
+
     populateBookmarksGrid() {
 
     }

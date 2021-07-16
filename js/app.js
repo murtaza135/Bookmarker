@@ -17,30 +17,28 @@ class App {
     }
 
     openBookmarksModal() {
-        bookmarksModal.style.display = "block";
+        ui.openBookmarksModal();
     }
-    
+
     closeBookmarksModal(event) {
-        if (event.target === ui.bookmarksModal) {
-            ui.bookmarksModal.style.display = "none";
-        }
-        else if (event.target.parentElement === ui.bookmarksModalCloseBtn
-                || event.target === ui.bookmarksModalCloseBtn) {
-            ui.bookmarksModal.style.display = "none";
+        if (event.target === ui.bookmarksModal
+            || event.target.parentElement === ui.bookmarksModalCloseBtn
+            || event.target === ui.bookmarksModalCloseBtn
+        ) {
+            ui.closeBookmarksModal();
         }
     }
 
     openSettingsModal() {
-        ui.settingsModal.style.display = "block";
+        ui.openSettingsModal();
     }
     
     closeSettingsModal(event) {
-        if (event.target === ui.settingsModal) {
-            ui.settingsModal.style.display = "none";
-        }
-        else if (event.target.parentElement === ui.settingsModalCloseBtn
-                || event.target === ui.settingsModalCloseBtn) {
-            ui.settingsModal.style.display = "none";
+        if (event.target === ui.settingsModal
+            || event.target.parentElement === ui.settingsModalCloseBtn
+            || event.target === ui.settingsModalCloseBtn
+        ) {
+            ui.closeSettingsModal();
         }
     }
 
@@ -50,7 +48,9 @@ class App {
     }
 }
 
-const app = new App();
+document.addEventListener("DOMContentLoaded", () => {
+    const app = new App();
+})
 
 
 const bookmarksModal = document.querySelector("#bookmarks-modal");
