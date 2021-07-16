@@ -29,10 +29,10 @@ export default class UI {
         this.showBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-show-bookmark input[type='checkbox']";
 
         // Muuri Grid
-        this.grid = this.setUpMuuriGrid();
+        this.grid = this._setUpMuuriGrid();
     }
 
-    setUpMuuriGrid() {
+    _setUpMuuriGrid() {
         const grid = new CustomMuuri('#bookmarks-grid', {
             items: ".bookmarks-item",
             dragEnabled: true,
@@ -44,17 +44,14 @@ export default class UI {
             // dragStartPredicate: makeTemplateCardNonDraggable
         });
 
-        grid.on("dragReleaseStart", item => {
-            // console.log(item.getGrid());
-            // console.log(grid.getItems());
-            // grid.synchronize();
-            // console.log(grid.getItemIndex(item));
-        })
-
-        grid.on("move", data => {
-            // console.log(data);
-            // console.log(grid.getItemIndex(data.item));
-        })
+        // function makeTemplateCardNonDraggable(item, event) {
+        //     // Prevent template-card from being dragged 
+        //     if (item._element.classList.contains("template-card")) {
+        //         return false;
+        //     }
+        //     // For other items use the default drag start predicate.
+        //     return Muuri.ItemDrag.defaultStartPredicate(item, event);
+        // }
 
         return grid;
     }

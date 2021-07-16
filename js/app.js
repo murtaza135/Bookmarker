@@ -4,14 +4,17 @@ import BookmarksController from "./bookmarks_controller";
 
 class App {
     constructor() {
-        this.ui = new UI();
         this.bookmarksController = new BookmarksController();
+        this.ui = new UI();
 
+        this.loadInitialBookmarks();
+        this.loadEventListeners();
+    }
+
+    loadInitialBookmarks() {
         const bookmarks = this.bookmarksController.getAllBookmarks();
         const bookmarkSize = this.bookmarksController._bookmarkSize;
         this.ui.populateBookmarksGrid(bookmarks, bookmarkSize);
-
-        this.loadEventListeners();
     }
 
     loadEventListeners() {
@@ -25,6 +28,9 @@ class App {
         this.ui.settingsModalCloseBtn.addEventListener("click", event => this.closeSettingsModal(event));
 
         this.ui.bookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInBookmarksModal(event));
+
+        this.ui.grid.on("dragReleaseStart", item => {});
+        this.ui.grid.on("move", data => {});
     }
 
     openBookmarksModal() {
@@ -73,41 +79,3 @@ import SingleAxisDragger from "./single_axis_dragger";
 const bookmarksList = document.querySelector(".bookmarks-list");
 const draggableBookmarkListElements = document.querySelectorAll(".bookmarks-list-element");
 const dragger = new SingleAxisDragger(bookmarksList, draggableBookmarkListElements);
-
-
-
-// Draggable Bookmarks Grid
-
-// const grid = new CustomMuuri('#bookmarks-grid', {
-//     items: ".bookmarks-item",
-//     dragEnabled: true,
-//     layoutOnResize: 10,
-//     layoutDuration: 300,
-//     layoutEasing: "linear",
-//     layoutOnInit: true,
-//     layout: CustomMuuri.centerLayout,
-//     // dragStartPredicate: makeTemplateCardNonDraggable
-// });
-
-// const element = document.querySelector(".bookmarks-item")
-// console.log(element);
-
-// grid.on("dragEnd", (item, event) => {
-//     console.log(item);
-//     console.log(event);
-//     console.log(item._element === element);
-// })
-
-
-// document.addEventListener("click", () => {
-//     console.log(grid.getItems());
-// })
-
-// function makeTemplateCardNonDraggable(item, event) {
-//     // Prevent template-card from being dragged 
-//     if (item._element.classList.contains("template-card")) {
-//         return false;
-//     }
-//     // For other items use the default drag start predicate.
-//     return Muuri.ItemDrag.defaultStartPredicate(item, event);
-// }
