@@ -8,11 +8,31 @@ export default class CustomMuuri extends Muuri {
         this._setupEventListeners();
     }
 
+    getElementIndex(element) {
+        const item = this.getItem(element);
+        const index = this.getItems().indexOf(item);
+        return index;
+    }
+
+    getItemIndex(item) {
+        const index = this.getItems().indexOf(item);
+        return index;
+    }
+
     _setupEventListeners() {
         this.draggableItems.forEach(item => {
             item.addEventListener("click", this._itemClick);
             item.addEventListener("dragstart", this._itemDragStart);
             item.addEventListener("dragend", this._itemDragEnd);
+        })
+
+        this.on("add", items => {
+            items.forEach(item => {
+                const element = item.getElement();
+                element.addEventListener("click", this._itemClick);
+                element.addEventListener("dragstart", this._itemDragStart);
+                element.addEventListener("dragend", this._itemDragEnd);
+            })
         })
     }
 

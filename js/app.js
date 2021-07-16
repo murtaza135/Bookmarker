@@ -1,8 +1,12 @@
 import Utilities from "./utilities";
 import { ui } from "./ui";
+import CustomMuuri from "./custom_muuri";
+import BookmarksController from "./bookmarks_controller";
 
 class App {
     constructor() {
+        this.initialiseBookmarksGrid();
+
         const templateCard = document.querySelector(ui.templateCardSelector);
         // templateCard.addEventListener("click", this.openBookmarksModal);
         ui.bookmarksModal.addEventListener("click", this.closeBookmarksModal);
@@ -13,7 +17,37 @@ class App {
         ui.settingsModalCloseBtn.addEventListener("click", this.closeSettingsModal);
 
         ui.bookmarksImageInput.addEventListener("change", this.displayImageFileNameInBookmarksModal)
+    }
 
+    initialiseBookmarksGrid() {
+        const bookmarksController = new BookmarksController();
+
+        const grid = new CustomMuuri('#bookmarks-grid', {
+            items: ".bookmarks-item",
+            dragEnabled: true,
+            layoutOnResize: 10,
+            layoutDuration: 300,
+            layoutEasing: "linear",
+            layoutOnInit: true,
+            layout: CustomMuuri.centerLayout,
+            // dragStartPredicate: makeTemplateCardNonDraggable
+        });
+
+        bookmarksController.getAllBookmarks().forEach(bookmark => {
+            grid.add(bookmark.getGridComponent("l"));
+        })
+
+        grid.on("dragReleaseStart", item => {
+            // console.log(item.getGrid());
+            // console.log(grid.getItems());
+            // grid.synchronize();
+            // console.log(grid.getItemIndex(item));
+        })
+
+        grid.on("move", data => {
+            // console.log(data);
+            // console.log(grid.getItemIndex(data.item));
+        })
     }
 
     openBookmarksModal() {
@@ -65,38 +99,37 @@ const dragger = new SingleAxisDragger(bookmarksList, draggableBookmarkListElemen
 
 
 // Draggable Bookmarks Grid
-import CustomMuuri from "./custom_muuri";
 
-const grid = new CustomMuuri('#bookmarks-grid', {
-    items: ".bookmarks-item",
-    dragEnabled: true,
-    layoutOnResize: 10,
-    layoutDuration: 300,
-    layoutEasing: "linear",
-    layoutOnInit: true,
-    layout: CustomMuuri.centerLayout,
-    // dragStartPredicate: makeTemplateCardNonDraggable
-});
+// const grid = new CustomMuuri('#bookmarks-grid', {
+//     items: ".bookmarks-item",
+//     dragEnabled: true,
+//     layoutOnResize: 10,
+//     layoutDuration: 300,
+//     layoutEasing: "linear",
+//     layoutOnInit: true,
+//     layout: CustomMuuri.centerLayout,
+//     // dragStartPredicate: makeTemplateCardNonDraggable
+// });
 
-const element = document.querySelector(".bookmarks-item")
+// const element = document.querySelector(".bookmarks-item")
 // console.log(element);
 
-grid.on("dragEnd", (item, event) => {
-    console.log(item);
-    console.log(event);
-    console.log(item._element === element);
-})
+// grid.on("dragEnd", (item, event) => {
+//     console.log(item);
+//     console.log(event);
+//     console.log(item._element === element);
+// })
 
 
 // document.addEventListener("click", () => {
 //     console.log(grid.getItems());
 // })
 
-function makeTemplateCardNonDraggable(item, event) {
-    // Prevent template-card from being dragged 
-    if (item._element.classList.contains("template-card")) {
-        return false;
-    }
-    // For other items use the default drag start predicate.
-    return Muuri.ItemDrag.defaultStartPredicate(item, event);
-}
+// function makeTemplateCardNonDraggable(item, event) {
+//     // Prevent template-card from being dragged 
+//     if (item._element.classList.contains("template-card")) {
+//         return false;
+//     }
+//     // For other items use the default drag start predicate.
+//     return Muuri.ItemDrag.defaultStartPredicate(item, event);
+// }

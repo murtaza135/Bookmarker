@@ -30,6 +30,8 @@ export class Bookmark extends BaseBookmark {
                 </a>
             </div>
         `;
+
+        return div;
     }
 }
 
@@ -51,6 +53,8 @@ export class DateTimeBookmark extends BaseBookmark {
                 </a>
             </div>
         `;
+        
+        return div;
     }
 }
 
@@ -61,7 +65,7 @@ export class TemplateBookmark extends BaseBookmark {
 
     getGridComponent(size) {
         const div = document.createElement("div");
-        div.className = `item bookmarks-item bookmarks-card bookmarks-card-${size}`;
+        div.className = `item bookmarks-item template-card template-card-${size}`;
         div.id = `bookmarks-item-${this.id}`
         div.setAttribute("draggable", "true");
         
@@ -72,5 +76,7 @@ export class TemplateBookmark extends BaseBookmark {
                 </a>
             </div>
         `;
+
+        return div;
     }
 }

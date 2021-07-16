@@ -4,11 +4,16 @@ export default class BookmarksController {
     constructor(bookmarks = []) {
         this._bookmarks = [];
         this._templateBookmark = this._createTemplateBookmark();
-        this._createDateTimeBookmark();
+        // this._createDateTimeBookmark();
+        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
 
-        bookmarks.forEach(bookmark => {
-            this.reAddBookmark(bookmark);
-        })
+        // bookmarks.forEach(bookmark => {
+        //     this.reAddBookmark(bookmark);
+        // })
     }
 
     _createTemplateBookmark() {
@@ -82,12 +87,20 @@ export default class BookmarksController {
     }
 
     _generateNewId() {
-        if (this.bookmarks.length > 0) {
-            return this.bookmarks[this.bookmarks.length - 1].id + 1;
+        if (this._bookmarks.length >= 0) {
+            const len = this._bookmarks.length;
+            // const id = this._bookmarks[this._bookmarks.length - 1].id + 1;
+            const id = this._bookmarks.length;
+            // console.log(id);
+            return id;
         }
         else {
             return 0;
         }
+    }
+
+    getAllBookmarks() {
+        return this._bookmarks;
     }
 
     getBookmark(id) {
