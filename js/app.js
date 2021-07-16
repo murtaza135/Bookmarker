@@ -1,22 +1,22 @@
-import Utilities from "./utilities";
-import { ui } from "./ui";
+import UI from "./ui";
 import CustomMuuri from "./custom_muuri";
 import BookmarksController from "./bookmarks_controller";
 
 class App {
     constructor() {
+        this.ui = new UI();
         this.initialiseBookmarksGrid();
 
-        const templateCard = document.querySelector(ui.templateCardSelector);
+        const templateCard = document.querySelector(this.ui.templateCardSelector);
         // templateCard.addEventListener("click", this.openBookmarksModal);
-        ui.bookmarksModal.addEventListener("click", this.closeBookmarksModal);
-        ui.bookmarksModalCloseBtn.addEventListener("click", this.closeBookmarksModal);
+        this.ui.bookmarksModal.addEventListener("click", this.closeBookmarksModal);
+        this.ui.bookmarksModalCloseBtn.addEventListener("click", this.closeBookmarksModal);
 
-        ui.settingsButton.addEventListener("click", this.openSettingsModal);
-        ui.settingsModal.addEventListener("click", this.closeSettingsModal);
-        ui.settingsModalCloseBtn.addEventListener("click", this.closeSettingsModal);
+        this.ui.settingsButton.addEventListener("click", this.openSettingsModal);
+        this.ui.settingsModal.addEventListener("click", this.closeSettingsModal);
+        this.ui.settingsModalCloseBtn.addEventListener("click", this.closeSettingsModal);
 
-        ui.bookmarksImageInput.addEventListener("change", this.displayImageFileNameInBookmarksModal)
+        this.ui.bookmarksImageInput.addEventListener("change", this.displayImageFileNameInBookmarksModal)
     }
 
     initialiseBookmarksGrid() {
@@ -51,33 +51,33 @@ class App {
     }
 
     openBookmarksModal() {
-        ui.openBookmarksModal();
+        this.ui.openBookmarksModal();
     }
 
     closeBookmarksModal(event) {
-        if (event.target === ui.bookmarksModal
-            || event.target.parentElement === ui.bookmarksModalCloseBtn
-            || event.target === ui.bookmarksModalCloseBtn
+        if (event.target === this.ui.bookmarksModal
+            || event.target.parentElement === this.ui.bookmarksModalCloseBtn
+            || event.target === this.ui.bookmarksModalCloseBtn
         ) {
-            ui.closeBookmarksModal();
+            this.ui.closeBookmarksModal();
         }
     }
 
     openSettingsModal() {
-        ui.openSettingsModal();
+        this.ui.openSettingsModal();
     }
     
     closeSettingsModal(event) {
-        if (event.target === ui.settingsModal
-            || event.target.parentElement === ui.settingsModalCloseBtn
-            || event.target === ui.settingsModalCloseBtn
+        if (event.target === this.ui.settingsModal
+            || event.target.parentElement === this.ui.settingsModalCloseBtn
+            || event.target === this.ui.settingsModalCloseBtn
         ) {
-            ui.closeSettingsModal();
+            this.ui.closeSettingsModal();
         }
     }
 
     displayImageFileNameInBookmarksModal() {
-        ui.displayImageFileNameInBookmarksModal();
+        this.ui.displayImageFileNameInBookmarksModal();
     }
 }
 

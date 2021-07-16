@@ -5,11 +5,11 @@ export default class BookmarksController {
         this._bookmarks = [];
         this._templateBookmark = this._createTemplateBookmark();
         // this._createDateTimeBookmark();
-        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("Hello World", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("1", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("2", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("3", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("4", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("5", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
 
         // bookmarks.forEach(bookmark => {
         //     this.reAddBookmark(bookmark);
@@ -33,6 +33,7 @@ export default class BookmarksController {
     }
 
     reAddBookmark(newBookmark, overwriteOld = true) {
+        // TODO change to _setupInitialBookmarks
         let oldBookmark = null;
         for (const bookmark of this._bookmarks) {
             if (newBookmark.id === bookmark.id) {

@@ -1,4 +1,4 @@
-class UI {
+export default class UI {
     constructor() {
         // Bookmarks grid on main page
         this.bookmarksGrid = document.querySelector("#bookmarks-grid");
@@ -67,6 +67,3 @@ class UI {
 
     }
 }
-
-
-export const ui = new UI();
