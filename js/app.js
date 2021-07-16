@@ -1,14 +1,15 @@
 import Utilities from "./utilities";
+import UI from "./ui";
 
-const settingsButton = document.querySelector("#settings");
+const settingsButton = document.querySelector("#settings"); ///
 const settingsModal = document.querySelector("#settings-modal");
-const settingsModalContent = document.querySelector("#settings-modal .modal-content");
-const settingsModalCloseBtn = document.querySelector("#settings-modal .modal-content .modal-close-btn");
+const settingsModalContent = document.querySelector("#settings-modal .modal-content"); ///
+const settingsModalCloseBtn = document.querySelector("#settings-modal .modal-content .modal-close-btn"); ///
 
-const templateCard = document.querySelector(".template-card");
-const bookmarksModal = document.querySelector("#bookmarks-modal");
-const bookmarksModalContent = document.querySelector("#bookmarks-modal .modal-content");
-const bookmarksModalCloseBtn = document.querySelector("#bookmarks-modal .modal-content .modal-close-btn");
+const templateCard = document.querySelector(".template-card"); ///
+const bookmarksModal = document.querySelector("#bookmarks-modal"); ///
+const bookmarksModalContent = document.querySelector("#bookmarks-modal .modal-content");///
+const bookmarksModalCloseBtn = document.querySelector("#bookmarks-modal .modal-content .modal-close-btn");//
 
 settingsButton.addEventListener("click", openSettingsModal);
 settingsModal.addEventListener("click", closeSettingsModal);
