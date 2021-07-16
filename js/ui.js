@@ -5,7 +5,7 @@ class UI {
         this.bookmarkItemSelector = "#bookmarks-grid .bookmarks-item";
 
         // Bookmarks modal for adding new bookmarks
-        this.templateCardSelector = "#template-card";
+        this.templateCardSelector = "#bookmarks-grid .template-card";
         this.bookmarksModal = document.querySelector("#bookmarks-modal");
         this.bookmarksModalCloseBtn = document.querySelector("#bookmarks-modal .modal-close-btn");
         this.bookmarksNameInput = document.querySelector("#bookmarks-name-input");
@@ -40,6 +40,11 @@ class UI {
     
     closeSettingsModal() {
         this.settingsModal.classList.add("closed");
+    }
+
+    displayImageFileNameInBookmarksModal() {
+        const imageFilename = this.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
+        this.bookmarksImageUploadText.value = imageFilename;
     }
 
     populateBookmarksGrid() {

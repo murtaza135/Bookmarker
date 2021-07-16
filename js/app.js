@@ -4,7 +4,7 @@ import { ui } from "./ui";
 class App {
     constructor() {
         const templateCard = document.querySelector(ui.templateCardSelector);
-        templateCard.addEventListener("click", this.openBookmarksModal);
+        // templateCard.addEventListener("click", this.openBookmarksModal);
         ui.bookmarksModal.addEventListener("click", this.closeBookmarksModal);
         ui.bookmarksModalCloseBtn.addEventListener("click", this.closeBookmarksModal);
 
@@ -12,7 +12,7 @@ class App {
         ui.settingsModal.addEventListener("click", this.closeSettingsModal);
         ui.settingsModalCloseBtn.addEventListener("click", this.closeSettingsModal);
 
-        ui.bookmarksImageInput.addEventListener("change", this.displayImageFileName)
+        ui.bookmarksImageInput.addEventListener("change", this.displayImageFileNameInBookmarksModal)
 
     }
 
@@ -42,18 +42,17 @@ class App {
         }
     }
 
-    displayImageFileName() {
-        const imageFilename = ui.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
-        ui.bookmarksImageUploadText.value = imageFilename;
+    displayImageFileNameInBookmarksModal() {
+        ui.displayImageFileNameInBookmarksModal();
     }
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    const app = new App();
-})
+const app = new App();
 
 
-const bookmarksModal = document.querySelector("#bookmarks-modal");
+
+
+
 
 
 // Draggable Bookmarks List in Settings Modal
