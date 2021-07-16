@@ -4,8 +4,7 @@ import Muuri from "muuri";
 export default class CustomMuuri extends Muuri {
     constructor(element, options) {
         super(element, options);
-        this.draggableItems = document.querySelectorAll(options.items);
-        this._setupEventListeners();
+        this._setupEventListeners(options.items);
     }
 
     getElementIndex(element) {
@@ -19,8 +18,9 @@ export default class CustomMuuri extends Muuri {
         return index;
     }
 
-    _setupEventListeners() {
-        this.draggableItems.forEach(item => {
+    _setupEventListeners(itemSelector) {
+        const items = document.querySelectorAll(itemSelector);
+        items.forEach(item => {
             item.addEventListener("click", this._itemClick);
             item.addEventListener("dragstart", this._itemDragStart);
             item.addEventListener("dragend", this._itemDragEnd);

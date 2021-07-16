@@ -16,8 +16,9 @@ export default class BookmarksController {
     constructor(bookmarkSize = allBookmarkSizes.large, bookmarks = []) {
         this._bookmarkSize = this.setBookmarkSize(bookmarkSize);
         this._bookmarks = [];
+
         this._templateBookmark = this._createTemplateBookmark();
-        this._createDateTimeBookmark();
+        // this._createDateTimeBookmark();
         this.setBookmarks(bookmarks);
         this._createTempBookmarks();
     }
@@ -32,6 +33,10 @@ export default class BookmarksController {
         else {
             return allBookmarkSizes.large;
         }
+    }
+
+    getBookmarkSize() {
+        return this._bookmarkSize;
     }
 
     _createTemplateBookmark() {
@@ -51,11 +56,11 @@ export default class BookmarksController {
 
     _createTempBookmarks() {
         // TODO eventually delete this
-        this.addNewBookmark("1", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
         this.addNewBookmark("2", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
         this.addNewBookmark("3", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
         this.addNewBookmark("4", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
         this.addNewBookmark("5", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        this.addNewBookmark("6", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
     }
 
     setBookmarks(bookmarks, howToDealWithDuplicateIds = "discard") {
@@ -121,7 +126,7 @@ export default class BookmarksController {
     }
 
     getAllBookmarks() {
-        return this._bookmarks;
+        return [...this._bookmarks];
     }
 
     getBookmark(id) {
@@ -133,7 +138,7 @@ export default class BookmarksController {
     }
 
     getBookmarkIndex(id) {
-        for (const [index, bookmark] in this._bookmarks.entries()) {
+        for (const [index, bookmark] of this._bookmarks.entries()) {
             if (bookmark.id === id) {
                 return index;
             }
@@ -166,9 +171,14 @@ export default class BookmarksController {
     moveBookmark(id, toIndex) {
         const bookmarkIndex = this.getBookmarkIndex(id);
         const bookmark = this._bookmarks.splice(bookmarkIndex, 1)[0];
-        return this._bookmarks.splice(toIndex, 0, bookmark)[0];
+        this._bookmarks.splice(toIndex, 0, bookmark);
+        return bookmark;
     }
 
+    extractIdFromElement(element) {
+        const regex = /[0-9]+$/g;
+        return parseInt(element.id.match(regex)[0]);
+    }
 
     // reAddBookmark(newBookmark, overwriteOld = true) {
     //     // TODO change to _setupInitialBookmarks

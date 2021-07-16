@@ -18,6 +18,9 @@ class App {
     }
 
     loadEventListeners() {
+        this.ui.grid.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.grid));
+        // this.ui.grid.on("move", data => {});
+
         const templateCard = document.querySelector(this.ui.templateCardSelector);
         // templateCard.addEventListener("click", event => this.openBookmarksModal(event));
         this.ui.bookmarksModal.addEventListener("click", event => this.closeBookmarksModal(event));
@@ -28,9 +31,12 @@ class App {
         this.ui.settingsModalCloseBtn.addEventListener("click", event => this.closeSettingsModal(event));
 
         this.ui.bookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInBookmarksModal(event));
+    }
 
-        this.ui.grid.on("dragReleaseStart", item => {});
-        this.ui.grid.on("move", data => {});
+    moveGridItem(item, grid) {
+        const id = this.bookmarksController.extractIdFromElement(item.getElement());
+        const newIndex = grid.getItemIndex(item);
+        this.bookmarksController.moveBookmark(id, newIndex);
     }
 
     openBookmarksModal() {

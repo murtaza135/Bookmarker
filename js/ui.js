@@ -78,6 +78,10 @@ export default class UI {
 
     }
 
+    moveBookmarkInGrid() {
+
+    }
+
     openBookmarksModal() {
         this.bookmarksModal.classList.remove("closed");
     }
