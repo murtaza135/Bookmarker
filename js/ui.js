@@ -40,22 +40,13 @@ export default class UI {
             layoutDuration: 300,
             layoutEasing: "linear",
             layoutOnInit: true,
-            layout: CustomMuuri.centerLayout,
-            // dragStartPredicate: makeTemplateCardNonDraggable
+            layout: CustomMuuri.centerLayout
         });
-
-        // function makeTemplateCardNonDraggable(item, event) {
-        //     // Prevent template-card from being dragged 
-        //     if (item._element.classList.contains("template-card")) {
-        //         return false;
-        //     }
-        //     // For other items use the default drag start predicate.
-        //     return Muuri.ItemDrag.defaultStartPredicate(item, event);
-        // }
 
         return grid;
     }
 
+    // Muuri grid on main page
     populateBookmarksGrid(bookmarks, size) {
         bookmarks.forEach(bookmark => {
             this.grid.add(bookmark.getGridComponent(size));
@@ -82,6 +73,32 @@ export default class UI {
 
     }
 
+    // Single Axis Dragger in settings modal
+    populateBookmarksList() {
+
+    }
+
+    emptyOutBookmarksList() {
+
+    }
+
+    addBookmarkToList() {
+
+    }
+
+    deleteBookmarkFromList() {
+
+    }
+
+    updateBookmarkInList() {
+
+    }
+
+    moveBookmarkInList() {
+
+    }
+
+    // Modals
     openBookmarksModal() {
         this.bookmarksModal.classList.remove("closed");
     }

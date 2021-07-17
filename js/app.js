@@ -19,10 +19,8 @@ class App {
 
     loadEventListeners() {
         this.ui.grid.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.grid));
-        // this.ui.grid.on("move", data => {});
 
-        const templateCard = document.querySelector(this.ui.templateCardSelector);
-        // templateCard.addEventListener("click", event => this.openBookmarksModal(event));
+        this.ui.bookmarksGrid.addEventListener("click", event => this.openBookmarksModal(event));
         this.ui.bookmarksModal.addEventListener("click", event => this.closeBookmarksModal(event));
         this.ui.bookmarksModalCloseBtn.addEventListener("click", event => this.closeBookmarksModal(event));
 
@@ -39,8 +37,26 @@ class App {
         this.bookmarksController.moveBookmark(id, newIndex);
     }
 
-    openBookmarksModal() {
-        this.ui.openBookmarksModal();
+    openBookmarksModal(event) {
+        const isClickable = (
+            event.target.parentElement.parentElement
+            .classList.contains("muuri-item-clickable")
+            || event.target.parentElement.parentElement.parentElement
+            .classList.contains("muuri-item-clickable")
+        );
+
+        if (isClickable) {
+            const isTemplateCard = (
+                event.target.parentElement.parentElement
+                .classList.contains("template-card")
+                || event.target.parentElement.parentElement.parentElement
+                .classList.contains("template-card")
+            );
+    
+            if (isTemplateCard) {
+                this.ui.openBookmarksModal();
+            }
+        }
     }
 
     closeBookmarksModal(event) {

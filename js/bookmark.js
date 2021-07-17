@@ -16,7 +16,7 @@ export class Bookmark extends BaseBookmark {
 
     getGridComponent(size) {
         const div = document.createElement("div");
-        div.className = `item bookmarks-item bookmarks-card bookmarks-card-${size}`;
+        div.className = `item bookmarks-item bookmarks-card bookmarks-card-${size} muuri-item-clickable`;
         div.id = `bookmarks-item-${this.id}`
         div.setAttribute("draggable", "true");
 
@@ -42,13 +42,13 @@ export class DateTimeBookmark extends BaseBookmark {
 
     getGridComponent(size) {
         const div = document.createElement("div");
-        div.className = `item bookmarks-item bookmarks-card bookmarks-card-${size}`;
+        div.className = `item bookmarks-item bookmarks-card bookmarks-card-${size} muuri-item-clickable`;
         div.id = `bookmarks-item-${this.id}`
         div.setAttribute("draggable", "true");
         
         div.innerHTML = `
             <div class="item-content">
-                <a href="#" class="block">
+                <a class="block">
                     <h1 class="title-1 text-center">${this.name}</h1>
                 </a>
             </div>
@@ -65,13 +65,13 @@ export class TemplateBookmark extends BaseBookmark {
 
     getGridComponent(size) {
         const div = document.createElement("div");
-        div.className = `item bookmarks-item template-card template-card-${size}`;
+        div.className = `item bookmarks-item template-card template-card-${size} muuri-item-clickable`;
         div.id = `bookmarks-item-${this.id}`
         div.setAttribute("draggable", "true");
         
         div.innerHTML = `
             <div class="item-content">
-                <a href="#" class="block">
+                <a class="block">
                     <i class="fas fa-plus"></i>
                 </a>
             </div>

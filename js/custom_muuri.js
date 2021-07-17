@@ -3,6 +3,7 @@ import Muuri from "muuri";
 
 export default class CustomMuuri extends Muuri {
     constructor(element, options) {
+        CustomMuuri._setCustomDragStartPredicate(options);
         super(element, options);
         this._setupEventListeners(options.items);
     }
@@ -22,33 +23,48 @@ export default class CustomMuuri extends Muuri {
         const items = document.querySelectorAll(itemSelector);
         items.forEach(item => {
             item.addEventListener("click", this._itemClick);
-            item.addEventListener("dragstart", this._itemDragStart);
-            item.addEventListener("dragend", this._itemDragEnd);
         })
 
         this.on("add", items => {
             items.forEach(item => {
                 const element = item.getElement();
                 element.addEventListener("click", this._itemClick);
-                element.addEventListener("dragstart", this._itemDragStart);
-                element.addEventListener("dragend", this._itemDragEnd);
             })
         })
     }
 
     _itemClick(event) {
-        if (this.classList.contains("muuri-item-dragging-before-click")) {
-            this.classList.remove("muuri-item-dragging-before-click");
+        if (!this.classList.contains("muuri-item-clickable")) {
+            setTimeout(() => {
+                this.classList.add("muuri-item-clickable");
+            }, 1250);
             event.preventDefault();
         }
     }
 
-    _itemDragStart() {
-        this.classList.add("muuri-item-dragging-before-click");
+    static _setCustomDragStartPredicate(options) {
+        if (options.dragStartPredicate == null) {
+            options.dragStartPredicate = (item, event) => {
+                CustomMuuri._customDragStartPredicate(item, event);
+                return Muuri.ItemDrag.defaultStartPredicate(item, event);
+            }
+        }
+        else {
+            const userDefinedDragStartPredicate = options.dragStartPredicate;
+            options.dragStartPredicate = (item, event) => {
+                CustomMuuri._customDragStartPredicate(item, event);
+                return userDefinedDragStartPredicate(item, event);
+            }
+        }
     }
 
-    _itemDragEnd() {
-        this.classList.remove("muuri-item-dragging-before-click");
+    static _customDragStartPredicate(item, event) {
+        if (event.distance <= 2) {
+            item.getElement().classList.add("muuri-item-clickable");
+        }
+        else {
+            item.getElement().classList.remove("muuri-item-clickable");
+        }
     }
 
     static centerLayout(grid, layoutId, items, width, height, callback) {

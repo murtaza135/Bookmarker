@@ -12,13 +12,14 @@ export const allBookmarkSizes = Object.freeze({
     xs: "xs"
 });
 
+
 export default class BookmarksController {
     constructor(bookmarkSize = allBookmarkSizes.large, bookmarks = []) {
         this._bookmarkSize = this.setBookmarkSize(bookmarkSize);
         this._bookmarks = [];
 
         this._templateBookmark = this._createTemplateBookmark();
-        // this._createDateTimeBookmark();
+        this._createDateTimeBookmark();
         this.setBookmarks(bookmarks);
         this._createTempBookmarks();
     }
@@ -64,6 +65,7 @@ export default class BookmarksController {
     }
 
     setBookmarks(bookmarks, howToDealWithDuplicateIds = "discard") {
+        // TODO cleanup and make it better
         this.deleteAllBookmarks();
 
         let bookmarksWithIds = [];
@@ -181,7 +183,7 @@ export default class BookmarksController {
     }
 
     // reAddBookmark(newBookmark, overwriteOld = true) {
-    //     // TODO change to _setupInitialBookmarks
+    //     // TODO delete this
     //     let oldBookmark = null;
     //     for (const bookmark of this._bookmarks) {
     //         if (newBookmark.id === bookmark.id) {
