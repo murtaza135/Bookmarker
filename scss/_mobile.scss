@@ -47,9 +47,11 @@
     }
 
     .bookmarks-list-element {
-        .bookmark-info {
-            h1 {
-                font-size: 0.95rem;
+        .item-content {
+            .bookmark-info {
+                h1 {
+                    font-size: 0.95rem;
+                }
             }
         }
     }
@@ -90,28 +92,30 @@
     }
 
     .bookmarks-list-element {
-        flex-direction: column;
-        padding: 0.35rem 0.75rem 0.35rem 0.5rem;
-
-        .bookmark-info {
-            margin: 0.75rem 0.25rem 1rem;
-            justify-content: center;
-
-            h1 {
-                flex: 0;
-                font-size: 1.1rem;
-                width: 87.5%;
-            }
-        }
-
-        .bookmark-buttons {
-            margin: 0 0 0.75rem;
-
-            .btn {
-                &-show-bookmark {
-                    margin-right: 0;
+        .item-content {
+            flex-direction: column;
+            padding: 0.35rem 0.5rem 0.35rem 0.5rem;
+    
+            .bookmark-info {
+                margin: 0.75rem 0.25rem 1rem;
+                justify-content: center;
+    
+                h1 {
+                    flex: 0;
+                    font-size: 1.1rem;
+                    width: 87.5%;
                 }
-
+            }
+    
+            .bookmark-buttons {
+                margin: 0 0 0.75rem;
+    
+                .btn {
+                    &-show-bookmark {
+                        margin-right: 0;
+                    }
+    
+                }
             }
         }
     }
@@ -165,25 +169,27 @@
     }
 
     .bookmarks-list-element {
-        flex-direction: column;
-        padding: 0.35rem 0.75rem 0.35rem 0.5rem;
-
-        .bookmark-info {
-            margin: 0.75rem 0.25rem 1rem;
-
-            h1 {
-                width: 82.5%;
-            }
-        }
-
-        .bookmark-buttons {
-            margin: 0 0 0.75rem;
-
-            .btn {
-                &-show-bookmark {
-                    margin-right: 0;
+        .item-content {
+            flex-direction: column;
+            padding: 0.35rem 0.5rem 0.35rem 0.5rem;
+    
+            .bookmark-info {
+                margin: 0.75rem 0.25rem 1rem;
+    
+                h1 {
+                    width: 82.5%;
                 }
-
+            }
+    
+            .bookmark-buttons {
+                margin: 0 0 0.75rem;
+    
+                .btn {
+                    &-show-bookmark {
+                        margin-right: 0;
+                    }
+    
+                }
             }
         }
     }
@@ -229,9 +235,11 @@
     }
 
     .bookmarks-list-element {
-        .bookmark-info {
-            h1 {
-                width: 77.5%;
+        .content {
+            .bookmark-info {
+                h1 {
+                    width: 77.5%;
+                }
             }
         }
     }

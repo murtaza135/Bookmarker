@@ -1,6 +1,5 @@
 export default class SingleAxisDragger {
     // TODO make this class more sophisticated by adding ability to keep track of elements and their order
-
     // Majority of code from Web Dev Simplified (https://www.youtube.com/watch?v=jfYWwQrtzzY)
     
     constructor(container, draggableItems, containerDirection = "y") {

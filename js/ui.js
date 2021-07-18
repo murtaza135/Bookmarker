@@ -1,5 +1,4 @@
 import CustomMuuri from "./custom_muuri";
-import SingleAxisDragger from "./single_axis_dragger";
 
 
 export default class UI {
@@ -32,9 +31,9 @@ export default class UI {
         this.editBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-edit-bookmark";
         this.showBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-show-bookmark input[type='checkbox']";
 
-        // Muuri Grid
-        this.grid = this._setUpMuuriGrid();
-        this.dragger = this._setUpDraggerList();
+        // Muuri
+        this.grid = this._setUpBookmarksGrid();
+        this.list = this._setUpBookmarksList();
 
         // TODO remove
         this.tempInit();
@@ -45,8 +44,8 @@ export default class UI {
         this.settingsModal.classList.remove("closed");
     }
 
-    _setUpMuuriGrid() {
-        const grid = new CustomMuuri('#bookmarks-grid', {
+    _setUpBookmarksGrid() {
+        const grid = new CustomMuuri("#bookmarks-grid", {
             items: ".bookmarks-item",
             dragEnabled: true,
             layoutOnResize: 10,
@@ -59,15 +58,19 @@ export default class UI {
         return grid;
     }
 
-    _setUpDraggerList() {
-        const draggableBookmarkListElements = document.querySelectorAll(".bookmarks-list-element");
+    _setUpBookmarksList() {
+        const list = new CustomMuuri("#settings-modal .bookmarks-list", {
+            items: ".bookmarks-list-element",
+            dragEnabled: true,
+            layoutOnResize: 10,
+            layoutDuration: 300,
+            layoutEasing: "linear",
+            layoutOnInit: true,
+            layout: CustomMuuri.centerLayout,
+            dragAxis: "y"
+        });
 
-        const dragger = new SingleAxisDragger(
-            this.settingsBookmarksList,
-            draggableBookmarkListElements
-        );
-
-        return dragger;
+        return list;
     }
 
     // Muuri grid on main page
@@ -120,10 +123,10 @@ export default class UI {
         this.grid.layout();
     }
 
-    // Single Axis Dragger in settings modal
+    // Muuri list on settings modal
     populateBookmarksList(bookmarks) {
         bookmarks.forEach(bookmark => {
-            this.dragger.container.appendChild(bookmark.getListComponent());
+            this.list.add(bookmark.getListComponent());
         })
         return this;
     }

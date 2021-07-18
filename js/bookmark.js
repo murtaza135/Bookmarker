@@ -41,20 +41,22 @@ export class Bookmark extends BaseBookmark {
         div.setAttribute("draggable", "true");
 
         div.innerHTML = `
-            <section class="bookmark-info">
-                <img class="img" src="${this.image}" alt="">
-                <h1>${this.name}</h1>
-            </section>
-            <section class="bookmark-buttons">
-                <div class="btn btn-danger btn-delete-bookmark">Delete</div>
-                <div class="btn btn-light btn-edit-bookmark">Edit</div>
-                <div class="btn btn-toggle btn-show-bookmark">
-                    <label class="switch">
-                        <input type="checkbox" ${this.isVisible ? "checked" : ""}>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </section>
+            <div class="item-content">
+                <section class="bookmark-info">
+                    <img class="img" src="${this.image}" alt="">
+                    <h1>${this.name}</h1>
+                </section>
+                <section class="bookmark-buttons">
+                    <div class="btn btn-danger btn-delete-bookmark">Delete</div>
+                    <div class="btn btn-light btn-edit-bookmark">Edit</div>
+                    <div class="btn btn-toggle btn-show-bookmark">
+                        <label class="switch">
+                            <input type="checkbox" ${this.isVisible ? "checked" : ""}>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </section>
+            </div>
         `;
 
         return div;
@@ -91,20 +93,20 @@ export class DateTimeBookmark extends BaseBookmark {
         div.setAttribute("draggable", "true");
 
         div.innerHTML = `
-            <section class="bookmark-info">
-                <i class="img fas fa-clock"></i>
-                <h1>${this.name}</h1>
-            </section>
-            <section class="bookmark-buttons">
-                <div class="btn btn-danger btn-delete-bookmark">Delete</div>
-                <div class="btn btn-light btn-edit-bookmark">Edit</div>
-                <div class="btn btn-toggle btn-show-bookmark">
-                    <label class="switch">
-                        <input type="checkbox" ${this.isVisible ? "checked" : ""}>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </section>
+            <div class="item-content">
+                <section class="bookmark-info">
+                    <i class="img fas fa-clock"></i>
+                    <h1>${this.name}</h1>
+                </section>
+                <section class="bookmark-buttons">
+                    <div class="btn btn-toggle btn-show-bookmark">
+                        <label class="switch">
+                            <input type="checkbox" ${this.isVisible ? "checked" : ""}>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </section>
+            </div>
         `;
 
         return div;
@@ -140,20 +142,20 @@ export class TemplateBookmark extends BaseBookmark {
         div.setAttribute("draggable", "true");
 
         div.innerHTML = `
-            <section class="bookmark-info">
-                <i class="img fas fa-plus"></i>
-                <h1>${this.name}</h1>
-            </section>
-            <section class="bookmark-buttons">
-                <div class="btn btn-danger btn-delete-bookmark">Delete</div>
-                <div class="btn btn-light btn-edit-bookmark">Edit</div>
-                <div class="btn btn-toggle btn-show-bookmark">
-                    <label class="switch">
-                        <input type="checkbox" ${this.isVisible ? "checked" : ""}>
-                        <span class="slider round"></span>
-                    </label>
-                </div>
-            </section>
+            <div class="item-content">
+                <section class="bookmark-info">
+                    <i class="img fas fa-plus"></i>
+                    <h1>${this.name}</h1>
+                </section>
+                <section class="bookmark-buttons">
+                    <div class="btn btn-toggle btn-show-bookmark">
+                        <label class="switch">
+                            <input type="checkbox" ${this.isVisible ? "checked" : ""}>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </section>
+            </div>
         `;
 
         return div;

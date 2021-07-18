@@ -44,7 +44,7 @@ export default class BookmarksController {
 
     _createTemplateBookmark() {
         let id = this._generateNewId()
-        const templateBookmark = new TemplateBookmark(id, "Template Bookmark 000", true);
+        const templateBookmark = new TemplateBookmark(id, "Template", true);
         this._bookmarks.push(templateBookmark);
         return templateBookmark;
     }

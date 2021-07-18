@@ -353,23 +353,44 @@ p {
 
             }
 
-            .bookmarks-list {
+            .bookmarks-list-parent {
+                //+ Container styles go here
                 width: 100%;
                 height: 100%;
-                padding: 1.45rem 1.75rem 1.35rem;
+                padding: 1rem 1.25rem 0.9rem;
                 margin-bottom: 1.5rem;
+                border-radius: 1rem;
                 background-color: $primary-color-dark;
                 color: $light-color;
-                border-radius: 1rem;
 
-                display: flex;
-                flex-direction: column;
-                justify-content: start;
-                align-items: stretch;
-                justify-items: stretch;
-                text-align: center;
-                flex-grow: 1;
-                gap: 0.5rem;
+                // TODO create a mixin which takes in a "margin" value in order to set the 5px...
+                // TODO ... margin between elements to a different value...
+                // TODO ... use the documentation https://github.com/haltu/muuri ...
+                // TODO ... also look at _components.scss @ .bookmarks-list-element
+                .bookmarks-list {
+                    width: 100%;
+                    height: 100%;
+                    position: relative;
+            
+                    .bookmarks-list-element {
+                        display: block;
+                        position: absolute;
+                        margin: 5px;
+                        z-index: 1;
+    
+                        &.muuri-item-dragging {
+                            z-index: 3;
+                        }
+                    
+                        &.muuri-item-releasing {
+                            z-index: 2;
+                        }
+                    
+                        &.muuri-item-hidden {
+                            z-index: 0;
+                        }
+                    }
+                }
             }
         }
     }
