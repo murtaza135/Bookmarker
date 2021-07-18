@@ -1,4 +1,5 @@
 import CustomMuuri from "./custom_muuri";
+import SingleAxisDragger from "./single_axis_dragger";
 
 
 export default class UI {
@@ -31,6 +32,7 @@ export default class UI {
 
         // Muuri Grid
         this.grid = this._setUpMuuriGrid();
+        this.dragger = this._setUpDraggerList();
 
         // TODO remove
         this.tempInit();
@@ -53,6 +55,17 @@ export default class UI {
         });
 
         return grid;
+    }
+
+    _setUpDraggerList() {
+        const draggableBookmarkListElements = document.querySelectorAll(".bookmarks-list-element");
+
+        const dragger = new SingleAxisDragger(
+            this.settingsBookmarksList,
+            draggableBookmarkListElements
+        );
+
+        return dragger;
     }
 
     // Muuri grid on main page
@@ -88,8 +101,11 @@ export default class UI {
     }
 
     // Single Axis Dragger in settings modal
-    populateBookmarksList() {
-
+    populateBookmarksList(bookmarks) {
+        bookmarks.forEach(bookmark => {
+            this.dragger.container.appendChild(bookmark.getListComponent());
+        })
+        return this;
     }
 
     emptyOutBookmarksList() {

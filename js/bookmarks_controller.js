@@ -14,7 +14,7 @@ export const allBookmarkSizes = Object.freeze({
 
 
 export default class BookmarksController {
-    constructor(bookmarkSize = allBookmarkSizes.large, bookmarks = []) {
+    constructor(bookmarkSize = allBookmarkSizes.l, bookmarks = []) {
         this._bookmarkSize = this.setBookmarkSize(bookmarkSize);
         this._bookmarks = [];
 

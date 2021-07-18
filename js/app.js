@@ -16,6 +16,7 @@ class App {
         const bookmarks = this.bookmarksController.getAllBookmarks();
         const bookmarkSize = this.bookmarksController._bookmarkSize;
         this.ui.populateBookmarksGrid(bookmarks, bookmarkSize);
+        this.ui.populateBookmarksList(bookmarks);
     }
 
     loadEventListeners() {
@@ -111,16 +112,3 @@ class App {
 
 
 const app = new App();
-
-
-
-
-
-
-
-// Draggable Bookmarks List in Settings Modal
-import SingleAxisDragger from "./single_axis_dragger";
-
-const bookmarksList = document.querySelector(".bookmarks-list");
-const draggableBookmarkListElements = document.querySelectorAll(".bookmarks-list-element");
-const dragger = new SingleAxisDragger(bookmarksList, draggableBookmarkListElements);

@@ -149,6 +149,18 @@
             img {
                 margin-bottom: 0.75rem;
             }
+
+            i.fas {
+                margin-bottom: 0.75rem;
+                background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+                background-size: 100%;
+                background-repeat: repeat;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                -moz-background-clip: text;
+                -moz-text-fill-color: transparent;
+            }
         }
     }
 }
@@ -168,6 +180,10 @@
                 max-height: 150px;
                 max-width: 150px;
             }
+
+            i.fas {
+                font-size: 9rem;
+            }
         }
     }
 
@@ -182,6 +198,10 @@
             img {
                 max-height: 75px;
                 max-width: 75px;
+            }
+
+            i.fas {
+                font-size: 4.5rem;
             }
     
             p.text {
@@ -205,6 +225,10 @@
             img {
                 max-height: 55px;
                 max-width: 55px;
+            }
+
+            i.fas {
+                font-size: 3.3rem;
             }
     
             h1 {
@@ -232,7 +256,12 @@
             img {
                 max-height: 55px;
                 max-width: 55px;
-                margin-bottom: 0;
+                margin-bottom: 0 !important;
+            }
+
+            i.fas {
+                font-size: 3.3rem;
+                margin-bottom: 0 !important;
             }
     
             h1 {
@@ -445,6 +474,10 @@
     cursor: -webkit-grab;
     width: 100%;
 
+    &.special {
+        background-color: $primary-color;
+    }
+
     &.dragged-item {
         opacity: 0.4;
     }
@@ -456,13 +489,27 @@
         justify-items: center;
         text-align: center;
         flex-grow: 1;
-        overflow-x: hidden;
+        overflow: hidden;
         margin-right: 1.5rem;
         width: 100%;
 
-        img {
+        .img {
             width: 25px;
             height: 25px;
+
+            &:before {
+                width: 25px;
+                height: 25px;
+                font-size: 1.5rem;
+                background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+                background-size: 100%;
+                background-repeat: repeat;
+                background-clip: text;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent; 
+                -moz-background-clip: text;
+                -moz-text-fill-color: transparent;
+            }
         }
 
         h1 {
