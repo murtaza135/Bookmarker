@@ -77,7 +77,7 @@ export class DateTimeBookmark extends BaseBookmark {
         div.innerHTML = `
             <div class="item-content">
                 <a class="block">
-                    <i class="fas fa-clock"></i>
+                    <i class="far fa-clock"></i>
                     <h1 class="title-1 text-center">${this.name}</h1>
                 </a>
             </div>
@@ -95,7 +95,7 @@ export class DateTimeBookmark extends BaseBookmark {
         div.innerHTML = `
             <div class="item-content">
                 <section class="bookmark-info">
-                    <i class="img fas fa-clock"></i>
+                    <i class="img far fa-clock"></i>
                     <h1>${this.name}</h1>
                 </section>
                 <section class="bookmark-buttons">
