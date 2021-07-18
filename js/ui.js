@@ -41,7 +41,7 @@ export default class UI {
 
     tempInit() {
         // TODO remove
-        // this.settingsModal.classList.remove("closed");
+        this.settingsModal.classList.remove("closed");
     }
 
     _setUpBookmarksGrid() {
@@ -93,8 +93,10 @@ export default class UI {
         return this;
     }
 
-    deleteBookmarkFromGrid() {
-
+    deleteBookmarkFromGrid(id) {
+        const item = this.grid.getItemByCustomId(id)
+        this.grid.remove([item]);
+        item.getElement().remove();
     }
 
     updateBookmarkInGrid() {
@@ -142,8 +144,10 @@ export default class UI {
         return this;
     }
 
-    deleteBookmarkFromList() {
-
+    deleteBookmarkFromList(id) {
+        const item = this.list.getItemByCustomId(id)
+        this.list.remove([item]);
+        item.getElement().remove();
     }
 
     updateBookmarkInList() {

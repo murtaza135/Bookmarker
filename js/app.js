@@ -30,6 +30,9 @@ class App {
         this.ui.grid.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.grid));
         this.ui.list.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.list));
         this.ui.bookmarksSubmitBtn.addEventListener("click", event => this.addNewBookmark(event));
+        this.ui.settingsBookmarksList.addEventListener("click", event => this.deleteBookmark(event));
+        this.ui.settingsBookmarksList.addEventListener("click", event => this.editBookmark(event));
+        this.ui.settingsBookmarksList.addEventListener("click", event => this.toggleBookmarkVisibility(event));
 
         this.ui.bookmarksGrid.addEventListener("click", event => this.openBookmarksModal(event));
         this.ui.bookmarksModal.addEventListener("click", event => this.closeBookmarksModal(event));
@@ -72,6 +75,28 @@ class App {
         }
 
         event.preventDefault();
+    }
+
+    deleteBookmark(event) {
+        if (event.target.classList.contains("btn-delete-bookmark")) {
+            // TODO add a proper confirm modal
+            if (confirm("Are you sure you want to delete this bookmark?")) {
+                const bookmarkListElement = event.target.parentElement.parentElement.parentElement;
+                const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
+    
+                this.bookmarksController.deleteBookmark(id);
+                this.ui.deleteBookmarkFromGrid(id);
+                this.ui.deleteBookmarkFromList(id);
+            }
+        }
+    }
+
+    editBookmark(event) {
+
+    }
+
+    toggleBookmarkVisibility(event) {
+        
     }
 
     openBookmarksModal(event) {
