@@ -11,6 +11,7 @@ export default class UI {
         this.templateCardSelector = "#bookmarks-grid .template-card";
         this.bookmarksModal = document.querySelector("#bookmarks-modal");
         this.bookmarksModalCloseBtn = document.querySelector("#bookmarks-modal .modal-close-btn");
+        this.bookmarksModalForm = document.querySelector("#bookmarks-modal .bookmarks-form");
         this.bookmarksNameInput = document.querySelector("#bookmarks-name-input");
         this.bookmarksUrlInput = document.querySelector("#bookmarks-url-input");
         this.bookmarksDescriptionInput = document.querySelector("#bookmarks-description-input");
@@ -118,6 +119,11 @@ export default class UI {
     
     closeBookmarksModal() {
         this.bookmarksModal.classList.add("closed");
+        this.clearDataFromBookmarksModal();
+    }
+
+    clearDataFromBookmarksModal() {
+        this.bookmarksModalForm.reset();
     }
 
     getDataFromBookmarksModal() {
@@ -148,8 +154,6 @@ export default class UI {
         const imageFilename = this.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
         this.bookmarksImageUploadText.value = imageFilename;
     }
-
-    
 
     // Settings Modal
     openSettingsModal() {
