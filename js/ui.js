@@ -41,7 +41,7 @@ export default class UI {
 
     tempInit() {
         // TODO remove
-        this.settingsModal.classList.remove("closed");
+        // this.settingsModal.classList.remove("closed");
     }
 
     _setUpBookmarksGrid() {
@@ -50,7 +50,7 @@ export default class UI {
             dragEnabled: true,
             layoutOnResize: 10,
             layoutDuration: 300,
-            layoutEasing: "linear",
+            layoutEasing: "ease",
             layoutOnInit: true,
             layout: CustomMuuri.centerLayout
         });
@@ -64,7 +64,7 @@ export default class UI {
             dragEnabled: true,
             layoutOnResize: 10,
             layoutDuration: 300,
-            layoutEasing: "linear",
+            layoutEasing: "ease",
             layoutOnInit: true,
             layout: CustomMuuri.centerLayout,
             dragAxis: "y"
@@ -101,8 +101,9 @@ export default class UI {
 
     }
 
-    moveBookmarkInGrid() {
-
+    moveBookmarkInGrid(id, newIndex) {
+        const element = this.grid.getElementByCustomId(id)
+        this.grid.move(element, newIndex);
     }
 
     changeSizeOfGridItems(oldBookmarkSize, newBookmarkSize) {
@@ -135,8 +136,10 @@ export default class UI {
 
     }
 
-    addBookmarkToList() {
-
+    addBookmarkToList(bookmark, index) {
+        const element = bookmark.getListComponent();
+        this.list.add(element, { index: index });
+        return this;
     }
 
     deleteBookmarkFromList() {
@@ -147,8 +150,9 @@ export default class UI {
 
     }
 
-    moveBookmarkInList() {
-
+    moveBookmarkInList(id, newIndex) {
+        const element = this.list.getElementByCustomId(id)
+        this.list.move(element, newIndex); 
     }
 
     // Bookmarks Modal
@@ -197,6 +201,8 @@ export default class UI {
     // Settings Modal
     openSettingsModal() {
         this.settingsModal.classList.remove("closed");
+        this.list.refreshItems();
+        this.list.layout();
     }
     
     closeSettingsModal() {

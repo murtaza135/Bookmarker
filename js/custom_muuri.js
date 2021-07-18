@@ -19,6 +19,34 @@ export default class CustomMuuri extends Muuri {
         return index;
     }
 
+    getElementByCustomId(id) {
+        const regex = /[0-9]+$/g;
+
+        for (const item of this.getItems()) {
+            const element = item.getElement();
+            const elementCustomId = parseInt(element.id.match(regex)[0]);
+            if (elementCustomId === id) {
+                return element;
+            }
+        }
+
+        return null;
+    }
+
+    getItemByCustomId(id) {
+        const regex = /[0-9]+$/g;
+
+        for (const item of this.getItems()) {
+            const element = item.getElement();
+            const elementCustomId = parseInt(element.id.match(regex)[0]);
+            if (elementCustomId === id) {
+                return item;
+            }
+        }
+
+        return null;
+    }
+
     _setupEventListeners(itemSelector) {
         const items = document.querySelectorAll(itemSelector);
         items.forEach(item => {

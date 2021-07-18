@@ -28,6 +28,7 @@ class App {
 
     loadEventListeners() {
         this.ui.grid.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.grid));
+        this.ui.list.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.list));
         this.ui.bookmarksSubmitBtn.addEventListener("click", event => this.addNewBookmark(event));
 
         this.ui.bookmarksGrid.addEventListener("click", event => this.openBookmarksModal(event));
@@ -42,10 +43,13 @@ class App {
         this.ui.bookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInBookmarksModal(event));
     }
 
-    moveGridItem(item, grid) {
-        const id = this.bookmarksController.extractIdFromElement(item.getElement());
-        const newIndex = grid.getItemIndex(item);
-        this.bookmarksController.moveBookmark(id, newIndex);
+    moveGridItem(item, muuri) {
+        const itemId = this.bookmarksController.extractIdFromElement(item.getElement());
+        const newIndex = muuri.getItemIndex(item);
+
+        this.bookmarksController.moveBookmark(itemId, newIndex);
+        this.ui.moveBookmarkInGrid(itemId, newIndex);
+        this.ui.moveBookmarkInList(itemId, newIndex);
     }
 
     addNewBookmark(event) {
@@ -63,6 +67,7 @@ class App {
             const bookmarkSize = this.bookmarksController.getBookmarkSize();
             const bookmarkIndex = this.bookmarksController.getBookmarkIndex(bookmark.id);
             this.ui.addBookmarkToGrid(bookmark, bookmarkSize, bookmarkIndex);
+            this.ui.addBookmarkToList(bookmark, bookmarkIndex);
             this.ui.closeBookmarksModal();
         }
 
