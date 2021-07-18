@@ -38,6 +38,7 @@ export default class UI {
 
     tempInit() {
         // TODO remove
+        this.settingsModal.classList.remove("closed");
     }
 
     _setUpMuuriGrid() {
