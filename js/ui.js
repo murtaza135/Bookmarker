@@ -30,6 +30,14 @@ export default class UI {
 
         // Muuri Grid
         this.grid = this._setUpMuuriGrid();
+
+        // TODO remove
+        this.tempInit();
+    }
+
+    tempInit() {
+        // TODO remove
+        this.bookmarksModal.classList.remove("closed");
     }
 
     _setUpMuuriGrid() {
@@ -51,14 +59,19 @@ export default class UI {
         bookmarks.forEach(bookmark => {
             this.grid.add(bookmark.getGridComponent(size));
         })
+        return this;
     }
 
     emptyOutBookmarksGrid() {
 
     }
 
-    addBookmarkToGrid() {
-
+    addBookmarkToGrid(bookmark, bookmarkSize, index) {
+        const element = bookmark.getGridComponent(bookmarkSize);
+        element.classList.add("newly-added");
+        this.grid.add(element, { index: index });
+        element.classList.remove("newly-added");
+        return this;
     }
 
     deleteBookmarkFromGrid() {
@@ -98,7 +111,7 @@ export default class UI {
 
     }
 
-    // Modals
+    // Bookmarks Modal
     openBookmarksModal() {
         this.bookmarksModal.classList.remove("closed");
     }
@@ -107,16 +120,43 @@ export default class UI {
         this.bookmarksModal.classList.add("closed");
     }
 
+    getDataFromBookmarksModal() {
+        const name = this.bookmarksNameInput.value;
+        const url = this.bookmarksUrlInput.value;
+        const description = this.bookmarksDescriptionInput.value;
+
+        let image;
+        const uploadedFile = this.bookmarksImageInput.files[0];
+        if (uploadedFile) {
+            image = URL.createObjectURL(uploadedFile);
+        }
+        else {
+            image = null;
+        }
+
+        return {
+            name: name,
+            url: url,
+            description: description,
+            image: image
+        };
+    }
+
+    displayImageFileNameInBookmarksModal() {
+        //+ there are 2 ways of getting the name of the file/image
+        // const imageFileName = this.bookmarksImageInput.files[0].name;
+        const imageFilename = this.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
+        this.bookmarksImageUploadText.value = imageFilename;
+    }
+
+    
+
+    // Settings Modal
     openSettingsModal() {
         this.settingsModal.classList.remove("closed");
     }
     
     closeSettingsModal() {
         this.settingsModal.classList.add("closed");
-    }
-
-    displayImageFileNameInBookmarksModal() {
-        const imageFilename = this.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
-        this.bookmarksImageUploadText.value = imageFilename;
     }
 }

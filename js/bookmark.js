@@ -23,7 +23,7 @@ export class Bookmark extends BaseBookmark {
         div.innerHTML = `
             <div class="item-content">
                 <a href="${this.url}" class="block">
-                    <img src="./img/logo_main.png" alt="">
+                    <img src="${this.image}" alt="">
                     <h1 class="title-1 text-center">${this.name}</h1>
                     <p class="text text-small">${this.description}</p>
                     <span class="url">${this.url}</span>

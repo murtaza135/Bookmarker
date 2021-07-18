@@ -57,11 +57,17 @@ export default class BookmarksController {
 
     _createTempBookmarks() {
         // TODO eventually delete this
-        this.addNewBookmark("2", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("3", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("4", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("5", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
-        this.addNewBookmark("6", "https://www.google.com", "Hello World and bye world", "./img/logo_main.png");
+        const tempObj = {
+            name: null,
+            url: "https://www.google.com",
+            description: "Hello World and bye world",
+            image: "./img/logo_main.png"
+        }
+
+        for (let i = 2; i < 7; i++) {
+            tempObj.name = `${i}`;
+            this.addNewBookmark(tempObj)
+        }
     }
 
     setBookmarks(bookmarks, howToDealWithDuplicateIds = "discard") {
@@ -97,7 +103,7 @@ export default class BookmarksController {
         })
     }
 
-    addNewBookmark(name, url, description, image, isVisible = true) {
+    addNewBookmark({name, url, description, image}, isVisible = true) {
         const id = this._generateNewId();
         const bookmark = new Bookmark(id, name, url, description, image, isVisible);
         const index = this._bookmarks.indexOf(this._templateBookmark);

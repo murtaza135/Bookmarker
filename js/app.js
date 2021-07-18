@@ -1,5 +1,6 @@
 import UI from "./ui";
 import BookmarksController from "./bookmarks_controller";
+import { isObjectPartiallyEmpty } from "./util/object";
 
 
 class App {
@@ -23,6 +24,7 @@ class App {
         this.ui.bookmarksGrid.addEventListener("click", event => this.openBookmarksModal(event));
         this.ui.bookmarksModal.addEventListener("click", event => this.closeBookmarksModal(event));
         this.ui.bookmarksModalCloseBtn.addEventListener("click", event => this.closeBookmarksModal(event));
+        this.ui.bookmarksSubmitBtn.addEventListener("click", event => this.addNewBookmark(event));
 
         this.ui.settingsButton.addEventListener("click", event => this.openSettingsModal(event));
         this.ui.settingsModal.addEventListener("click", event => this.closeSettingsModal(event));
@@ -66,6 +68,27 @@ class App {
         ) {
             this.ui.closeBookmarksModal();
         }
+    }
+
+    addNewBookmark(event) {
+        const data = this.ui.getDataFromBookmarksModal();
+        if (data.image == null) {
+            data.image = "./img/logo_main.png";
+        }
+
+        if (isObjectPartiallyEmpty(data)) {
+            // TODO add a danger alert or modal
+            console.log("not all data is present");
+        }
+        else {
+            const bookmark = this.bookmarksController.addNewBookmark(data);
+            const bookmarkSize = this.bookmarksController.getBookmarkSize();
+            const bookmarkIndex = this.bookmarksController.getBookmarkIndex(bookmark.id);
+            this.ui.addBookmarkToGrid(bookmark, bookmarkSize, bookmarkIndex);
+            this.ui.closeBookmarksModal();
+        }
+
+        event.preventDefault();
     }
 
     openSettingsModal() {
