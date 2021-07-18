@@ -24,7 +24,8 @@ export default class UI {
         this.settingsButton = document.querySelector("#settings");
         this.settingsModal = document.querySelector("#settings-modal");
         this.settingsModalCloseBtn = document.querySelector("#settings-modal .modal-close-btn");
-        this.boxSections = document.querySelectorAll("#settings-modal .box-section");
+        this.changeSizeOptionsDiv = document.querySelector("#settings-modal .change-size-options");
+        this.changeSizeBoxSections = document.querySelectorAll("#settings-modal .change-size-options .box-section");
         this.settingsBookmarksList = document.querySelector("#settings-modal .bookmarks-list");
         this.bookmarkListElementSelector = "#settings-modal .bookmarks-list-element";
         this.deleteBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-delete-bookmark";
@@ -99,6 +100,24 @@ export default class UI {
 
     moveBookmarkInGrid() {
 
+    }
+
+    changeSizeOfGridItems(oldBookmarkSize, newBookmarkSize) {
+        this.grid.getItems().forEach(item => {
+            const element = item.getElement();
+
+            if (element.classList.contains("bookmarks-card")) {
+                element.classList.remove(`bookmarks-card-${oldBookmarkSize}`);
+                element.classList.add(`bookmarks-card-${newBookmarkSize}`);
+            }
+            else if (element.classList.contains("template-card")) {
+                element.classList.remove(`template-card-${oldBookmarkSize}`);
+                element.classList.add(`template-card-${newBookmarkSize}`);
+            }
+        })
+
+        this.grid.refreshItems();
+        this.grid.layout();
     }
 
     // Single Axis Dragger in settings modal
@@ -179,5 +198,12 @@ export default class UI {
     
     closeSettingsModal() {
         this.settingsModal.classList.add("closed");
+    }
+
+    setNewActiveBookmarkSizeBoxSection(newBookmarkSize) {
+        this.changeSizeBoxSections.forEach(section => section.classList.remove("active"));
+        const newActiveChangeSizeBox = document
+            .querySelector(`.change-size-options #box-section-${newBookmarkSize}`);
+        newActiveChangeSizeBox.classList.add("active");
     }
 }

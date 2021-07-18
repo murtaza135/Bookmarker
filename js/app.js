@@ -37,6 +37,7 @@ class App {
         this.ui.settingsButton.addEventListener("click", event => this.openSettingsModal(event));
         this.ui.settingsModal.addEventListener("click", event => this.closeSettingsModal(event));
         this.ui.settingsModalCloseBtn.addEventListener("click", event => this.closeSettingsModal(event));
+        this.ui.changeSizeOptionsDiv.addEventListener("click", event => this.changeBookmarkSize(event));
 
         this.ui.bookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInBookmarksModal(event));
     }
@@ -109,6 +110,31 @@ class App {
             || event.target === this.ui.settingsModalCloseBtn
         ) {
             this.ui.closeSettingsModal();
+        }
+    }
+
+    changeBookmarkSize(event) {
+        const element = this._getBookmarkSizeBoxSectionElement(event);
+
+        if (element) {
+            const oldBookmarkSize = this.bookmarksController.getBookmarkSize();
+            const newBookmarkSize = this.bookmarksController.extractBookmarkSizeFromElement(element);
+            
+            this.bookmarksController.setBookmarkSize(newBookmarkSize);
+            this.ui.setNewActiveBookmarkSizeBoxSection(newBookmarkSize);
+            this.ui.changeSizeOfGridItems(oldBookmarkSize, newBookmarkSize);
+        }
+    }
+
+    _getBookmarkSizeBoxSectionElement(event) {
+        if (event.target.classList.contains("box-section")) {
+            return event.target;
+        }
+        else if (event.target.parentElement.classList.contains("box-section")) {
+            return event.target.parentElement;
+        }
+        else {
+            return null;
         }
     }
 

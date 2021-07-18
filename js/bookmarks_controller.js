@@ -15,6 +15,7 @@ export const allBookmarkSizes = Object.freeze({
 
 export default class BookmarksController {
     constructor(bookmarkSize = allBookmarkSizes.l, bookmarks = []) {
+        this._bookmarkSize = allBookmarkSizes.l;
         this._bookmarkSize = this.setBookmarkSize(bookmarkSize);
         this._bookmarks = [];
 
@@ -29,10 +30,11 @@ export default class BookmarksController {
             .some(size => size === bookmarkSize);
 
         if (isBookmarkSizeValid) {
+            this._bookmarkSize = bookmarkSize;
             return bookmarkSize;
         }
         else {
-            return allBookmarkSizes.large;
+            return this._bookmarkSize;
         }
     }
 
@@ -49,7 +51,7 @@ export default class BookmarksController {
 
     _createDateTimeBookmark() {
         let id = this._generateNewId()
-        const dateTimeBookmark = new DateTimeBookmark(id, "Date Time Bookmark 000", true);
+        const dateTimeBookmark = new DateTimeBookmark(id, "Date Time", true);
         const index = this._bookmarks.indexOf(this._templateBookmark);
         this._bookmarks.splice(index, 0, dateTimeBookmark);
         return dateTimeBookmark;
@@ -186,6 +188,11 @@ export default class BookmarksController {
     extractIdFromElement(element) {
         const regex = /[0-9]+$/g;
         return parseInt(element.id.match(regex)[0]);
+    }
+
+    extractBookmarkSizeFromElement(element) {
+        const elementIdSeparated = element.id.split("-");
+        return elementIdSeparated[elementIdSeparated.length - 1];
     }
 
     // reAddBookmark(newBookmark, overwriteOld = true) {
