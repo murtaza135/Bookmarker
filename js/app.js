@@ -8,8 +8,15 @@ class App {
         this.bookmarksController = new BookmarksController();
         this.ui = new UI();
 
+        this.loadInitialState();
         this.loadInitialBookmarks();
         this.loadEventListeners();
+    }
+
+    loadInitialState() {
+        const bookmarkSize = this.bookmarksController.getBookmarkSize();
+        const changeSizeDiv = document.querySelector(`.change-size-options #box-section-${bookmarkSize}`);
+        changeSizeDiv.classList.add("active");
     }
 
     loadInitialBookmarks() {

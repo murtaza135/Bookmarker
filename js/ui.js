@@ -24,6 +24,7 @@ export default class UI {
         this.settingsButton = document.querySelector("#settings");
         this.settingsModal = document.querySelector("#settings-modal");
         this.settingsModalCloseBtn = document.querySelector("#settings-modal .modal-close-btn");
+        this.boxSections = document.querySelectorAll("#settings-modal .box-section");
         this.settingsBookmarksList = document.querySelector("#settings-modal .bookmarks-list");
         this.bookmarkListElementSelector = "#settings-modal .bookmarks-list-element";
         this.deleteBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-delete-bookmark";

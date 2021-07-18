@@ -123,7 +123,7 @@
     border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
     border-image-slice: 1;
     opacity: 1;
-    transition: opacity 1s linear, background-color 0.3s ease;
+    transition: opacity 1s linear, background-color 0.15s ease;
     
     &.newly-added {
         opacity: 0;
@@ -286,7 +286,7 @@
     border-image: linear-gradient(100deg, $secondary-color, $tertiary-color);
     border-image-slice: 1;
     border-radius: 0 0 3px 3px;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.15s ease;
     
     &:hover {
         background-color: rgba($color: $primary-color, $alpha: 0.3)
@@ -473,13 +473,20 @@
     cursor: -moz-grab;
     cursor: -webkit-grab;
     width: 100%;
+    background-color: $primary-color-dark;
+    transition: background-color 0.15s ease;
 
+    
     &.special {
         background-color: $primary-color;
     }
-
+        
     &.dragged-item {
         opacity: 0.4;
+    }
+
+    &:hover {
+        background-color: rgba($color: $primary-color, $alpha: 0.6);
     }
 
     .bookmark-info {

@@ -267,6 +267,7 @@ p {
                     color: $light-color;
                     border-radius: 1rem;
                     cursor: pointer;
+                    transition: background-color 0.15s ease;
 
                     display: flex;
                     flex-direction: column;
@@ -274,6 +275,17 @@ p {
                     align-items: center;
                     justify-items: center;
                     text-align: center;
+
+                    &:hover {
+                        background-color: rgba($color: $primary-color-dark, $alpha: 0.5);
+                    }
+
+                    // &.active {
+                    //     // border-top: 2px solid $secondary-color;
+                    //     // border-bottom: 2px solid $secondary-color;
+                    //     // border-radius: 4rem / 1rem;
+
+                    // }
 
                     .box {
                         font-weight: bold;
@@ -309,6 +321,33 @@ p {
 
                     .size-label {
                         cursor: inherit;
+                    }
+
+                    &.active {
+                        // border-top: 2px solid $secondary-color;
+                        // border-bottom: 2px solid $secondary-color;
+                        // border-radius: 4rem / 1rem;
+
+                        // border: 2px solid $secondary-color;
+                        
+                        .box {
+                            border-width: 4px;
+                            // border: 2px solid $secondary-color;
+                        }
+
+                        label.size-label {
+                            font-size: 1.3rem;
+                            font-weight: bold;
+                            
+                            background-image: linear-gradient(to right, $secondary-color, $tertiary-color);
+                            background-size: 100%;
+                            background-repeat: repeat;
+                            background-clip: text;
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent; 
+                            -moz-background-clip: text;
+                            -moz-text-fill-color: transparent;
+                        }
                     }
                 }
 
