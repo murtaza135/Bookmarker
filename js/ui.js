@@ -38,7 +38,6 @@ export default class UI {
 
     tempInit() {
         // TODO remove
-        this.bookmarksModal.classList.remove("closed");
     }
 
     _setUpMuuriGrid() {

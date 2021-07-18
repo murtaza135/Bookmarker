@@ -123,10 +123,14 @@
     border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
     border-image-slice: 1;
     opacity: 1;
-    transition: opacity 1.5s ease;
+    transition: opacity 1s linear, background-color 0.3s ease;
     
     &.newly-added {
         opacity: 0;
+    }
+
+    &:hover {
+        background-color: rgba($color: $primary-color, $alpha: 0.6)
     }
 
     .item-content {
@@ -253,6 +257,11 @@
     border-image: linear-gradient(100deg, $secondary-color, $tertiary-color);
     border-image-slice: 1;
     border-radius: 0 0 3px 3px;
+    transition: background-color 0.3s ease;
+    
+    &:hover {
+        background-color: rgba($color: $primary-color, $alpha: 0.3)
+    }
 
     .item-content {
         position: relative;
