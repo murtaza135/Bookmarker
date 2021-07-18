@@ -68,7 +68,14 @@ export default class BookmarksController {
 
         for (let i = 2; i < 7; i++) {
             tempObj.name = `${i}`;
-            this.addNewBookmark(tempObj)
+
+            if (i === 3 || i === 4) {
+                this.addNewBookmark(tempObj, false);
+            }
+            else {
+                this.addNewBookmark(tempObj)
+            }
+
         }
     }
 
@@ -185,6 +192,11 @@ export default class BookmarksController {
         return bookmark;
     }
 
+    setBookmarkVisibility(id, isVisible) {
+        const bookmark = this.getBookmark(id);
+        bookmark.isVisible = isVisible;
+    }
+
     extractIdFromElement(element) {
         const regex = /[0-9]+$/g;
         return parseInt(element.id.match(regex)[0]);
@@ -194,40 +206,4 @@ export default class BookmarksController {
         const elementIdSeparated = element.id.split("-");
         return elementIdSeparated[elementIdSeparated.length - 1];
     }
-
-    // reAddBookmark(newBookmark, overwriteOld = true) {
-    //     // TODO delete this
-    //     let oldBookmark = null;
-    //     for (const bookmark of this._bookmarks) {
-    //         if (newBookmark.id === bookmark.id) {
-    //             oldBookmark = bookmark;
-    //             break;
-    //         }
-    //     }
-
-    //     if (oldBookmark && !overwriteOld) {
-    //         return oldBookmark;
-    //     }
-    //     else if (oldBookmark && overwriteOld) {
-    //         const index = this._bookmarks.indexOf(oldBookmark);
-    //         this._bookmarks.splice(index, 1);
-
-    //         const bookmark = new Bookmark(
-    //             newBookmark.id, newBookmark.name, newBookmark.url,
-    //             newBookmark.description, newBookmark.image, newBookmark.isVisible
-    //         );
-
-    //         this._bookmarks.push(bookmark);
-    //         return bookmark;
-    //     }
-    //     else {
-    //         const bookmark = new Bookmark(
-    //             newBookmark.id, newBookmark.name, newBookmark.url,
-    //             newBookmark.description, newBookmark.image, newBookmark.isVisible
-    //         );
-
-    //         this._bookmarks.push(bookmark);
-    //         return bookmark;
-    //     }
-    // }
 }

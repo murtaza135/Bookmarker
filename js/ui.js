@@ -76,13 +76,11 @@ export default class UI {
     // Muuri grid on main page
     populateBookmarksGrid(bookmarks, size) {
         bookmarks.forEach(bookmark => {
-            this.grid.add(bookmark.getGridComponent(size));
+            this.grid.add(bookmark.getGridComponent(size), { 
+                active: bookmark.isVisible 
+            });
         })
         return this;
-    }
-
-    emptyOutBookmarksGrid() {
-
     }
 
     addBookmarkToGrid(bookmark, bookmarkSize, index) {
@@ -101,6 +99,17 @@ export default class UI {
 
     updateBookmarkInGrid() {
 
+    }
+
+    toggleBookmarkVisibilityInGrid(id, toggleValue) {
+        const item = this.grid.getItemByCustomId(id);
+
+        if (toggleValue) {
+            this.grid.show([item]);
+        }
+        else {
+            this.grid.hide([item]);
+        }
     }
 
     moveBookmarkInGrid(id, newIndex) {
@@ -132,10 +141,6 @@ export default class UI {
             this.list.add(bookmark.getListComponent());
         })
         return this;
-    }
-
-    emptyOutBookmarksList() {
-
     }
 
     addBookmarkToList(bookmark, index) {

@@ -96,7 +96,15 @@ class App {
     }
 
     toggleBookmarkVisibility(event) {
-        
+        if (event.target.parentElement.parentElement.classList.contains("btn-show-bookmark")) {
+            const toggleButton = event.target;
+            const toggleButtonDiv = event.target.parentElement.parentElement;
+            const bookmarkListElement = toggleButtonDiv.parentElement.parentElement.parentElement;
+            const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
+
+            this.bookmarksController.setBookmarkVisibility(id, toggleButton.checked);
+            this.ui.toggleBookmarkVisibilityInGrid(id, toggleButton.checked)
+        }
     }
 
     openBookmarksModal(event) {
