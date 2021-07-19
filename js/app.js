@@ -47,8 +47,8 @@ class App {
         this.ui.settingsModalCloseBtn.addEventListener("click", event => this.closeSettingsModal(event));
         this.ui.changeSizeOptionsDiv.addEventListener("click", event => this.changeBookmarkSize(event));
 
-        this.ui.bookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInBookmarksModal(event));
-        this.ui.editBookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInEditBookmarksModal(event));
+        this.ui.bookmarksImageInput.addEventListener("input", event => this.displayImageFileNameInBookmarksModal(event));
+        this.ui.editBookmarksImageInput.addEventListener("input", event => this.displayImageFileNameInEditBookmarksModal(event));
     }
 
     moveGridItem(item, muuri) {
@@ -108,15 +108,20 @@ class App {
     updateBookmark(event) {
         const bookmark = this.ui.currentEdit;
         const newData = this.ui.getDataFromEditBookmarksModal();
-        const size = this.bookmarksController.getBookmarkSize();
 
-        this.bookmarksController.updateBookmark(bookmark.id, newData);
-        this.ui.updateBookmarkInGrid(bookmark);
-        this.ui.updateBookmarkInList(bookmark);
-        this.ui.grid.refresh();
-        this.ui.list.refresh();
-        this.ui.closeEditBookmarksModal();
-        
+        if (newData.name && newData.url) {
+            this.bookmarksController.updateBookmark(bookmark.id, newData);
+            this.ui.updateBookmarkInGrid(bookmark);
+            this.ui.updateBookmarkInList(bookmark);
+            this.ui.grid.refresh();
+            this.ui.list.refresh();
+            this.ui.closeEditBookmarksModal();
+        }
+        else {
+            // TODO add a danger alert or modal
+            console.log("not all data is present");
+        }
+
         event.preventDefault();
     }
 
@@ -210,11 +215,13 @@ class App {
         }
     }
 
-    displayImageFileNameInBookmarksModal() {
+    displayImageFileNameInBookmarksModal(event) {
+        console.log(event.target.value);
         this.ui.displayImageFileNameInBookmarksModal();
     }
 
-    displayImageFileNameInEditBookmarksModal() {
+    displayImageFileNameInEditBookmarksModal(event) {
+        console.log(event.target);
         this.ui.displayImageFileNameInEditBookmarksModal();
     }
 }

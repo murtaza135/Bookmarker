@@ -187,15 +187,13 @@ export default class UI {
     // Bookmarks Modal
     openBookmarksModal() {
         this.bookmarksModal.classList.remove("closed");
+        this.bookmarksImageInput.value = null;
     }
     
     closeBookmarksModal() {
         this.bookmarksModal.classList.add("closed");
-        this.clearDataFromBookmarksModal();
-    }
-
-    clearDataFromBookmarksModal() {
         this.bookmarksModalForm.reset();
+        this.bookmarksImageInput.value = null;
     }
 
     getDataFromBookmarksModal() {
@@ -222,18 +220,15 @@ export default class UI {
     // Edit Bookmarks Modal
     openEditBookmarksModalForBookmark(bookmark) {
         this.editBookmarksModal.classList.remove("closed");
+        this.editBookmarksImageInput.value = null;
         this.currentEdit = bookmark;
     }
 
     closeEditBookmarksModal() {
         this.editBookmarksModal.classList.add("closed");
-        this.currentEdit = null;
-        this.clearDataFromEditBookmarksModal();
-    }
-
-    clearDataFromEditBookmarksModal() {
-        this.currentEdit = null;
         this.editBookmarksModalForm.reset();
+        this.currentEdit = null;
+        this.editBookmarksImageInput.value = null;
     }
 
     displayBookmarkDataInEditBookmarksModal(bookmark) {
