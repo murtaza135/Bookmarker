@@ -50,7 +50,7 @@ p {
     border-bottom: 3px solid;
     border-image: linear-gradient(to right, $secondary-color, $tertiary-color);
     border-image-slice: 1;
-    z-index: 10;
+    z-index: 5;
 
     .container {
         height: 100%;
@@ -163,10 +163,12 @@ p {
 
 
 // Bookmarks Modal
-#bookmarks-modal {
+#bookmarks-modal, #edit-bookmarks-modal {
+    z-index: 9;
+
     .modal-content {
         width: 500px;
-        margin: 10% auto;
+        margin: 25% auto;
 
         .modal-header {
             margin-bottom: 0.5rem;
@@ -235,9 +237,11 @@ p {
 
 // Settings Modal
 #settings-modal {
+    z-index: 8;
+
     .modal-content {
         width: 900px;
-        margin: 10% auto;
+        margin: 25% auto;
 
         .modal-header {
             margin-bottom: 0.5rem;
@@ -389,6 +393,54 @@ p {
                         &.muuri-item-hidden {
                             z-index: 0;
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+// Delete Confirmation Modal
+#delete-confirmation-modal {
+    z-index: 10;
+
+    .modal-content {
+        width: 550px;
+        margin: 20% auto;
+
+        .modal-header {
+            margin-bottom: 1rem;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            justify-items: center;
+            text-align: center;
+            border-radius: 0 0 1rem 1rem;
+
+            .delete-message {
+                font-size: 1.2rem;
+                margin-bottom: 2.5rem;
+            }
+
+            .buttons {
+                margin-bottom: 2.5rem;
+
+                .btn {
+                    margin-right: 0.5rem;
+                    font-size: 1.05rem;
+                    transition: opacity 0.3s ease;
+
+                    &:last-child {
+                        margin-right: 0;
+                    }
+
+                    &:hover {
+                        opacity: 0.7;
                     }
                 }
             }

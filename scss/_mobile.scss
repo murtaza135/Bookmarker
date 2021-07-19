@@ -55,12 +55,18 @@
             }
         }
     }
+
+    #delete-confirmation-modal {
+        .modal-content {
+            margin: 30% auto;
+        }
+    }
 }
 
 
 // Small / Medium Tablets
 @media(max-width: 650px) {
-    #bookmarks-modal {
+    #bookmarks-modal, #edit-bookmarks-modal {
         .modal-content {
             width: 90%;
             margin: 30% auto;
@@ -119,6 +125,12 @@
             }
         }
     }
+
+    #delete-confirmation-modal {
+        .modal-content {
+            width: 475px
+        }
+    }
 }
 
 
@@ -132,7 +144,7 @@
         }
     }
 
-    #bookmarks-modal {
+    #bookmarks-modal, #edit-bookmarks-modal {
         .modal-content {
             margin: 45% auto;
 
@@ -193,6 +205,13 @@
             }
         }
     }
+
+    #delete-confirmation-modal {
+        .modal-content {
+            margin: 40% auto;
+            width: 360px;
+        }
+    }
 }
 
 
@@ -243,6 +262,19 @@
             }
         }
     }
+
+    #delete-confirmation-modal {
+        .modal-content {
+            margin: 40% auto;
+            width: 305px;
+
+            .buttons {
+                .btn {
+                    padding: 0.75rem 1.25rem;
+                }
+            }
+        }
+    }
 }
 
 
@@ -284,9 +316,15 @@
         }
     }
 
-    #bookmarks-modal {
+    #bookmarks-modal, #edit-bookmarks-modal {
         .modal-content {
-            margin: 5% auto;
+            margin: 20% auto;
+        }
+    }
+
+    #delete-confirmation-modal {
+        .modal-content {
+            margin: 20% auto;
         }
     }
 }

@@ -211,8 +211,8 @@
 
     &-danger {
         @extend %btn-shared;
-        background: $danger-color;
-        color: set-text-color($danger-color);
+        background: darken($danger-color, 20%);
+        color: $light-color;
     }
 }
 
