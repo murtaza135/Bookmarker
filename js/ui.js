@@ -46,7 +46,7 @@ export default class UI {
         this.grid = this._setUpBookmarksGrid();
         this.list = this._setUpBookmarksList();
 
-        // Current file being editted
+        // Current file being edited
         this.currentEdit = null;
 
         // TODO remove
@@ -111,8 +111,13 @@ export default class UI {
         item.getElement().remove();
     }
 
-    updateBookmarkInGrid() {
+    updateBookmarkInGrid(bookmark) {
+        // const item = this.grid.getItemByCustomId(bookmark.id);
+        // const newElement = bookmark.getGridComponent(size);
+        // this.grid.replaceElementWithinItem(newElement, item);
 
+        const element = this.grid.getElementByCustomId(bookmark.id);
+        bookmark.refreshContentInGridComponentInstance(element);
     }
 
     toggleBookmarkVisibilityInGrid(id, toggleValue) {
@@ -169,8 +174,9 @@ export default class UI {
         item.getElement().remove();
     }
 
-    updateBookmarkInList() {
-
+    updateBookmarkInList(bookmark) {
+        const element = this.list.getElementByCustomId(bookmark.id);
+        bookmark.refreshContentInListComponentInstance(element);
     }
 
     moveBookmarkInList(id, newIndex) {
@@ -225,6 +231,11 @@ export default class UI {
         this.clearDataFromEditBookmarksModal();
     }
 
+    clearDataFromEditBookmarksModal() {
+        this.currentEdit = null;
+        this.editBookmarksModalForm.reset();
+    }
+
     displayBookmarkDataInEditBookmarksModal(bookmark) {
         this.editBookmarksNameInput.value = bookmark.name;
         this.editBookmarksUrlInput.value = bookmark.url;
@@ -234,9 +245,23 @@ export default class UI {
             "";
     }
 
-    clearDataFromEditBookmarksModal() {
-        this.currentEdit = null;
-        this.editBookmarksModalForm.reset();
+    getDataFromEditBookmarksModal() {
+        const name = this.editBookmarksNameInput.value;
+        const url = this.editBookmarksUrlInput.value;
+        const description = this.editBookmarksDescriptionInput.value;
+        const image = this.editBookmarksImageInput.files[0];
+
+        return {
+            name: name,
+            url: url,
+            description: description,
+            image: image
+        };
+    }
+
+    displayImageFileNameInEditBookmarksModal() {
+        const imageFilename = this.editBookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
+        this.editBookmarksImageUploadText.value = imageFilename;
     }
 
     // Settings Modal

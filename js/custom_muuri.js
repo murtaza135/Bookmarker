@@ -47,6 +47,12 @@ export default class CustomMuuri extends Muuri {
         return null;
     }
 
+    refresh() {
+        this.refreshItems();
+        this.refreshSortData();
+        this.layout();
+    }
+
     _setupEventListeners(itemSelector) {
         const items = document.querySelectorAll(itemSelector);
         items.forEach(item => {

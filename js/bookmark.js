@@ -14,20 +14,22 @@ export class Bookmark extends BaseBookmark {
         this.image = image;
     }
 
+    getImageUrl() {
+        return this.image ?
+            URL.createObjectURL(this.image) :
+            "./img/logo_main.png";
+    }
+
     getGridComponent(size) {
         const div = document.createElement("div");
         div.className = `item bookmarks-item bookmarks-card bookmarks-card-${size} muuri-item-clickable`;
         div.id = `bookmarks-grid-item-${this.id}`;
         div.setAttribute("draggable", "true");
 
-        const imageSrc = this.image ?
-            URL.createObjectURL(this.image) :
-            "./img/logo_main.png"
-
         div.innerHTML = `
             <div class="item-content">
                 <a href="${this.url}" class="block">
-                    <img src="${imageSrc}" alt="">
+                    <img src="${this.getImageUrl()}" alt="">
                     <h1 class="title-1 text-center">${this.name}</h1>
                     ${this.description !== "" ? `<p class="text text-small">${this.description}</p>` : ""}
                     <span class="url">${this.url}</span>
@@ -38,20 +40,31 @@ export class Bookmark extends BaseBookmark {
         return div;
     }
 
+    refreshContentInGridComponentInstance(componentInstance) {
+        componentInstance.innerHTML = `
+            <div class="item-content">
+                <a href="${this.url}" class="block">
+                    <img src="${this.getImageUrl()}" alt="">
+                    <h1 class="title-1 text-center">${this.name}</h1>
+                    ${this.description !== "" ? `<p class="text text-small">${this.description}</p>` : ""}
+                    <span class="url">${this.url}</span>
+                </a>
+            </div>
+        `;
+
+        return componentInstance;
+    }
+
     getListComponent() {
         const div = document.createElement("div");
         div.className = "bookmarks-list-element";
         div.id = `bookmarks-list-item-${this.id}`;
         div.setAttribute("draggable", "true");
 
-        const imageSrc = this.image ?
-            URL.createObjectURL(this.image) :
-            "./img/logo_main.png"
-
         div.innerHTML = `
             <div class="item-content">
                 <section class="bookmark-info">
-                    <img class="img" src="${imageSrc}" alt="">
+                    <img class="img" src="${this.getImageUrl()}" alt="">
                     <h1>${this.name}</h1>
                 </section>
                 <section class="bookmark-buttons">
@@ -68,6 +81,29 @@ export class Bookmark extends BaseBookmark {
         `;
 
         return div;
+    }
+
+    refreshContentInListComponentInstance(componentInstance) {
+        componentInstance.innerHTML = `
+            <div class="item-content">
+                <section class="bookmark-info">
+                    <img class="img" src="${this.getImageUrl()}" alt="">
+                    <h1>${this.name}</h1>
+                </section>
+                <section class="bookmark-buttons">
+                    <div class="btn btn-danger btn-delete-bookmark">Delete</div>
+                    <div class="btn btn-light btn-edit-bookmark">Edit</div>
+                    <div class="btn btn-toggle btn-show-bookmark">
+                        <label class="switch">
+                            <input type="checkbox" ${this.isVisible ? "checked" : ""}>
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </section>
+            </div>
+        `;
+
+        return componentInstance;
     }
 }
 

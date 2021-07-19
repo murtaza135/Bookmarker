@@ -48,6 +48,7 @@ class App {
         this.ui.changeSizeOptionsDiv.addEventListener("click", event => this.changeBookmarkSize(event));
 
         this.ui.bookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInBookmarksModal(event));
+        this.ui.editBookmarksImageInput.addEventListener("change", event => this.displayImageFileNameInEditBookmarksModal(event));
     }
 
     moveGridItem(item, muuri) {
@@ -105,7 +106,18 @@ class App {
     }
 
     updateBookmark(event) {
+        const bookmark = this.ui.currentEdit;
+        const newData = this.ui.getDataFromEditBookmarksModal();
+        const size = this.bookmarksController.getBookmarkSize();
 
+        this.bookmarksController.updateBookmark(bookmark.id, newData);
+        this.ui.updateBookmarkInGrid(bookmark);
+        this.ui.updateBookmarkInList(bookmark);
+        this.ui.grid.refresh();
+        this.ui.list.refresh();
+        this.ui.closeEditBookmarksModal();
+        
+        event.preventDefault();
     }
 
     toggleBookmarkVisibility(event) {
@@ -200,6 +212,10 @@ class App {
 
     displayImageFileNameInBookmarksModal() {
         this.ui.displayImageFileNameInBookmarksModal();
+    }
+
+    displayImageFileNameInEditBookmarksModal() {
+        this.ui.displayImageFileNameInEditBookmarksModal();
     }
 }
 
