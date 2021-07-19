@@ -1,12 +1,17 @@
 import UI from "./ui";
 import BookmarksController from "./bookmarks_controller";
-import { isObjectPartiallyEmpty } from "./util/object";
 
 
 class App {
     constructor() {
         this.bookmarksController = new BookmarksController();
         this.ui = new UI();
+
+        // TODO possibly create a structure or class around the file input
+        // TODO ... to make it easier to handle file uploads from user
+        // TODO ... this is used in the edit bookmarks modal, because the file change
+        // TODO ... does not take place if you cancel the first time you pick an image
+        this.hasImageChangeOccurred = false;
 
         this.loadInitialState();
         this.loadInitialBookmarks();
@@ -70,13 +75,8 @@ class App {
             this.ui.addBookmarkToGrid(bookmark, bookmarkSize, bookmarkIndex);
             this.ui.addBookmarkToList(bookmark, bookmarkIndex);
             this.ui.closeBookmarksModal();
+            event.preventDefault();
         }
-        else {
-            // TODO add a danger alert or modal
-            console.log("not all data is present");
-        }
-
-        event.preventDefault();
     }
 
     deleteBookmark(event) {
@@ -95,6 +95,7 @@ class App {
 
     editBookmark(event) {
         if (event.target.classList.contains("btn-edit-bookmark")) {
+            this.hasImageChangeOccurred = false;
             const bookmarkListElement = event.target.parentElement.parentElement.parentElement;
             const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
 
@@ -109,6 +110,11 @@ class App {
         const bookmark = this.ui.currentEdit;
         const newData = this.ui.getDataFromEditBookmarksModal();
 
+        if (!this.hasImageChangeOccurred) {
+            delete newData.image;
+            this.hasImageChangeOccurred = false;
+        }
+
         if (newData.name && newData.url) {
             this.bookmarksController.updateBookmark(bookmark.id, newData);
             this.ui.updateBookmarkInGrid(bookmark);
@@ -116,13 +122,8 @@ class App {
             this.ui.grid.refresh();
             this.ui.list.refresh();
             this.ui.closeEditBookmarksModal();
+            event.preventDefault();
         }
-        else {
-            // TODO add a danger alert or modal
-            console.log("not all data is present");
-        }
-
-        event.preventDefault();
     }
 
     toggleBookmarkVisibility(event) {
@@ -174,6 +175,7 @@ class App {
             || event.target === this.ui.editBookmarksModalCloseBtn
         ) {
             this.ui.closeEditBookmarksModal();
+            this.hasImageChangeOccurred = false;
         }
     }
 
@@ -216,12 +218,11 @@ class App {
     }
 
     displayImageFileNameInBookmarksModal(event) {
-        console.log(event.target.value);
         this.ui.displayImageFileNameInBookmarksModal();
     }
 
     displayImageFileNameInEditBookmarksModal(event) {
-        console.log(event.target);
+        this.hasImageChangeOccurred = true;
         this.ui.displayImageFileNameInEditBookmarksModal();
     }
 }

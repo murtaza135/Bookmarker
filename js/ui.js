@@ -47,6 +47,7 @@ export default class UI {
         this.list = this._setUpBookmarksList();
 
         // Current file being edited
+        // TODO move to app.js
         this.currentEdit = null;
 
         // TODO remove
