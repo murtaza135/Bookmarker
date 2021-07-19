@@ -20,12 +20,16 @@ export class Bookmark extends BaseBookmark {
         div.id = `bookmarks-grid-item-${this.id}`;
         div.setAttribute("draggable", "true");
 
+        const imageSrc = this.image ?
+            URL.createObjectURL(this.image) :
+            "./img/logo_main.png"
+
         div.innerHTML = `
             <div class="item-content">
                 <a href="${this.url}" class="block">
-                    <img src="${this.image}" alt="">
+                    <img src="${imageSrc}" alt="">
                     <h1 class="title-1 text-center">${this.name}</h1>
-                    <p class="text text-small">${this.description}</p>
+                    ${this.description !== "" ? `<p class="text text-small">${this.description}</p>` : ""}
                     <span class="url">${this.url}</span>
                 </a>
             </div>
@@ -40,10 +44,14 @@ export class Bookmark extends BaseBookmark {
         div.id = `bookmarks-list-item-${this.id}`;
         div.setAttribute("draggable", "true");
 
+        const imageSrc = this.image ?
+            URL.createObjectURL(this.image) :
+            "./img/logo_main.png"
+
         div.innerHTML = `
             <div class="item-content">
                 <section class="bookmark-info">
-                    <img class="img" src="${this.image}" alt="">
+                    <img class="img" src="${imageSrc}" alt="">
                     <h1>${this.name}</h1>
                 </section>
                 <section class="bookmark-buttons">

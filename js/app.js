@@ -39,6 +39,9 @@ class App {
         this.ui.bookmarksModal.addEventListener("click", event => this.closeBookmarksModal(event));
         this.ui.bookmarksModalCloseBtn.addEventListener("click", event => this.closeBookmarksModal(event));
 
+        this.ui.editBookmarksModal.addEventListener("click", event => this.closeEditBookmarksModal(event));
+        this.ui.editBookmarksModalCloseBtn.addEventListener("click", event => this.closeEditBookmarksModal(event));
+
         this.ui.settingsButton.addEventListener("click", event => this.openSettingsModal(event));
         this.ui.settingsModal.addEventListener("click", event => this.closeSettingsModal(event));
         this.ui.settingsModalCloseBtn.addEventListener("click", event => this.closeSettingsModal(event));
@@ -58,21 +61,18 @@ class App {
 
     addNewBookmark(event) {
         const data = this.ui.getDataFromBookmarksModal();
-        if (data.image == null) {
-            data.image = "./img/logo_main.png";
-        }
 
-        if (isObjectPartiallyEmpty(data)) {
-            // TODO add a danger alert or modal
-            console.log("not all data is present");
-        }
-        else {
+        if (data.name && data.url) {
             const bookmark = this.bookmarksController.addNewBookmark(data);
             const bookmarkSize = this.bookmarksController.getBookmarkSize();
             const bookmarkIndex = this.bookmarksController.getBookmarkIndex(bookmark.id);
             this.ui.addBookmarkToGrid(bookmark, bookmarkSize, bookmarkIndex);
             this.ui.addBookmarkToList(bookmark, bookmarkIndex);
             this.ui.closeBookmarksModal();
+        }
+        else {
+            // TODO add a danger alert or modal
+            console.log("not all data is present");
         }
 
         event.preventDefault();
@@ -93,7 +93,15 @@ class App {
     }
 
     editBookmark(event) {
-        
+        if (event.target.classList.contains("btn-edit-bookmark")) {
+            const bookmarkListElement = event.target.parentElement.parentElement.parentElement;
+            const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
+
+            const bookmark = this.bookmarksController.getBookmark(id);
+            this.ui.openEditBookmarksModalForBookmark(bookmark);
+            this.ui.displayBookmarkDataInEditBookmarksModal(bookmark);
+        }
+
     }
 
     updateBookmark(event) {
@@ -141,6 +149,10 @@ class App {
         ) {
             this.ui.closeBookmarksModal();
         }
+    }
+
+    closeEditBookmarksModal(event) {
+        
     }
 
     openSettingsModal() {

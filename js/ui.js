@@ -30,7 +30,6 @@ export default class UI {
         this.editBookmarksImageInput = document.querySelector("#edit-bookmarks-image-input");
         this.editBookmarksSubmitBtn = document.querySelector(".edit-bookmarks-submit-btn");
 
-
         // Settings modal
         this.settingsButton = document.querySelector("#settings");
         this.settingsModal = document.querySelector("#settings-modal");
@@ -46,6 +45,9 @@ export default class UI {
         // Muuri
         this.grid = this._setUpBookmarksGrid();
         this.list = this._setUpBookmarksList();
+
+        // Current file being editted
+        this.currentEdit = null;
 
         // TODO remove
         this.tempInit();
@@ -194,15 +196,7 @@ export default class UI {
         const name = this.bookmarksNameInput.value;
         const url = this.bookmarksUrlInput.value;
         const description = this.bookmarksDescriptionInput.value;
-
-        let image;
-        const uploadedFile = this.bookmarksImageInput.files[0];
-        if (uploadedFile) {
-            image = URL.createObjectURL(uploadedFile);
-        }
-        else {
-            image = null;
-        }
+        const image = this.bookmarksImageInput.files[0];
 
         return {
             name: name,
@@ -220,16 +214,28 @@ export default class UI {
     }
 
     // Edit Bookmarks Modal
-    openEditBookmarksModal() {
+    openEditBookmarksModalForBookmark(bookmark) {
         this.editBookmarksModal.classList.remove("closed");
+        this.currentEdit = bookmark;
     }
 
     closeEditBookmarksModal() {
         this.editBookmarksModal.classList.add("closed");
-        this.clearDataFromBookmarksModal();
+        this.currentEdit = null;
+        this.clearDataFromEditBookmarksModal();
     }
 
-    clearDataFromBookmarksModal() {
+    displayBookmarkDataInEditBookmarksModal(bookmark) {
+        this.editBookmarksNameInput.value = bookmark.name;
+        this.editBookmarksUrlInput.value = bookmark.url;
+        this.editBookmarksDescriptionInput.value = bookmark.description;
+        this.editBookmarksImageUploadText.value = bookmark.image ? 
+            bookmark.image.name :
+            "";
+    }
+
+    clearDataFromEditBookmarksModal() {
+        this.currentEdit = null;
         this.editBookmarksModalForm.reset();
     }
 

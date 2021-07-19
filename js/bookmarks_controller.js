@@ -63,7 +63,7 @@ export default class BookmarksController {
             name: null,
             url: "https://www.google.com",
             description: "Hello World and bye world",
-            image: "./img/logo_main.png"
+            image: null
         }
 
         for (let i = 2; i < 7; i++) {
