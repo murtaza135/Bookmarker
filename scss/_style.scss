@@ -241,7 +241,7 @@ p {
 
     .modal-content {
         width: 900px;
-        margin: 25% auto;
+        margin: 15% auto;
 
         .modal-header {
             margin-bottom: 0.5rem;
@@ -284,13 +284,6 @@ p {
                         background-color: rgba($color: $primary-color-dark, $alpha: 0.5);
                     }
 
-                    // &.active {
-                    //     // border-top: 2px solid $secondary-color;
-                    //     // border-bottom: 2px solid $secondary-color;
-                    //     // border-radius: 4rem / 1rem;
-
-                    // }
-
                     .box {
                         font-weight: bold;
                         border: 2px solid $light-color;
@@ -328,15 +321,10 @@ p {
                     }
 
                     &.active {
-                        // border-top: 2px solid $secondary-color;
-                        // border-bottom: 2px solid $secondary-color;
-                        // border-radius: 4rem / 1rem;
-
-                        // border: 2px solid $secondary-color;
+                        background-color: rgba($color: $primary-color-dark, $alpha: 0.5);
                         
                         .box {
                             border-width: 4px;
-                            // border: 2px solid $secondary-color;
                         }
 
                         label.size-label {

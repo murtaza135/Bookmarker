@@ -87,24 +87,24 @@
                 <form class="bookmarks-form" autocomplete="off">
                     <div class="form-control bookmarks-name">
                         <label for="bookmarks-name-input"></label>
-                        <input type="text" name="bookmarks-name-input" id="bookmarks-name-input" class="text-input" placeholder="Name">
+                        <input type="text" name="bookmarks-name-input" id="edit-bookmarks-name-input" class="text-input" placeholder="Name">
                     </div>
                     <div class="form-control bookmarks-url">
                         <label for="bookmarks-url-input"></label>
-                        <input type="url" name="bookmarks-url-input" id="bookmarks-url-input" class="text-input" placeholder="URL">
+                        <input type="url" name="bookmarks-url-input" id="edit-bookmarks-url-input" class="text-input" placeholder="URL">
                     </div>
                     <div class="form-control bookmarks-description">
                         <label for="bookmarks-description-input"></label>
-                        <textarea type="text" name="bookmarks-description-input" id="bookmarks-description-input" placeholder="Enter Description..." class="text-input" maxlength="75"></textarea>
+                        <textarea type="text" name="bookmarks-description-input" id="edit-bookmarks-description-input" placeholder="Enter Description..." class="text-input" maxlength="75"></textarea>
                     </div>
                     <div class="form-control bookmarks-image">
                         <div class="custom-file-upload">
                             <label for="bookmarks-image-input" class="file-label"><i class="fas fa-upload"></i></label>
-                            <input type="text" id="bookmarks-image-upload-text" class="space-reset text-input file-upload-text" placeholder="Upload Image" readonly>
-                            <input type="file" name="bookmarks-image-input" id="bookmarks-image-input" class="file-input" placeholder="Image">
+                            <input type="text" id="edit-bookmarks-image-upload-text" class="space-reset text-input file-upload-text" placeholder="Upload Image" readonly>
+                            <input type="file" name="bookmarks-image-input" id="edit-bookmarks-image-input" class="file-input" placeholder="Image">
                         </div>
                     </div>
-                    <input type="submit" value="Update Bookmark" class="bookmarks-submit-btn btn-primary-dark btn-stretch">
+                    <input type="submit" value="Update Bookmark" class="edit-bookmarks-submit-btn btn-primary-dark btn-stretch">
                 </form>
             </section>
         </div>
@@ -158,7 +158,7 @@
     </div>
 
     <!-- Delete Confirmation Modal -->
-    <div id="delete-confirmation-modal" class="modal">
+    <div id="delete-confirmation-modal" class="modal closed">
         <div class="modal-content">
             <header class="modal-header">
                 <div class="modal-title">

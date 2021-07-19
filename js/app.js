@@ -32,6 +32,7 @@ class App {
         this.ui.bookmarksSubmitBtn.addEventListener("click", event => this.addNewBookmark(event));
         this.ui.settingsBookmarksList.addEventListener("click", event => this.deleteBookmark(event));
         this.ui.settingsBookmarksList.addEventListener("click", event => this.editBookmark(event));
+        this.ui.editBookmarksSubmitBtn.addEventListener("click", event => this.updateBookmark(event));
         this.ui.settingsBookmarksList.addEventListener("click", event => this.toggleBookmarkVisibility(event));
 
         this.ui.bookmarksGrid.addEventListener("click", event => this.openBookmarksModal(event));
@@ -92,6 +93,10 @@ class App {
     }
 
     editBookmark(event) {
+        
+    }
+
+    updateBookmark(event) {
 
     }
 

@@ -19,6 +19,18 @@ export default class UI {
         this.bookmarksImageInput = document.querySelector("#bookmarks-image-input");
         this.bookmarksSubmitBtn = document.querySelector(".bookmarks-submit-btn");
 
+        // Edit bookmarks modal
+        this.editBookmarksModal = document.querySelector("#edit-bookmarks-modal");
+        this.editBookmarksModalCloseBtn = document.querySelector("#edit-bookmarks-modal .modal-close-btn");
+        this.editBookmarksModalForm = document.querySelector("#edit-bookmarks-modal .bookmarks-form");
+        this.editBookmarksNameInput = document.querySelector("#edit-bookmarks-name-input");
+        this.editBookmarksUrlInput = document.querySelector("#edit-bookmarks-url-input");
+        this.editBookmarksDescriptionInput = document.querySelector("#edit-bookmarks-description-input");
+        this.editBookmarksImageUploadText = document.querySelector("#edit-bookmarks-image-upload-text");
+        this.editBookmarksImageInput = document.querySelector("#edit-bookmarks-image-input");
+        this.editBookmarksSubmitBtn = document.querySelector(".edit-bookmarks-submit-btn");
+
+
         // Settings modal
         this.settingsButton = document.querySelector("#settings");
         this.settingsModal = document.querySelector("#settings-modal");
@@ -207,6 +219,20 @@ export default class UI {
         this.bookmarksImageUploadText.value = imageFilename;
     }
 
+    // Edit Bookmarks Modal
+    openEditBookmarksModal() {
+        this.editBookmarksModal.classList.remove("closed");
+    }
+
+    closeEditBookmarksModal() {
+        this.editBookmarksModal.classList.add("closed");
+        this.clearDataFromBookmarksModal();
+    }
+
+    clearDataFromBookmarksModal() {
+        this.editBookmarksModalForm.reset();
+    }
+
     // Settings Modal
     openSettingsModal() {
         this.settingsModal.classList.remove("closed");
@@ -224,4 +250,7 @@ export default class UI {
             .querySelector(`.change-size-options #box-section-${newBookmarkSize}`);
         newActiveChangeSizeBox.classList.add("active");
     }
+
+    // Delete Confirmation Modal
+
 }
