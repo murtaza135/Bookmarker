@@ -17,7 +17,7 @@ export default class UI {
         this.bookmarksDescriptionInput = document.querySelector("#bookmarks-description-input");
         this.bookmarksImageUploadText = document.querySelector("#bookmarks-image-upload-text");
         this.bookmarksImageInput = document.querySelector("#bookmarks-image-input");
-        this.bookmarksSubmitBtn = document.querySelector(".bookmarks-submit-btn");
+        this.bookmarksSubmitBtn = document.querySelector("#bookmarks-modal .bookmarks-submit-btn");
 
         // Edit bookmarks modal
         this.editBookmarksModal = document.querySelector("#edit-bookmarks-modal");
@@ -28,7 +28,7 @@ export default class UI {
         this.editBookmarksDescriptionInput = document.querySelector("#edit-bookmarks-description-input");
         this.editBookmarksImageUploadText = document.querySelector("#edit-bookmarks-image-upload-text");
         this.editBookmarksImageInput = document.querySelector("#edit-bookmarks-image-input");
-        this.editBookmarksSubmitBtn = document.querySelector(".edit-bookmarks-submit-btn");
+        this.editBookmarksSubmitBtn = document.querySelector("#edit-bookmarks-modal .bookmarks-submit-btn");
 
         // Settings modal
         this.settingsButton = document.querySelector("#settings");

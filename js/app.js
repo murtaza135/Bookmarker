@@ -152,7 +152,12 @@ class App {
     }
 
     closeEditBookmarksModal(event) {
-        
+        if (event.target === this.ui.editBookmarksModal
+            || event.target.parentElement === this.ui.editBookmarksModalCloseBtn
+            || event.target === this.ui.editBookmarksModalCloseBtn
+        ) {
+            this.ui.closeEditBookmarksModal();
+        }
     }
 
     openSettingsModal() {
