@@ -73,7 +73,12 @@ class App {
     addNewBookmark(event) {
         const data = this.ui.getDataFromBookmarksModal();
 
-        if (data.name && data.url) {
+        const regex = /^image\/.+/g;
+        const isImageValid = data.image ? 
+            regex.test(data.image.type) : 
+            true;
+
+        if (data.name && data.url && isImageValid) {
             const bookmark = this.bookmarksController.addNewBookmark(data);
             const bookmarkSize = this.bookmarksController.getBookmarkSize();
             const bookmarkIndex = this.bookmarksController.getBookmarkIndex(bookmark.id);
@@ -123,10 +128,14 @@ class App {
 
         if (!this.hasImageChangeOccurred) {
             delete newData.image;
-            this.hasImageChangeOccurred = false;
         }
 
-        if (newData.name && newData.url) {
+        const regex = /^image\/.+/g;
+        const isImageValid = newData.image && newData.image.type ? 
+            regex.test(newData.image.type) : 
+            true;
+
+        if (newData.name && newData.url && isImageValid) {
             this.bookmarksController.updateBookmark(bookmark.id, newData);
             this.ui.updateBookmarkInGrid(bookmark);
             this.ui.updateBookmarkInList(bookmark);
