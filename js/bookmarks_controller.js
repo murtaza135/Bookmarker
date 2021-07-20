@@ -75,7 +75,6 @@ export default class BookmarksController {
             else {
                 this.addNewBookmark(tempObj)
             }
-
         }
     }
 
@@ -171,7 +170,7 @@ export default class BookmarksController {
     }
 
     deleteBookmark(id) {
-        for (const [index, bookmark] in this._bookmarks.entries()) {
+        for (const [index, bookmark] of this._bookmarks.entries()) {
             if (bookmark.id === id) {
                 return this._bookmarks.splice(index, 1)[0];
             }
