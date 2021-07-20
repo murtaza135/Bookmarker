@@ -94,25 +94,15 @@ class App {
     }
 
     deleteBookmark(event) {
-        console.log(event.target);
+        const bookmarkListElement = this.ui.currentDelete;
+        const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
+
+        this.bookmarksController.deleteBookmark(id);
+        this.ui.deleteBookmarkFromGrid(id);
+        this.ui.deleteBookmarkFromList(id);
+
+        this.ui.closeDeletConfirmationModal();
     }
-
-    // deleteBookmark(event) {
-    //     if (event.target.classList.contains("btn-delete-bookmark")) {
-    //         this.ui.deleteConfirmationModal.classList.remove("closed");
-
-
-    //         // TODO add a proper confirm modal
-    //         if (confirm("Are you sure you want to delete this bookmark?")) {
-    //             const bookmarkListElement = event.target.parentElement.parentElement.parentElement;
-    //             const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
-    
-    //             this.bookmarksController.deleteBookmark(id);
-    //             this.ui.deleteBookmarkFromGrid(id);
-    //             this.ui.deleteBookmarkFromList(id);
-    //         }
-    //     }
-    // }
 
     editBookmark(event) {
         if (event.target.classList.contains("btn-edit-bookmark")) {
