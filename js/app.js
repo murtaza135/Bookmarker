@@ -35,7 +35,8 @@ class App {
         this.ui.grid.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.grid));
         this.ui.list.on("dragReleaseStart", item => this.moveGridItem(item, this.ui.list));
         this.ui.bookmarksSubmitBtn.addEventListener("click", event => this.addNewBookmark(event));
-        this.ui.settingsBookmarksList.addEventListener("click", event => this.deleteBookmark(event));
+        this.ui.settingsBookmarksList.addEventListener("click", event => this.confirmBookmarkToDelete(event));
+        this.ui.deleteModalDeleteBtn.addEventListener("click", event => this.deleteBookmark(event));
         this.ui.settingsBookmarksList.addEventListener("click", event => this.editBookmark(event));
         this.ui.editBookmarksSubmitBtn.addEventListener("click", event => this.updateBookmark(event));
         this.ui.settingsBookmarksList.addEventListener("click", event => this.toggleBookmarkVisibility(event));
@@ -51,6 +52,10 @@ class App {
         this.ui.settingsModal.addEventListener("click", event => this.closeSettingsModal(event));
         this.ui.settingsModalCloseBtn.addEventListener("click", event => this.closeSettingsModal(event));
         this.ui.changeSizeOptionsDiv.addEventListener("click", event => this.changeBookmarkSize(event));
+
+        this.ui.deleteConfirmationModal.addEventListener("click", event => this.closeDeleteConfirmationModal(event));
+        this.ui.deleteModalCloseBtn.addEventListener("click", event => this.closeDeleteConfirmationModal(event));
+        this.ui.deleteModalCancelBtn.addEventListener("click", event => this.closeDeleteConfirmationModal(event));
 
         this.ui.bookmarksImageInput.addEventListener("input", event => this.displayImageFileNameInBookmarksModal(event));
         this.ui.editBookmarksImageInput.addEventListener("input", event => this.displayImageFileNameInEditBookmarksModal(event));
@@ -79,19 +84,35 @@ class App {
         }
     }
 
-    deleteBookmark(event) {
+    confirmBookmarkToDelete(event) {
         if (event.target.classList.contains("btn-delete-bookmark")) {
-            // TODO add a proper confirm modal
-            if (confirm("Are you sure you want to delete this bookmark?")) {
-                const bookmarkListElement = event.target.parentElement.parentElement.parentElement;
-                const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
-    
-                this.bookmarksController.deleteBookmark(id);
-                this.ui.deleteBookmarkFromGrid(id);
-                this.ui.deleteBookmarkFromList(id);
-            }
+            this.ui.openDeletConfirmationModal();
+
+            const bookmarkListElement = event.target.parentElement.parentElement.parentElement;
+            this.ui.currentDelete = bookmarkListElement;
         }
     }
+
+    deleteBookmark(event) {
+        console.log(event.target);
+    }
+
+    // deleteBookmark(event) {
+    //     if (event.target.classList.contains("btn-delete-bookmark")) {
+    //         this.ui.deleteConfirmationModal.classList.remove("closed");
+
+
+    //         // TODO add a proper confirm modal
+    //         if (confirm("Are you sure you want to delete this bookmark?")) {
+    //             const bookmarkListElement = event.target.parentElement.parentElement.parentElement;
+    //             const id = this.bookmarksController.extractIdFromElement(bookmarkListElement);
+    
+    //             this.bookmarksController.deleteBookmark(id);
+    //             this.ui.deleteBookmarkFromGrid(id);
+    //             this.ui.deleteBookmarkFromList(id);
+    //         }
+    //     }
+    // }
 
     editBookmark(event) {
         if (event.target.classList.contains("btn-edit-bookmark")) {
@@ -215,6 +236,17 @@ class App {
         else {
             return null;
         }
+    }
+
+    closeDeleteConfirmationModal(event) {
+        if (event.target === this.ui.deleteConfirmationModal
+            || event.target === this.ui.deleteModalCloseBtn
+            || event.target.parentElement === this.ui.deleteModalCloseBtn
+            || event.target === this.ui.deleteModalCancelBtn
+        ) {
+            this.ui.closeDeletConfirmationModal();
+        }
+
     }
 
     displayImageFileNameInBookmarksModal(event) {

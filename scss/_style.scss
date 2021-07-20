@@ -396,6 +396,7 @@ p {
     .modal-content {
         width: 550px;
         margin: 20% auto;
+        animation: modalOpen 0.3s;
 
         .modal-header {
             margin-bottom: 1rem;

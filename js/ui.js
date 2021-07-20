@@ -42,13 +42,20 @@ export default class UI {
         this.editBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-edit-bookmark";
         this.showBookmarkBtnSelector = "#settings-modal .bookmarks-list-element btn-show-bookmark input[type='checkbox']";
 
+        // Delete confirmation modal
+        this.deleteConfirmationModal = document.querySelector("#delete-confirmation-modal");
+        this.deleteModalCloseBtn = document.querySelector("#delete-confirmation-modal .modal-close-btn");
+        this.deleteModalDeleteBtn = document.querySelector("#delete-confirmation-modal .btn-delete");
+        this.deleteModalCancelBtn = document.querySelector("#delete-confirmation-modal .btn-cancel");
+
         // Muuri
         this.grid = this._setUpBookmarksGrid();
         this.list = this._setUpBookmarksList();
 
-        // Current file being edited
+        // Current bookmark being edited or deleted
         // TODO move to app.js
         this.currentEdit = null;
+        this.currentDelete = null;
 
         // TODO remove
         this.tempInit();
@@ -56,7 +63,7 @@ export default class UI {
 
     tempInit() {
         // TODO remove
-        this.settingsModal.classList.remove("closed");
+        // this.settingsModal.classList.remove("closed");
     }
 
     _setUpBookmarksGrid() {
@@ -113,10 +120,6 @@ export default class UI {
     }
 
     updateBookmarkInGrid(bookmark) {
-        // const item = this.grid.getItemByCustomId(bookmark.id);
-        // const newElement = bookmark.getGridComponent(size);
-        // this.grid.replaceElementWithinItem(newElement, item);
-
         const element = this.grid.getElementByCustomId(bookmark.id);
         bookmark.refreshContentInGridComponentInstance(element);
     }
@@ -279,5 +282,11 @@ export default class UI {
     }
 
     // Delete Confirmation Modal
+    openDeletConfirmationModal() {
+        this.deleteConfirmationModal.classList.remove("closed");
+    }
 
+    closeDeletConfirmationModal() {
+        this.deleteConfirmationModal.classList.add("closed");
+    }
 }
