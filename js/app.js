@@ -15,6 +15,7 @@ class App {
 
         this.loadInitialState();
         this.loadInitialBookmarks();
+        this.initDateTimeBookmark();
         this.loadEventListeners();
     }
 
@@ -29,6 +30,18 @@ class App {
         const bookmarkSize = this.bookmarksController._bookmarkSize;
         this.ui.populateBookmarksGrid(bookmarks, bookmarkSize);
         this.ui.populateBookmarksList(bookmarks);
+    }
+
+    initDateTimeBookmark() {
+        // This will constantly refresh the time on the datetime bookmark
+        setInterval(() => {
+            const bookmark = this.bookmarksController._dateTimeBookmark
+            const id = bookmark.id;
+            const componentInstance = this.ui.grid.getElementByCustomId(id);
+
+            bookmark.refreshContentInGridComponentInstance(componentInstance);
+            this.ui.updateBookmarkInList(componentInstance);
+        }, 1000);
     }
 
     loadEventListeners() {

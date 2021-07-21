@@ -112,6 +112,21 @@ export class DateTimeBookmark extends BaseBookmark {
         super(id, name, isVisible);
     }
 
+    _getTime() {
+        const today = new Date();
+        const hour = today.getHours().toString().padStart(2, "0");
+        const minute = today.getMinutes().toString().padStart(2, "0");
+        const second = today.getSeconds().toString().padStart(2, "0");
+        const date = today.getDate().toString().padStart(2, "0");
+        const month = (today.getMonth() + 1).toString().padStart(2, "0");
+        const year = today.getFullYear().toString().padStart(4, "0");
+        return `
+            ${hour}<span>:</span>${minute}<span>:</span>${second}
+            <br>
+            ${date}<span>/</span>${month}<span>/</span>${year}
+        `;
+    }
+
     getGridComponent(size) {
         const div = document.createElement("div");
         div.className = `item bookmarks-item bookmarks-card bookmarks-card-${size} muuri-item-clickable`;
@@ -122,12 +137,25 @@ export class DateTimeBookmark extends BaseBookmark {
             <div class="item-content">
                 <a class="block">
                     <i class="far fa-clock"></i>
-                    <h1 class="title-1 text-center">${this.name}</h1>
+                    <h1 class="title-1 text-center">${this._getTime()}</h1>
                 </a>
             </div>
         `;
         
         return div;
+    }
+
+    refreshContentInGridComponentInstance(componentInstance) {
+        componentInstance.innerHTML = `
+            <div class="item-content">
+                <a class="block">
+                    <i class="far fa-clock"></i>
+                    <h1 class="title-1 text-center">${this._getTime()}</h1>
+                </a>
+            </div>
+        `;
+
+        return componentInstance;
     }
 
     getListComponent() {

@@ -20,7 +20,7 @@ export default class BookmarksController {
         this._bookmarks = [];
 
         this._templateBookmark = this._createTemplateBookmark();
-        this._createDateTimeBookmark();
+        this._dateTimeBookmark = this._createDateTimeBookmark();
         this.setBookmarks(bookmarks);
         this._createTempBookmarks();
     }
