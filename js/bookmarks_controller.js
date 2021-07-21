@@ -146,41 +146,27 @@ export default class BookmarksController {
     }
 
     getBookmark(id) {
-        for (const bookmark of this._bookmarks) {
-            if (bookmark.id === id) {
-                return bookmark;
-            }
-        }
+        return this._bookmarks.find(bookmark => bookmark.id === id);
     }
 
     getBookmarkIndex(id) {
-        for (const [index, bookmark] of this._bookmarks.entries()) {
-            if (bookmark.id === id) {
-                return index;
-            }
-        }
+        return this._bookmarks.findIndex(bookmark => bookmark.id === id);
     }
 
     updateBookmark(id, updatedInfo) {
-        for (const bookmark of this._bookmarks) {
-            if (bookmark.id === id) {
-                return Object.assign(bookmark, updatedInfo);
-            }
-        }
+        const bookmark = this.getBookmark(id);
+        return Object.assign(bookmark, updatedInfo);
     }
 
     deleteBookmark(id) {
-        for (const [index, bookmark] of this._bookmarks.entries()) {
-            if (bookmark.id === id) {
-                return this._bookmarks.splice(index, 1)[0];
-            }
-        }
+        const bookmarkIndex = this.getBookmarkIndex(id);
+        return this._bookmarks.splice(bookmarkIndex, 1)[0];
     }
 
     deleteAllBookmarks() {
         const deletedBookmarks = this._bookmarks.splice(0, this._bookmarks.length);
         this._templateBookmark = this._createTemplateBookmark();
-        this._createDateTimeBookmark();
+        this._dateTimeBookmark = this._createDateTimeBookmark();
         return deletedBookmarks;
     }
 
