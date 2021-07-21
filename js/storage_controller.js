@@ -1,4 +1,7 @@
 export default class StorageController {
+    // TODO make this class more robust by checking for extreme values
+    // TODO possibly remove "itemIdentifierKey"
+
     constructor(key, itemIdentifierKey = "id") {
         this._key = key;
         this._itemIdentifierKey = itemIdentifierKey;
@@ -15,44 +18,30 @@ export default class StorageController {
 
     getItem(id) {
         const items = this.getItems();
-        
-        for (const item of items) {
-            if (item[this._itemIdentifierKey] === id) {
-                return item;
-            }
-        }
+        return items.find(item => item[this._itemIdentifierKey] === id);
     }
 
     addItems(...newItems) {
         const currentItems = this.getItems();
         currentItems.push(...newItems);
         localStorage.setItem(this._key, JSON.stringify(currentItems));
+        return newItems
     }
 
     updateItem(id, updatedObject) {
-        const currentItems = this.getItems();
-
-        for (const item of currentItems) {
-            if (item[this._itemIdentifierKey] === id) {
-                Object.assign(item, updatedObject);
-                break;
-            }
-        }
-
+        const items = this.getItems();
+        const item = items.find(item => item[this._itemIdentifierKey] === id);
+        Object.assign(item, updatedObject);
         localStorage.setItem(this._key, JSON.stringify(items));
+        return item;
     }
 
     deleteItem(id) {
         const items = this.getItems();
-
-        for (const [index, item] in items) {
-            if (item[this._itemIdentifierKey] === id) {
-                items.splice(index, 1);
-                break;
-            }
-        }
-
+        const itemIndex = items.findIndex(item => item[this._itemIdentifierKey] === id);
+        const deletedItem = items.splice(itemIndex, 1)[0];
         localStorage.setItem(this._key, JSON.stringify(items));
+        return deletedItem;
     }
 
     deleteAllItems() {

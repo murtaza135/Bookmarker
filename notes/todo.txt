@@ -16,5 +16,5 @@
     - DONE they should have an edit button which will open the create a new bookmark modal and allow the user to change the details
     - DONE you may need to create a a 4th modal specifically for editing bookmarks
     - DONE add ability to show/hide bookmarks in the DOM, muuri has a class to do this
- - use higher order functions in the controller classes
+ - DONE use higher order functions in the controller classes
  - DONE in add and edit bookmark forms, only accept images, nothing else
