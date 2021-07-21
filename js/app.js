@@ -35,12 +35,8 @@ class App {
     initDateTimeBookmark() {
         // This will constantly refresh the time on the datetime bookmark
         setInterval(() => {
-            const bookmark = this.bookmarksController._dateTimeBookmark
-            const id = bookmark.id;
-            const componentInstance = this.ui.grid.getElementByCustomId(id);
-
-            bookmark.refreshContentInGridComponentInstance(componentInstance);
-            this.ui.updateBookmarkInList(componentInstance);
+            const dateTimebookmark = this.bookmarksController._dateTimeBookmark;
+            this.ui.updateBookmarkInGrid(dateTimebookmark);
         }, 1000);
     }
 
