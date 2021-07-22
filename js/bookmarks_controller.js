@@ -1,5 +1,4 @@
 import { Bookmark, DateTimeBookmark, TemplateBookmark } from "./bookmark";
-import { uniqKeepFirst } from "./util/array";
 
 export const allBookmarkSizes = Object.freeze({
     large: "l",
@@ -20,7 +19,6 @@ export default class BookmarksController {
 
         this._templateBookmark = null;
         this._dateTimeBookmark = null;
-        // this._createTempBookmarks();
     }
 
     setBookmarkSize(bookmarkSize) {
@@ -69,27 +67,6 @@ export default class BookmarksController {
         const bookmark = new DateTimeBookmark(id, "Date Time", isVisible);
         this._bookmarks.splice(index, 1, bookmark);
         return bookmark;
-    }
-
-    _createTempBookmarks() {
-        // TODO eventually delete this
-        const tempObj = {
-            name: null,
-            url: "https://www.google.com",
-            description: "Hello World and bye world",
-            image: null
-        }
-
-        for (let i = 2; i < 7; i++) {
-            tempObj.name = `${i}`;
-
-            if (i === 3 || i === 4) {
-                this.addNewBookmark(tempObj, false);
-            }
-            else {
-                this.addNewBookmark(tempObj)
-            }
-        }
     }
 
     setBookmarks(bookmarks) {

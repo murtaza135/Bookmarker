@@ -1,12 +1,15 @@
 import StorageController from "./storage_controller";
+import SimpleStorageController from "./simple_storage_controller";
 import BookmarksController from "./bookmarks_controller";
 import UI from "./ui";
 
 
 class App {
     constructor() {
-        this.storage = new StorageController("bookmarks");
-        // this.storageSize = new StorageController("bookmarkSize");
+        this.storage = {
+            bookmarks: new StorageController("bookmarks"),
+            bookmarkSize: new SimpleStorageController("bookmarkSize")
+        };
         this.bookmarksController = new BookmarksController();
         this.ui = new UI();
 
@@ -29,9 +32,13 @@ class App {
     }
 
     loadInitialBookmarks() {
-        const storedBookmarks = this.storage.getItems();
+        const storedBookmarks = this.storage.bookmarks.getItems();
+        const storedBookmarkSize = this.storage.bookmarkSize.getItem();
+        console.log(storedBookmarkSize);
+
         const bookmarks = this.bookmarksController.setBookmarks(storedBookmarks);
-        const bookmarkSize = this.bookmarksController.getBookmarkSize();
+        const bookmarkSize = this.bookmarksController.setBookmarkSize(storedBookmarkSize);
+
         this.ui.populateBookmarksGrid(bookmarks, bookmarkSize);
         this.ui.populateBookmarksList(bookmarks);
     }
@@ -81,7 +88,7 @@ class App {
         this.bookmarksController.moveBookmark(itemId, newIndex);
         this.ui.moveBookmarkInGrid(itemId, newIndex);
         this.ui.moveBookmarkInList(itemId, newIndex);
-        this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
+        this.storage.bookmarks.setItems(this.bookmarksController.getAllBookmarksImageStriped());
     }
 
     addNewBookmark(event) {
@@ -99,7 +106,7 @@ class App {
             this.ui.addBookmarkToGrid(bookmark, bookmarkSize, bookmarkIndex);
             this.ui.addBookmarkToList(bookmark, bookmarkIndex);
             this.ui.closeBookmarksModal();
-            this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
+            this.storage.bookmarks.setItems(this.bookmarksController.getAllBookmarksImageStriped());
             event.preventDefault();
         }
     }
@@ -120,7 +127,7 @@ class App {
         this.bookmarksController.deleteBookmark(id);
         this.ui.deleteBookmarkFromGrid(id);
         this.ui.deleteBookmarkFromList(id);
-        this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
+        this.storage.bookmarks.setItems(this.bookmarksController.getAllBookmarksImageStriped());
 
         this.ui.closeDeletConfirmationModal();
     }
@@ -157,7 +164,7 @@ class App {
             this.ui.grid.refresh();
             this.ui.list.refresh();
             this.ui.closeEditBookmarksModal();
-            this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
+            this.storage.bookmarks.setItems(this.bookmarksController.getAllBookmarksImageStriped());
             event.preventDefault();
         }
     }
@@ -171,7 +178,7 @@ class App {
 
             this.bookmarksController.setBookmarkVisibility(id, toggleButton.checked);
             this.ui.toggleBookmarkVisibilityInGrid(id, toggleButton.checked)
-            this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
+            this.storage.bookmarks.setItems(this.bookmarksController.getAllBookmarksImageStriped());
         }
     }
 
@@ -239,6 +246,7 @@ class App {
             this.bookmarksController.setBookmarkSize(newBookmarkSize);
             this.ui.setNewActiveBookmarkSizeBoxSection(newBookmarkSize);
             this.ui.changeSizeOfGridItems(oldBookmarkSize, newBookmarkSize);
+            this.storage.bookmarkSize.setItem(newBookmarkSize);
         }
     }
 

@@ -6,7 +6,7 @@
     - DONE get input from form in modal
     - DONE create a bookmark component and inject it into the DOM directly before the template card
     - DONE fix bug where bookmarks modal opens up when template card is dragged
- - store bookmarks in local storage and be able to manage them and their current order
+ - DONE store bookmarks in local storage and be able to manage them and their current order
  - DONE Add ability to change size of bookmarks, this requires changing the classList of the bookmarks
     - DONE remove the grid sizing class
     - DONE add a border or something of the like around the selected size
@@ -19,4 +19,5 @@
  - DONE use higher order functions in the controller classes
  - DONE in add and edit bookmark forms, only accept images, nothing else
  - check through the remaining todos in the project
+ - tidy up modules, especially bookmarks_controller.js
  - finalise bookmarks_controller, including how the intial setup of it is handled and removing the temp bookmarks
