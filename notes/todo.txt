@@ -21,3 +21,5 @@
  - DONE check through the remaining todos in the project
  - DONE tidy up modules, especially bookmarks_controller.js
  - DONE finalise bookmarks_controller, including how the intial setup of it is handled and removing the temp bookmarks
+
+ - make sure to parse url entered by user, validate it and make it work via https
