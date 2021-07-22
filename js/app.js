@@ -19,8 +19,8 @@ class App {
         // TODO ... does not take place if you cancel the first time you pick an image
         this.hasImageChangeOccurred = false;
 
-        this.loadInitialState();
         this.loadInitialBookmarks();
+        this.loadInitialState();
         this.initDateTimeBookmark();
         this.loadEventListeners();
     }
