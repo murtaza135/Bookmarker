@@ -161,6 +161,16 @@
                 -moz-background-clip: text;
                 -moz-text-fill-color: transparent;
             }
+
+            h1 {
+                word-wrap: break-word;
+                width: 100%;
+            }
+
+            p.text {
+                word-wrap: break-word;
+                width: 100%;
+            }
         }
     }
 }
@@ -174,7 +184,7 @@
         a {
             width: 256px;
             height: 348px;
-            padding: 1.5rem 1rem 1rem;
+            padding: 1.5rem 1rem 1.2rem;
 
             img {
                 max-height: 150px;
@@ -183,6 +193,10 @@
 
             i {
                 font-size: 9rem;
+            }
+
+            h1 {
+                font-size: 1.75rem;
             }
         }
     }
@@ -193,15 +207,21 @@
         a {
             width: 242px;
             height: 165px;
-            padding: 1.5rem 1rem 0;
+            padding: 1rem 1rem 0.65rem;
             
             img {
-                max-height: 75px;
-                max-width: 75px;
+                max-height: 65px;
+                max-width: 65px;
+                margin-bottom: 0.45rem !important;
             }
 
             i {
-                font-size: 4.5rem;
+                font-size: 3.9rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0 !important;
             }
     
             p.text {
@@ -218,21 +238,24 @@
         @extend %bookmarks-card-shared;
         
         a {
-            width: 145px;
+            width: 135px;
             height: 130px;
-            padding: 0.75rem 0rem 0;
+            padding: 0.45rem 0.35rem 0.35rem;
 
             img {
-                max-height: 55px;
-                max-width: 55px;
+                max-height: 40px;
+                max-width: 40px;
+                margin-bottom: 0.25rem !important;
             }
 
             i {
-                font-size: 3.3rem;
+                font-size: 2.4rem;
+                margin-bottom: 0.25rem !important;
             }
     
             h1 {
-                font-size: 1.4rem;
+                font-size: 1.15rem;
+                margin-bottom: 0 !important;
             }
     
             p.text {
@@ -251,21 +274,19 @@
         a {
             width: 95px;
             height: 78px;
-            padding: 0;
+            padding: 0.35rem;
 
             img {
-                max-height: 55px;
-                max-width: 55px;
-                margin-bottom: 0 !important;
+                display: none;
             }
 
             i {
-                font-size: 3.3rem;
-                margin-bottom: 0 !important;
+                display: none;
             }
     
             h1 {
-                display: none;
+                font-size: 1.1rem;
+                margin-bottom: 0 !important;
             }
     
             p.text {
@@ -326,7 +347,7 @@
         @extend %template-card-shared;
         
         a {
-            width: 256px;
+            width: 254px;
             min-height: 348px;
             padding: 1.5rem 1rem;
             
@@ -340,7 +361,7 @@
         @extend %template-card-shared;
         
         a {
-            width: 242px;
+            width: 240px;
             height: 165px;
             padding: 1.5rem 1rem;
 
@@ -354,7 +375,7 @@
         @extend %template-card-shared;
         
         a {
-            width: 145px;
+            width: 133px;
             height: 130px;
             padding: 1.5rem 1rem;
 
@@ -368,7 +389,7 @@
         @extend %template-card-shared;
         
         a {
-            width: 95px;
+            width: 93px;
             height: 78px;
             padding: 0;
 
