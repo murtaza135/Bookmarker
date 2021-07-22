@@ -21,11 +21,16 @@ export default class StorageController {
         return items.find(item => item[this._itemIdentifierKey] === id);
     }
 
+    setItems(items) {
+        localStorage.setItem(this._key, JSON.stringify(items));
+        return items;
+    }
+
     addItems(...newItems) {
         const currentItems = this.getItems();
         currentItems.push(...newItems);
         localStorage.setItem(this._key, JSON.stringify(currentItems));
-        return newItems
+        return newItems;
     }
 
     updateItem(id, updatedObject) {

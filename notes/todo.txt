@@ -18,3 +18,5 @@
     - DONE add ability to show/hide bookmarks in the DOM, muuri has a class to do this
  - DONE use higher order functions in the controller classes
  - DONE in add and edit bookmark forms, only accept images, nothing else
+ - check through the remaining todos in the project
+ - finalise bookmarks_controller, including how the intial setup of it is handled and removing the temp bookmarks

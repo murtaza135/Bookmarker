@@ -1,9 +1,12 @@
-import UI from "./ui";
+import StorageController from "./storage_controller";
 import BookmarksController from "./bookmarks_controller";
+import UI from "./ui";
 
 
 class App {
     constructor() {
+        this.storage = new StorageController("bookmarks");
+        // this.storageSize = new StorageController("bookmarkSize");
         this.bookmarksController = new BookmarksController();
         this.ui = new UI();
 
@@ -26,8 +29,9 @@ class App {
     }
 
     loadInitialBookmarks() {
-        const bookmarks = this.bookmarksController.getAllBookmarks();
-        const bookmarkSize = this.bookmarksController._bookmarkSize;
+        const storedBookmarks = this.storage.getItems();
+        const bookmarks = this.bookmarksController.setBookmarks(storedBookmarks);
+        const bookmarkSize = this.bookmarksController.getBookmarkSize();
         this.ui.populateBookmarksGrid(bookmarks, bookmarkSize);
         this.ui.populateBookmarksList(bookmarks);
     }
@@ -35,8 +39,8 @@ class App {
     initDateTimeBookmark() {
         // This will constantly refresh the time on the datetime bookmark
         setInterval(() => {
-            const dateTimebookmark = this.bookmarksController._dateTimeBookmark;
-            this.ui.updateBookmarkInGrid(dateTimebookmark);
+            const dateTimeBookmark = this.bookmarksController._dateTimeBookmark;
+            this.ui.updateBookmarkInGrid(dateTimeBookmark);
         }, 1000);
     }
 
@@ -77,6 +81,7 @@ class App {
         this.bookmarksController.moveBookmark(itemId, newIndex);
         this.ui.moveBookmarkInGrid(itemId, newIndex);
         this.ui.moveBookmarkInList(itemId, newIndex);
+        this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
     }
 
     addNewBookmark(event) {
@@ -94,6 +99,7 @@ class App {
             this.ui.addBookmarkToGrid(bookmark, bookmarkSize, bookmarkIndex);
             this.ui.addBookmarkToList(bookmark, bookmarkIndex);
             this.ui.closeBookmarksModal();
+            this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
             event.preventDefault();
         }
     }
@@ -114,6 +120,7 @@ class App {
         this.bookmarksController.deleteBookmark(id);
         this.ui.deleteBookmarkFromGrid(id);
         this.ui.deleteBookmarkFromList(id);
+        this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
 
         this.ui.closeDeletConfirmationModal();
     }
@@ -128,7 +135,6 @@ class App {
             this.ui.openEditBookmarksModalForBookmark(bookmark);
             this.ui.displayBookmarkDataInEditBookmarksModal(bookmark);
         }
-
     }
 
     updateBookmark(event) {
@@ -151,6 +157,7 @@ class App {
             this.ui.grid.refresh();
             this.ui.list.refresh();
             this.ui.closeEditBookmarksModal();
+            this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
             event.preventDefault();
         }
     }
@@ -164,6 +171,7 @@ class App {
 
             this.bookmarksController.setBookmarkVisibility(id, toggleButton.checked);
             this.ui.toggleBookmarkVisibilityInGrid(id, toggleButton.checked)
+            this.storage.setItems(this.bookmarksController.getAllBookmarksImageStriped());
         }
     }
 

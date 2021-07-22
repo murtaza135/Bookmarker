@@ -14,15 +14,13 @@ export const allBookmarkSizes = Object.freeze({
 
 
 export default class BookmarksController {
-    constructor(bookmarkSize = allBookmarkSizes.l, bookmarks = []) {
+    constructor() {
         this._bookmarkSize = allBookmarkSizes.l;
-        this._bookmarkSize = this.setBookmarkSize(bookmarkSize);
         this._bookmarks = [];
 
-        this._templateBookmark = this._createTemplateBookmark();
-        this._dateTimeBookmark = this._createDateTimeBookmark();
-        this.setBookmarks(bookmarks);
-        this._createTempBookmarks();
+        this._templateBookmark = null;
+        this._dateTimeBookmark = null;
+        // this._createTempBookmarks();
     }
 
     setBookmarkSize(bookmarkSize) {
@@ -43,18 +41,34 @@ export default class BookmarksController {
     }
 
     _createTemplateBookmark() {
-        let id = this._generateNewId()
+        const id = 0;
         const templateBookmark = new TemplateBookmark(id, "Template", true);
         this._bookmarks.push(templateBookmark);
         return templateBookmark;
     }
 
     _createDateTimeBookmark() {
-        let id = this._generateNewId()
+        const id = 1;
         const dateTimeBookmark = new DateTimeBookmark(id, "Date Time", true);
         const index = this._bookmarks.indexOf(this._templateBookmark);
         this._bookmarks.splice(index, 0, dateTimeBookmark);
         return dateTimeBookmark;
+    }
+
+    _refreshTemplateBookmark() {
+        const index = this.getBookmarkIndex(0);
+        const isVisible = this._bookmarks[index].isVisible;
+        const bookmark = new TemplateBookmark(0, "Template", isVisible);
+        this._bookmarks.splice(index, 1, bookmark);
+        return bookmark;
+    }
+
+    _refreshDateTimeBookmark() {
+        const index = this.getBookmarkIndex(1);
+        const isVisible = this._bookmarks[index].isVisible;
+        const bookmark = new DateTimeBookmark(id, "Date Time", isVisible);
+        this._bookmarks.splice(index, 1, bookmark);
+        return bookmark;
     }
 
     _createTempBookmarks() {
@@ -78,43 +92,49 @@ export default class BookmarksController {
         }
     }
 
-    setBookmarks(bookmarks, howToDealWithDuplicateIds = "discard") {
-        // TODO cleanup and make it better
-        this.deleteAllBookmarks();
+    setBookmarks(bookmarks) {
+        this._bookmarks.splice(0, this._bookmarks.length);
 
-        let bookmarksWithIds = [];
-        let bookmarksWithoutIds = [];
+        if (!bookmarks || bookmarks.length === 0) {
+            this._bookmarks = [];
+            this._templateBookmark = this._createTemplateBookmark();
+            this._dateTimeBookmark = this._createDateTimeBookmark();
+        }
+        else {
+            this._bookmarks = [];
+            bookmarks.forEach(bookmark => {
+                if (bookmark.id === 0) {
+                    const newBookmark = new TemplateBookmark(
+                        bookmark.id, "Template", bookmark.isVisible
+                    );
+                    this._bookmarks.push(newBookmark);
+                    this._templateBookmark = newBookmark;
+                }
+                else if (bookmark.id === 1) {
+                    const newBookmark = new DateTimeBookmark(
+                        bookmark.id, "Date Time", bookmark.isVisible
+                    );
+                    this._bookmarks.push(newBookmark);
+                    this._dateTimeBookmark = newBookmark;
+                }
+                else {
+                    const newBookmark = new Bookmark(
+                        bookmark.id, bookmark.name, bookmark.url,
+                        bookmark.description, bookmark.image, bookmark.isVisible
+                    );
+                    this._bookmarks.push(newBookmark);
+                }
+            })
+        }
 
-        bookmarks.forEach(bookmark => {
-            if (bookmark.id != null) {
-                bookmarksWithIds.push(bookmark);
-            }
-            else {
-                bookmarksWithoutIds.push(bookmark);
-            }
-        })
-
-        const bookmarksWithNoDuplicateIds = uniqKeepFirst(bookmarksWithIds, bookmark => bookmark.id);
-        const indexOfTemplateBookmark = this._bookmarks.indexOf(this._templateBookmark);
-
-        bookmarksWithNoDuplicateIds.forEach(bookmark => {
-            const newBookmark = new Bookmark(
-                bookmark.id, bookmark.name, bookmark.url,
-                bookmark.description, bookmark.image, bookmark.isVisible
-            );
-
-            this._bookmarks.splice(indexOfTemplateBookmark, 0, newBookmark);
-        })
-
-        bookmarksWithoutIds.forEach(bookmark => {
-            this.addNewBookmark(bookmark);
-        })
+        return this.getAllBookmarks();
     }
 
     addNewBookmark({name, url, description, image}, isVisible = true) {
         const id = this._generateNewId();
         const bookmark = new Bookmark(id, name, url, description, image, isVisible);
         const index = this._bookmarks.indexOf(this._templateBookmark);
+        console.log(index);
         this._bookmarks.splice(index, 0, bookmark);
         return bookmark;
     }
@@ -129,7 +149,8 @@ export default class BookmarksController {
 
     _generateNewId() {
         if (this._bookmarks.length === 0) {
-            return 0;
+            // id 0 and id 1 are taken by the template bookmark and datetime bookmark
+            return 2;
         }
         else {
             const ids = this._bookmarks.map(bookmark => {
@@ -143,6 +164,13 @@ export default class BookmarksController {
 
     getAllBookmarks() {
         return [...this._bookmarks];
+    }
+
+    getAllBookmarksImageStriped() {
+        return this._bookmarks.map(bookmark => {
+            delete bookmark.image;
+            return bookmark;
+        });
     }
 
     getBookmark(id) {
