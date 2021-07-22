@@ -21,23 +21,6 @@ export default class BookmarksController {
         this._dateTimeBookmark = null;
     }
 
-    setBookmarkSize(bookmarkSize) {
-        const isBookmarkSizeValid = Object.values(allBookmarkSizes)
-            .some(size => size === bookmarkSize);
-
-        if (isBookmarkSizeValid) {
-            this._bookmarkSize = bookmarkSize;
-            return bookmarkSize;
-        }
-        else {
-            return this._bookmarkSize;
-        }
-    }
-
-    getBookmarkSize() {
-        return this._bookmarkSize;
-    }
-
     _createTemplateBookmark() {
         const id = 0;
         const templateBookmark = new TemplateBookmark(id, "Template", true);
@@ -67,6 +50,23 @@ export default class BookmarksController {
         const bookmark = new DateTimeBookmark(id, "Date Time", isVisible);
         this._bookmarks.splice(index, 1, bookmark);
         return bookmark;
+    }
+
+    setBookmarkSize(bookmarkSize) {
+        const isBookmarkSizeValid = Object.values(allBookmarkSizes)
+            .some(size => size === bookmarkSize);
+
+        if (isBookmarkSizeValid) {
+            this._bookmarkSize = bookmarkSize;
+            return bookmarkSize;
+        }
+        else {
+            return this._bookmarkSize;
+        }
+    }
+
+    getBookmarkSize() {
+        return this._bookmarkSize;
     }
 
     setBookmarks(bookmarks) {

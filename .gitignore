@@ -106,3 +106,7 @@ typings/
 .venv.bash
 agps_errors.txt
 .vscode
+
+# others
+notes/design_problem.txt
+notes/design_solution.txt

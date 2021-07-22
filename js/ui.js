@@ -56,14 +56,6 @@ export default class UI {
         // TODO move to app.js
         this.currentEdit = null;
         this.currentDelete = null;
-
-        // TODO remove
-        this.tempInit();
-    }
-
-    tempInit() {
-        // TODO remove
-        // this.settingsModal.classList.remove("closed");
     }
 
     _setUpBookmarksGrid() {
@@ -216,7 +208,7 @@ export default class UI {
 
     displayImageFileNameInBookmarksModal() {
         //+ there are 2 ways of getting the name of the file/image
-        // const imageFileName = this.bookmarksImageInput.files[0].name;
+        //+ const imageFileName = this.bookmarksImageInput.files[0].name;
         const imageFilename = this.bookmarksImageInput.value.replace(/^.*(\\|\/|\:)/, '')
         this.bookmarksImageUploadText.value = imageFilename;
     }

@@ -25,22 +25,21 @@ class App {
         this.loadEventListeners();
     }
 
-    loadInitialState() {
-        const bookmarkSize = this.bookmarksController.getBookmarkSize();
-        const changeSizeDiv = document.querySelector(`.change-size-options #box-section-${bookmarkSize}`);
-        changeSizeDiv.classList.add("active");
-    }
-
     loadInitialBookmarks() {
         const storedBookmarks = this.storage.bookmarks.getItems();
         const storedBookmarkSize = this.storage.bookmarkSize.getItem();
-        console.log(storedBookmarkSize);
 
         const bookmarks = this.bookmarksController.setBookmarks(storedBookmarks);
         const bookmarkSize = this.bookmarksController.setBookmarkSize(storedBookmarkSize);
 
         this.ui.populateBookmarksGrid(bookmarks, bookmarkSize);
         this.ui.populateBookmarksList(bookmarks);
+    }
+
+    loadInitialState() {
+        const bookmarkSize = this.bookmarksController.getBookmarkSize();
+        const changeSizeDiv = document.querySelector(`.change-size-options #box-section-${bookmarkSize}`);
+        changeSizeDiv.classList.add("active");
     }
 
     initDateTimeBookmark() {
@@ -182,6 +181,20 @@ class App {
         }
     }
 
+    changeBookmarkSize(event) {
+        const element = this._getBookmarkSizeBoxSectionElement(event);
+
+        if (element) {
+            const oldBookmarkSize = this.bookmarksController.getBookmarkSize();
+            const newBookmarkSize = this.bookmarksController.extractBookmarkSizeFromElement(element);
+            
+            this.bookmarksController.setBookmarkSize(newBookmarkSize);
+            this.ui.setNewActiveBookmarkSizeBoxSection(newBookmarkSize);
+            this.ui.changeSizeOfGridItems(oldBookmarkSize, newBookmarkSize);
+            this.storage.bookmarkSize.setItem(newBookmarkSize);
+        }
+    }
+
     openBookmarksModal(event) {
         const isClickable = (
             event.target.parentElement.parentElement
@@ -233,20 +246,6 @@ class App {
             || event.target === this.ui.settingsModalCloseBtn
         ) {
             this.ui.closeSettingsModal();
-        }
-    }
-
-    changeBookmarkSize(event) {
-        const element = this._getBookmarkSizeBoxSectionElement(event);
-
-        if (element) {
-            const oldBookmarkSize = this.bookmarksController.getBookmarkSize();
-            const newBookmarkSize = this.bookmarksController.extractBookmarkSizeFromElement(element);
-            
-            this.bookmarksController.setBookmarkSize(newBookmarkSize);
-            this.ui.setNewActiveBookmarkSizeBoxSection(newBookmarkSize);
-            this.ui.changeSizeOfGridItems(oldBookmarkSize, newBookmarkSize);
-            this.storage.bookmarkSize.setItem(newBookmarkSize);
         }
     }
 
