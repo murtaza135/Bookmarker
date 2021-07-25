@@ -2,6 +2,10 @@ import Muuri from "muuri";
 
 
 export default class CustomMuuri extends Muuri {
+	// To be able to stop a particular element being dragged
+	// and to stop another element being dragged over to that particular element
+	// checkout: https://codepen.io/niklasramo/details/EEdmJr
+	
     constructor(element, options) {
         CustomMuuri._setCustomDragStartPredicate(options);
         super(element, options);
